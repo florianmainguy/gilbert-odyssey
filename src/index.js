@@ -25,6 +25,25 @@ class Application extends React.Component {
           zoom: this.state.zoom
         });
 
+        map.on('load', function() {
+            map.addLayer({
+                'id': 'route',
+                'type': 'line',
+                'source': {
+                    'type': 'geojson',
+                    'data': 
+                },
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+        });
+
         map.on('move', () => {
             this.setState({
               lng: map.getCenter().lng.toFixed(4),
