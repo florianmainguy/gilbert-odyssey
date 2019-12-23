@@ -4,40 +4,6 @@
     {
       "type": "Feature",
       "properties": {
-        "_storage_options": "[object Object]",
-        "_umap_options": {
-          "0": "[",
-          "1": "o",
-          "2": "b",
-          "3": "j",
-          "4": "e",
-          "5": "c",
-          "6": "t",
-          "7": " ",
-          "8": "O",
-          "9": "b",
-          "10": "j",
-          "11": "e",
-          "12": "c",
-          "13": "t",
-          "14": "]",
-          "color": "White",
-          "weight": "13"
-        }
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            3.468407,
-            50.152431
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Le tracé du Paris-Roubaix 2018",
         "description": "Dimanche 8 avril 2018 - 257 km",
         "stroke": "#ff0000",
