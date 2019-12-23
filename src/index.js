@@ -26,12 +26,27 @@ class Application extends React.Component {
         });
 
         map.on('load', () => {
-            map.addSource('roubaix2019', { type: 'geojson', data: 'https://github.com/florianmainguy/gilbert-odyssey/blob/master/map_data/paris_roubaix_2019.geojson'});
+            map.addSource('roubaix2019', { type: 'geojson', data: '/map_data/paris_roubaix_2019.geojson'});
+            map.addSource('sample', { type: 'geojson', data: '.../map_data/sample.geojson'});
             
             map.addLayer({
                 'id': 'roubaix',
                 'type': 'line',
                 'source': 'roubaix2019',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 20
+                }
+            });
+
+            map.addLayer({
+                'id': 'roubaix',
+                'type': 'line',
+                'source': 'sample',
                 'layout': {
                     'line-join': 'round',
                     'line-cap': 'round'
