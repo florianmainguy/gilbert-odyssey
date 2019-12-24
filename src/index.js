@@ -11,17 +11,19 @@ class Application extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lng: 5,
-            lat: 34,
-            zoom: 2
+            lng: 7.254,
+            lat: 46.880,
+            zoom: 5.5
         };
     }
 
     componentDidMount() {
         const map = new mapboxgl.Map({
           container: this.mapContainer,
-          style: 'mapbox://styles/mapbox/streets-v11',
+          style: 'mapbox://styles/chienchien1664/ck4k1ugrb1lr01cnxcrkxcvjr',
           center: [this.state.lng, this.state.lat],
+          pitch: 39, // pitch in degrees
+          bearing: -16, // bearing in degrees
           zoom: this.state.zoom
         });
 
@@ -30,9 +32,9 @@ class Application extends React.Component {
             map.addSource('flandres2016', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Tour-des-Flandres-2016.geojson'});
             map.addSource('milan2014', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Milan-Sanremo-2014.geojson'});
             map.addSource('lombardia2015', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Il_Lombardia_2015.geojson'});
-            map.addSource('amstel2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Amstel-Gold-Race-2019.geojson'});
-            map.addSource('gent2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Gent-Wewelgem-2017.geojson'});
-            map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Paris-Nice-2018.geojson'});
+            //map.addSource('amstel2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Amstel-Gold-Race-2019.geojson'});
+            //map.addSource('gent2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Gent-Wewelgem-2017.geojson'});
+            //map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Paris-Nice-2018.geojson'});
             map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Liege-Bastogne-Liege-2017.geojson'});
             
             map.addLayer({
