@@ -27,11 +27,116 @@ class Application extends React.Component {
 
         map.on('load', () => {
             map.addSource('roubaix2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/paris_roubaix_2019.geojson'});
+            map.addSource('flandres2016', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Tour-des-Flandres-2016.geojson'});
+            map.addSource('milan2014', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Milan-Sanremo-2014.geojson'});
+            map.addSource('lombardia2015', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Il_Lombardia_2015.geojson'});
+            map.addSource('amstel2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Amstel-Gold-Race-2019.geojson'});
+            map.addSource('gent2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Gent-Wewelgem-2017.geojson'});
+            map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Paris-Nice-2018.geojson'});
+            map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Liege-Bastogne-Liege-2017.geojson'});
             
             map.addLayer({
                 'id': 'roubaix',
                 'type': 'line',
                 'source': 'roubaix2019',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'flandres',
+                'type': 'line',
+                'source': 'flandres2016',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'milan',
+                'type': 'line',
+                'source': 'milan2014',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'lombardia',
+                'type': 'line',
+                'source': 'lombardia2015',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'amstel',
+                'type': 'line',
+                'source': 'amstel2019',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'gent',
+                'type': 'line',
+                'source': 'gent2017',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'nice',
+                'type': 'line',
+                'source': 'nice2018',
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': '#888',
+                    'line-width': 8
+                }
+            });
+
+            map.addLayer({
+                'id': 'liege',
+                'type': 'line',
+                'source': 'liege2017',
                 'layout': {
                     'line-join': 'round',
                     'line-cap': 'round'
