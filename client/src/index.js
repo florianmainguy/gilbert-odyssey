@@ -17,6 +17,10 @@ class Application extends React.Component {
         };
     }
 
+    state = {
+        data: null
+    };
+
     componentDidMount() {
         const map = new mapboxgl.Map({
           container: this.mapContainer,
@@ -26,6 +30,22 @@ class Application extends React.Component {
           bearing: -16, // bearing in degrees
           zoom: this.state.zoom
         });
+        
+        // Call our fetch function below once the component mounts
+        this.callBackendAPI()
+            .then(res => this.setState({ data: res.express }))
+            .catch(err => console.log(err));
+
+        // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+        callBackendAPI = async () => {
+            const response = await fetch('/express_backend');
+            const body = await response.json();
+
+            if (response.status !== 200) {
+                throw Error(body.message) 
+            }
+            return body;
+        };
 
         map.on('load', () => {
             map.addSource('roubaix2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/paris_roubaix_2019.geojson'});
@@ -166,6 +186,9 @@ class Application extends React.Component {
                 <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
             </div>
             <div ref={el => this.mapContainer = el} className="mapContainer"/>
+            
+            // Render the newly fetched data inside of this.state.data 
+            <p className="App-intro">{this.state.data}</p>
           </div>
         )
     }
