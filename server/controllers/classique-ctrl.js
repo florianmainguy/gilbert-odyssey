@@ -2,7 +2,7 @@
 const Classique = require('../models/classique-model')
 
 getClassique = async (req, res) => {
-    await Classique.findOne({ name: req.params.name }, (err, classique) => {
+    await Classique.findOne({ _name: req.params.name }, (err, classique) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
