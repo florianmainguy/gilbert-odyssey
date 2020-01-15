@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import './index.css';
-import api from './api.js';
+import apis from './api';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -32,16 +32,16 @@ class Application extends React.Component {
 
         map.on('load', () => {
             map.addSource('roubaix2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/paris_roubaix_2019.geojson'});
-            map.addSource('flandres2016', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Tour-des-Flandres-2016.geojson'});
-            //map.addSource('milan2014', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Milan-Sanremo-2014.geojson'});
-            map.addSource('milan-sanremo', { type: 'geojson', data: {} });
-            map.addSource('lombardia2015', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Il_Lombardia_2015.geojson'});
-            //map.addSource('amstel2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Amstel-Gold-Race-2019.geojson'});
-            //map.addSource('gent2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Gent-Wewelgem-2017.geojson'});
-            //map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Paris-Nice-2018.geojson'});
-            map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/map_data/Liege-Bastogne-Liege-2017.geojson'});
+            map.addSource('flandres2016', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Tour-des-Flandres-2016.geojson'});
+            map.addSource('milan2014', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Milan-Sanremo-2014.geojson'});
+            //map.addSource('milan-sanremo', { type: 'geojson', data: {} });
+            map.addSource('lombardia2015', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Il_Lombardia_2015.geojson'});
+            map.addSource('amstel2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Amstel-Gold-Race-2019.geojson'});
+            map.addSource('gent2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Gent-Wewelgem-2017.geojson'});
+            map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Paris-Nice-2018.geojson'});
+            map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Liege-Bastogne-Liege-2017.geojson'});
 
-            map.getSource('milan-sanremo').setData(api.getClassique('milan-sanremo'));
+            map.getSource('milan-sanremo').setData(apis.getClassique('milan-sanremo'));
             map.addLayer({
                 'id': 'milan',
                 'type': 'line',
