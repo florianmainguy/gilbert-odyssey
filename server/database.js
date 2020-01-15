@@ -8,4 +8,8 @@ mongoose
 
 const db = mongoose.connection
 
+db.once('open', function () {
+    console.log("Connection to DB OK")
+})
+
 module.exports = db

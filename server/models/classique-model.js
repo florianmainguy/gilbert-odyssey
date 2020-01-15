@@ -1,17 +1,27 @@
 const mongoose = require('mongoose')
 
-const Classique = new mongoose.Schema({
+let Classique = new mongoose.Schema({
+    type: String,
     name: String,
-    location: {
+    style: {
+        color: String,
+        weight: Number,
+        opacity: Number
+    },
+    geometry: {
         type: {
             type: String,
             enum: ['LineString'],
             required: true
         },
         coordinates: {
-            type: [[Number]],
-            required: true
+            type: Array,
+            index: '2d'
         }
+    },
+    properties: {
+        direction: String,
+        power: Number
     }
 });
 

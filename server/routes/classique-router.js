@@ -1,10 +1,11 @@
 const express = require('express')
 
-const ClassiqueCtrl = require('../controllers/classique-ctrl')
+const ClassiqueController = require('../controllers/classique-controller')
 
 const router = express.Router()
 
-router.get('/classiques/:name', ClassiqueCtrl.getClassique)
-router.get('/classiques', ClassiqueCtrl.getClassiques)
+router.post('/classiques', ClassiqueController.createClassique)
+router.get('/classiques/:id', ClassiqueController.getClassiqueById)
+router.get('/classiques', ClassiqueController.getClassiques)
 
 module.exports = router
