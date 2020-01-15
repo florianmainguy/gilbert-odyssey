@@ -1,6 +1,7 @@
 
 const Classique = require('../models/classique-model')
 
+/*
 createClassique = (req, res) => {
     const body = req.body
 
@@ -32,10 +33,10 @@ createClassique = (req, res) => {
                 message: 'Classique not created!',
             })
         })
-}
+}*/
 
-getClassiqueById = async (req, res) => {
-    await Classique.findOne({ _id: req.params.id }, (err, classique) => {
+getClassiqueByName = async (req, res) => {
+    await Classique.findOne({ name: req.params.name }, (err, classique) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -64,7 +65,6 @@ getClassiques = async (req, res) => {
 }
 
 module.exports = {
-    createClassique,
-    getClassiqueById,
+    getClassiqueByName,
     getClassiques,
 }

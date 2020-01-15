@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 let Classique = new mongoose.Schema({
-    type: String,
     name: String,
+    type: String,
     style: {
         color: String,
         weight: Number,
