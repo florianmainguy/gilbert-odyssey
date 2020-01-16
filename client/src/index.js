@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import './index.css';
-import apis from './api';
-import App from './App';
+import api from './api';
+//import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZW5jaGllbjE2NjQiLCJhIjoiY2s0aDc0OHd2MTNpOTN0bzJyNjRzOWxpaiJ9.OAzfshgQGxK4VRYepd-ysw';
@@ -41,7 +41,10 @@ class Application extends React.Component {
             map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Paris-Nice-2018.geojson'});
             map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Liege-Bastogne-Liege-2017.geojson'});
 
-            map.getSource('milan-sanremo').setData(apis.getClassique('milan-sanremo'));
+            //map.getSource('milan-sanremo').setData(api.getClassique('milan-sanremo'));
+            var milan = api.getClassique('milan-sanremo');
+            //TO DO: make sure milan is geojson type
+            //map.addSource('milan-sanremo', { type: 'geojson', data: milan});
             map.addLayer({
                 'id': 'milan',
                 'type': 'line',
