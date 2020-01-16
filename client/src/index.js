@@ -16,11 +16,12 @@ class Application extends React.Component {
             lat: 46.880,
             zoom: 5.5,
             pitch: 39, // pitch in degrees
-            bearing: -16 // bearing in degrees
+            bearing: -16, // bearing in degrees
+            classiques: []
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const map = new mapboxgl.Map({
           container: this.mapContainer,
           style: 'mapbox://styles/chienchien1664/ck4k1ugrb1lr01cnxcrkxcvjr',
@@ -28,7 +29,22 @@ class Application extends React.Component {
           zoom: this.state.zoom,
           pitch: this.state.pitch,
           bearing: this.state.bearing
+
         });
+
+        api.getAllClassiques()
+            .then(response => {
+                this.setState({
+                    classiques: response.data
+                });
+            });
+
+        const milan = await api.getAllClassiques();
+        console.log(milan.data.data);
+        console.log(this.state.classiques.data);
+
+        const milan2 = this.state.classiques.data.find(classique => (classique.name == 'milan-sanremo'));
+        console.log(milan2);
 
         map.on('load', () => {
             map.addSource('roubaix2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/paris_roubaix_2019.geojson'});
@@ -42,9 +58,15 @@ class Application extends React.Component {
             map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Liege-Bastogne-Liege-2017.geojson'});
 
             //map.getSource('milan-sanremo').setData(api.getClassique('milan-sanremo'));
-            var milan = api.getClassique('milan-sanremo');
+
+                    
+            //.then( (response) => {
+            //    console.log(response.data.data);
+            //});;
+            //console.log(this.state.classiques);
             //TO DO: make sure milan is geojson type
-            //map.addSource('milan-sanremo', { type: 'geojson', data: milan});
+
+            map.addSource('milan-sanremo', { type: 'geojson', data: milan2});
             map.addLayer({
                 'id': 'milan',
                 'type': 'line',
