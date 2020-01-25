@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 const password = 'xWaxbKSJhFU5MD8T';
 
 mongoose
-    .connect(`mongodb+srv://Chienchien:${encodeURIComponent(password)}@cluster0-3g216.mongodb.net/test?retryWrites=true&w=majority`)
+    .connect(`mongodb+srv://Chienchien:xWaxbKSJhFU5MD8T@cluster0-3g216.mongodb.net/test?retryWrites=true&w=majority`)
     .catch(e => {
         console.error('Connection error', e.message)
     })
