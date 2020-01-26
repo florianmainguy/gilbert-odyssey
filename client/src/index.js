@@ -39,12 +39,12 @@ class Application extends React.Component {
                 });
             });
 
-        const milan = await api.getAllClassiques();
-        console.log(milan.data.data);
+        const milan = await api.getClassique("milan-sanremo3");
+        console.log(milan.data.data.data);
         console.log(this.state.classiques.data);
 
-        const milan2 = this.state.classiques.data.find(classique => (classique.name == 'milan-sanremo'));
-        console.log(milan2);
+        //const milan2 = this.state.classiques.data.find(classique => (classique.name == 'milan-sanremo'));
+        //console.log(milan2);
 
         map.on('load', () => {
             map.addSource('roubaix2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/paris_roubaix_2019.geojson'});
@@ -66,7 +66,7 @@ class Application extends React.Component {
             //console.log(this.state.classiques);
             //TO DO: make sure milan is geojson type
 
-            map.addSource('milan-sanremo', { type: 'geojson', data: milan2});
+            map.addSource('milan-sanremo', { type: 'geojson', data: milan.data.data.data});
             map.addLayer({
                 'id': 'milan',
                 'type': 'line',
