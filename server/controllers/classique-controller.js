@@ -1,4 +1,3 @@
-
 const Classique = require('../models/classique-model')
 
 /*
@@ -36,7 +35,7 @@ createClassique = (req, res) => {
 }*/
 
 getClassiqueByName = async (req, res) => {
-    await Classique.findOne({ name: req.params.name }, (err, classique) => {
+    await Classique.findOne({ raceName: req.params.name }, (err, classique) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -58,7 +57,7 @@ getClassiques = async (req, res) => {
         if (!classiques.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Classique not found` })
+                .json({ success: false, error: `Classiques not found` })
         }
         return res.status(200).json({ success: true, data: classiques })
     }).catch(err => console.log(err))

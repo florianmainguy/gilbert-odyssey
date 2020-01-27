@@ -1,28 +1,9 @@
+var GeoJSON = require('mongoose-geojson-schema');
 const mongoose = require('mongoose')
 
-let Classique = new mongoose.Schema({
-    name: String,
-    type: String,
-    style: {
-        color: String,
-        weight: Number,
-        opacity: Number
-    },
-    geometry: {
-        type: {
-            type: String,
-            enum: ['LineString'],
-            required: true
-        },
-        coordinates: {
-            type: Array,
-            index: '2d'
-        }
-    },
-    properties: {
-        direction: String,
-        power: Number
-    }
+let classiqueSchema = new mongoose.Schema({
+    raceName: String,
+    geojsonData: mongoose.Schema.Types.FeatureCollection
 });
 
-module.exports = mongoose.model('classiques', Classique)
+module.exports = mongoose.model('classiques', classiqueSchema)
