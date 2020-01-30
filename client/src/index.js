@@ -12,11 +12,11 @@ class Application extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lng: 7.254,
-            lat: 46.880,
-            zoom: 5.5,
-            pitch: 39, // pitch in degrees
-            bearing: -16, // bearing in degrees
+            lng: 5.584,
+            lat: 45.851,
+            zoom: 4.65,
+            pitch: 0, // pitch in degrees
+            bearing: 0, // bearing in degrees
             classiques: []
         };
     }
@@ -52,9 +52,30 @@ class Application extends React.Component {
                         'line-cap': 'round'
                     },
                     'paint': {
-                        'line-color': '#888',
-                        'line-width': 8
+                        'line-color': "hsl(16, 93%, 49%)",
+                        'line-width': 4
                     }
+                });
+
+                map.on('click', classique.raceName, function() {
+                    // Geographic coordinates of the LineString
+                    var coordinates = classique.geojsonData.features[2].geometry.coordinates;
+                    
+                    // Pass the first coordinates in the LineString to `lngLatBounds` &
+                    // wrap each coordinate pair in `extend` to include them in the bounds
+                    // result. A variation of this technique could be applied to zooming
+                    // to the bounds of multiple Points or Polygon geomteries - it just
+                    // requires wrapping all the coordinates with the extend method.
+                    var bounds = coordinates.reduce(function(bounds, coord) {
+                    return bounds.extend(coord);
+                    }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+                    
+                    map.fitBounds(bounds, {
+                    padding: {top: 40, bottom:40, left: 15, right: 500}
+                    //TODO: padding right, something like:
+                    //document.getElementById('your_div').offsetWidth + 5
+                    });
+
                 });
             };
         });
