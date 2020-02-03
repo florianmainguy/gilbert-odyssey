@@ -38,14 +38,12 @@ class Application extends React.Component {
                 });
             })
 
-        
-
-        console.log("this.state.classique", this.state.classiques);
+        //console.log("this.state.classique", this.state.classiques);
         map.on('load', () => {
             for (let classique of this.state.classiques){
-                let hoveredStateId = null;
+                let hoveredClassiqueId = null;
 
-                console.log("classique", classique);
+                //console.log("classique", classique);
                 map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
                 map.addLayer({
                     'id': classique.raceName,
@@ -68,40 +66,32 @@ class Application extends React.Component {
 
                 // When the user moves their mouse over the classique line
                 map.on('mousemove', classique.raceName, function(e) {
-                    /*console.log("classique.raceName", classique.raceName);
-                    console.log("e.features[0].id", e.features[0].id);
-                    map.setFeatureState(
-                        { source: classique.raceName, id: e.features[0].id},
-                        { hover: true }
-                    );*/
-                    if (e.features.length > 0) {
-                        if (hoveredStateId) {
-                            map.setFeatureState(
-                                { source: classique.raceName, id: hoveredStateId },
-                                { hover: false }
-                            );
-                        }
-                        hoveredStateId = e.features[0].id;
+                    map.getCanvas().style.cursor = 'pointer';
+
+                    if (hoveredClassiqueId) {
                         map.setFeatureState(
-                            { source: classique.raceName, id: hoveredStateId },
-                            { hover: true }
+                            { source: classique.raceName, id: hoveredClassiqueId },
+                            { hover: false }
                         );
                     }
+                    hoveredClassiqueId = e.features[0].id;
+                    map.setFeatureState(
+                        { source: classique.raceName, id: hoveredClassiqueId },
+                        { hover: true }
+                    );
                 });
                     
                 // When the mouse leaves the classique line
                 map.on('mouseleave', classique.raceName, function(e) {
-                    /*map.setFeatureState(
-                        { source: classique.raceName, id: e.features[0].id},
-                        { hover: false }
-                    );*/
-                    if (hoveredStateId) {
+                    map.getCanvas().style.cursor = '';
+
+                    if (hoveredClassiqueId) {
                         map.setFeatureState(
-                            { source: classique.raceName, id: hoveredStateId },
+                            { source: classique.raceName, id: hoveredClassiqueId },
                             { hover: false }
                         );
                     }
-                    hoveredStateId = null;
+                    hoveredClassiqueId = null;
                 });
 
                 map.on('click', classique.raceName, function() {
@@ -126,18 +116,6 @@ class Application extends React.Component {
                 });
             };
         });
-
-/*
-        map.addSource('roubaix2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/paris_roubaix_2019.geojson'});
-        map.addSource('flandres2016', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Tour-des-Flandres-2016.geojson'});
-        map.addSource('milan2014', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Milan-Sanremo-2014.geojson'});
-        //map.addSource('milan-sanremo', { type: 'geojson', data: {} });
-        map.addSource('lombardia2015', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Il_Lombardia_2015.geojson'});
-        map.addSource('amstel2019', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Amstel-Gold-Race-2019.geojson'});
-        map.addSource('gent2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Gent-Wewelgem-2017.geojson'});
-        map.addSource('nice2018', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Paris-Nice-2018.geojson'});
-        map.addSource('liege2017', { type: 'geojson', data: 'https://florianmainguy.github.io/gilbert-odyssey/assets/map_data/Liege-Bastogne-Liege-2017.geojson'});
-*/
 
         map.on('move', () => {
             this.setState({
