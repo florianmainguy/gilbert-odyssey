@@ -38,11 +38,15 @@ class Application extends React.Component {
                 });
             })
 
+        
+
         console.log("this.state.classique", this.state.classiques);
         map.on('load', () => {
             for (let classique of this.state.classiques){
+                let hoveredStateId = null;
+
                 console.log("classique", classique);
-                map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData});
+                map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
                 map.addLayer({
                     'id': classique.raceName,
                     'type': 'line',
@@ -53,8 +57,51 @@ class Application extends React.Component {
                     },
                     'paint': {
                         'line-color': "hsl(16, 93%, 49%)",
-                        'line-width': 4
+                        'line-width': [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            8,
+                            4
+                        ]
                     }
+                });
+
+                // When the user moves their mouse over the classique line
+                map.on('mousemove', classique.raceName, function(e) {
+                    /*console.log("classique.raceName", classique.raceName);
+                    console.log("e.features[0].id", e.features[0].id);
+                    map.setFeatureState(
+                        { source: classique.raceName, id: e.features[0].id},
+                        { hover: true }
+                    );*/
+                    if (e.features.length > 0) {
+                        if (hoveredStateId) {
+                            map.setFeatureState(
+                                { source: classique.raceName, id: hoveredStateId },
+                                { hover: false }
+                            );
+                        }
+                        hoveredStateId = e.features[0].id;
+                        map.setFeatureState(
+                            { source: classique.raceName, id: hoveredStateId },
+                            { hover: true }
+                        );
+                    }
+                });
+                    
+                // When the mouse leaves the classique line
+                map.on('mouseleave', classique.raceName, function(e) {
+                    /*map.setFeatureState(
+                        { source: classique.raceName, id: e.features[0].id},
+                        { hover: false }
+                    );*/
+                    if (hoveredStateId) {
+                        map.setFeatureState(
+                            { source: classique.raceName, id: hoveredStateId },
+                            { hover: false }
+                        );
+                    }
+                    hoveredStateId = null;
                 });
 
                 map.on('click', classique.raceName, function() {
