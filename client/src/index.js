@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZW5jaGllbjE2NjQiLCJhIjoiY2s0aDc0OHd2MTNpOTN0bzJyNjRzOWxpaiJ9.OAzfshgQGxK4VRYepd-ysw';
 
-class Application extends React.Component {
+class Map extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -128,12 +128,87 @@ class Application extends React.Component {
 
     render() {
         return (
-          <div>
-            <div className='sidebarStyle'>
-                <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
+            <div>
+                <div className='sidebarStyle'>
+                    <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
+                </div>
+                <div ref={el => this.mapContainer = el} className="mapContainer"/>
             </div>
-            <div ref={el => this.mapContainer = el} className="mapContainer"/>
-          </div>
+        )
+    }
+}
+
+class CyclistPic extends React.Component {
+    render() {
+        return (
+            <div>
+                <div>Picture</div>
+            </div>
+        )
+    }
+}
+
+class CyclistName extends React.Component {
+    render() {
+        return (
+            <div>
+                <div>Name</div>
+            </div>
+        )
+    }
+}
+
+class CyclistKeyWins extends React.Component {
+    render() {
+        return (
+            <div>
+                <div>KeyWins</div>
+            </div>
+        )
+    }
+}
+
+class CyclistHistory extends React.Component {
+    render() {
+        return (
+            <div>
+                <div>History</div>
+            </div>
+        )
+    }
+}
+
+class Cyclist extends React.Component {
+    render() {
+        return (
+            <div>
+                <CyclistPic />
+                <CyclistName />
+                <CyclistKeyWins />
+                <CyclistHistory />
+            </div>
+        )
+    }
+}
+
+class RightUI extends React.Component {
+    //TODO: conditionnal to get Cyclist/Monument/Home UI
+    render() {
+        return (
+            <div className='rightUI'>
+                <Cyclist />
+            </div>
+        )
+    }
+}
+
+class Application extends React.Component {
+    render() {
+        return (
+            <div>
+                <Map />
+                <RightUI />
+            </div>
         )
     }
 }

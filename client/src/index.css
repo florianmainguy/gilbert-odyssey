@@ -32,3 +32,16 @@ code {
   padding: 6px;
   font-weight: bold;
 }
+
+.rightUI {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 12px;
+  background-color: #404040;
+  color: #ffffff;
+  z-index: 1 !important;
+  padding: 6px;
+  font-weight: bold;
+}
