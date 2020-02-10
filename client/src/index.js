@@ -170,26 +170,31 @@ class CyclistKeyWins extends React.Component {
     }
 }*/
 
-class CyclistKeyInfos extends React.Component {
+class CyclistProfile extends React.Component {
     render() {
         return (
-            <div>
-                <div className="middle-container container">
-                    <div className="profile block">
-                        <div className="profile-picture big-profile-picture clear">
-                            <img width="150px" alt="Default picture" src={profilePic} />
-                        </div>
-                        <h1 className="user-name">John Wick</h1>
-                        <form id="demo-2">
-                            <input type="search" placeholder="Search Cyclist"/>
-                        </form>
-                        <ul className="profile-options horizontal-list">
-                            <li><a className="comments" href="#40"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>23</p></a></li>
-                            <li><a className="views" href="#41"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>841</p></a></li>
-                            <li><a className="likes" href="#42"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>49</p></a></li>
-                        </ul>
-                    </div>
+            <div className="cyclist-profile">
+                <div className="cyclist-picture">
+                    <img width="145rem" alt="Default picture" src={profilePic} />
                 </div>
+                <h1 className="cyclist-name">John Wick</h1>
+                <form id="cyclist-search">
+                    <input type="search" placeholder="Search Cyclist"/>
+                </form>
+            </div>
+        )
+    }
+}
+
+class CyclistSummary extends React.Component {
+    render() {
+        return (
+            <div className="cyclist-summary">
+                <ul className="key-wins">
+                    <li><a className="stage-wins" href="#40"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
+                    <li><a className="classique-wins" href="#41"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>1</p></a></li>
+                    <li><a className="total-wins" href="#42"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>23</p></a></li>
+                </ul>
             </div>
         )
     }
@@ -198,36 +203,20 @@ class CyclistKeyInfos extends React.Component {
 class CyclistHistory extends React.Component {
     render() {
         return (
-            <div>
-                <div className="middle-container container">
-                    <div class="table">
-                        <div class="row header">
-                            <div class="cell">
-                                Date
-                            </div>
-                            <div class="cell">
-                                Name
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                        <div class="cell" data-title="Date">
-                            2019
-                        </div>
-                        <div class="cell" data-title="Name">
-                            Milan-Sanremo
-                        </div>
-                        </div>
-
-                        <div class="row">
-                        <div class="cell" data-title="Date">
-                            2017
-                        </div>
-                        <div class="cell" data-title="Name">
-                            Paris-Roubaix
-                        </div>
-                        </div>
-                    </div>
+            <div className="cyclist-wins">
+                <div class="wins-table">
+                <div class="row header">
+                    <div class="cell">Date</div>
+                    <div class="cell">Name</div>
+                </div>
+                <div class="row">
+                    <div class="cell" data-title="Date">2019</div>
+                    <div class="cell" data-title="Name">Milan-Sanremo</div>
+                </div>
+                <div class="row">
+                    <div class="cell" data-title="Date">2017</div>
+                    <div class="cell" data-title="Name">Paris-Roubaix</div>
+                </div>
                 </div>
             </div>
         )
@@ -237,8 +226,9 @@ class CyclistHistory extends React.Component {
 class Cyclist extends React.Component {
     render() {
         return (
-            <div className="main-container">
-                <CyclistKeyInfos />
+            <div className="cyclist-container">
+                <CyclistProfile />
+                <CyclistSummary />
                 <CyclistHistory />
             </div>
         )
@@ -249,7 +239,7 @@ class RightUI extends React.Component {
     //TODO: conditionnal to get Cyclist/Monument/Home UI
     render() {
         return (
-            <div className='rightUI'>
+            <div>
                 <Cyclist />
             </div>
         )

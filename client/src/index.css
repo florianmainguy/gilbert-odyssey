@@ -1,3 +1,7 @@
+html {
+  font-size: 100%;
+}
+
 body {
   margin: 0;
   background: transparent;
@@ -476,3 +480,86 @@ input::-webkit-input-placeholder {
             margin-bottom: 25px;
             border-radius: 5px;
         }
+
+/** Fresh restart with grid **/
+/** Everything above should be deleted **/
+
+.cyclist-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  grid-row-gap: 0rem;
+  grid-template-columns: 20rem;
+  grid-template-rows: 20rem 8rem 20rem;
+  background-color: #757575;
+  z-index: 1;
+  color: #ffffff;
+}
+
+  .cyclist-profile {
+    background-color: #404040;
+    margin: 1rem 1rem;
+    text-align: center;
+  }
+
+    .cyclist-picture {
+      border-radius: 100%;
+      overflow: hidden;
+      margin: 1rem auto;     
+      border: 0.3rem solid #50597b;
+      width: 9rem;
+      height: 9rem;
+    }
+
+    .cyclist-name {
+      
+    }
+
+    .cyclist-search {
+      
+    }
+
+.cyclist-summary {
+  background-color: #404040;
+  margin: 1rem 1rem;
+  text-align: center;
+}
+
+  .key-wins {
+    
+  }
+
+    .stage-wins {
+      
+    }
+
+    .classique-wins {
+      
+    }
+
+    .total-wins {
+      
+    }
+
+.cyclist-wins {
+  background-color: #404040;
+  margin: 1rem 1rem;
+  text-align: center;
+}
+
+  .wins-table {
+    
+  }
+
+    .row-header {
+      
+    }
+
+    .cell {
+      
+    }
+
+    .row {
+      
+    }
