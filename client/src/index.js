@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
-import './index.css';
 import api from './api';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 import profilePic from './cyclists/default.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZW5jaGllbjE2NjQiLCJhIjoiY2s0aDc0OHd2MTNpOTN0bzJyNjRzOWxpaiJ9.OAzfshgQGxK4VRYepd-ysw';
 
@@ -173,12 +174,12 @@ class CyclistKeyWins extends React.Component {
 class CyclistProfile extends React.Component {
     render() {
         return (
-            <div className="cyclist-profile">
+            <div className="cyclist-profile border border-dark">
                 <div className="cyclist-picture">
-                    <img width="145rem" alt="Default picture" src={profilePic} />
+                    <img alt="Default picture" src={profilePic} />
                 </div>
-                <h1 className="cyclist-name">John Wick</h1>
-                <form id="cyclist-search">
+                <h4 className="cyclist-name">John Wick</h4>
+                <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
                 </form>
             </div>
@@ -189,11 +190,11 @@ class CyclistProfile extends React.Component {
 class CyclistSummary extends React.Component {
     render() {
         return (
-            <div className="cyclist-summary">
+            <div className="cyclist-summary border border-dark">
                 <ul className="key-wins">
-                    <li><a className="stage-wins" href="#40"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
-                    <li><a className="classique-wins" href="#41"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>1</p></a></li>
-                    <li><a className="total-wins" href="#42"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>23</p></a></li>
+                    <li className="flex-wins"><a className="stage-wins" href="#40"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
+                    <li className="flex-wins"><a className="classique-wins" href="#41"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>1</p></a></li>
+                    <li className="flex-wins"><a className="total-wins" href="#42"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>23</p></a></li>
                 </ul>
             </div>
         )
@@ -203,21 +204,61 @@ class CyclistSummary extends React.Component {
 class CyclistHistory extends React.Component {
     render() {
         return (
-            <div className="cyclist-wins">
-                <div class="wins-table">
-                <div class="row header">
-                    <div class="cell">Date</div>
-                    <div class="cell">Name</div>
-                </div>
-                <div class="row">
-                    <div class="cell" data-title="Date">2019</div>
-                    <div class="cell" data-title="Name">Milan-Sanremo</div>
-                </div>
-                <div class="row">
-                    <div class="cell" data-title="Date">2017</div>
-                    <div class="cell" data-title="Name">Paris-Roubaix</div>
-                </div>
-                </div>
+            <div className="cyclist-wins border border-dark table-responsive">
+                <table className="table table-dark table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="column">Year</th>
+                            <th scope="column">Race</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2019</td>
+                            <td>Milan-Sanremo</td>
+                        </tr>
+                        <tr>
+                            <td>2019</td>
+                            <td>Paris-Roubaix</td>
+                        </tr>
+                        <tr>
+                            <td>2018</td>
+                            <td>Milan-Sanremo</td>
+                        </tr>
+                        <tr>
+                            <td>2018</td>
+                            <td>Milan-Sanremo</td>
+                        </tr>
+                        <tr>
+                            <td>2018</td>
+                            <td>Paris-Roubaix</td>
+                        </tr>
+                        <tr>
+                            <td>2017</td>
+                            <td>Paris-Roubaix</td>          
+                        </tr>
+                        <tr>
+                            <td>2016</td>
+                            <td>Paris-Roubaix</td>
+                        </tr>
+                        <tr>
+                            <td>2016</td>
+                            <td>Milan-Sanremo</td>
+                        </tr>
+                        <tr>
+                            <td>2016</td>
+                            <td>Milan-Sanremo</td>
+                        </tr>
+                        <tr>
+                            <td>2015</td>
+                            <td>Paris-Roubaix</td>
+                        </tr>
+                        <tr>
+                            <td>2014</td>
+                            <td>Paris-Roubaix</td>          
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         )
     }

@@ -1,3 +1,4 @@
+/** General Stuff **/
 html {
   font-size: 100%;
 }
@@ -12,11 +13,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
+/** Map Container **/
 .mapContainer {
   position: absolute;
   top: 0;
@@ -25,33 +23,144 @@ code {
   bottom: 0;
 }
 
-.sidebarStyle {
-  display: inline-block;
+
+/** Cyclist components **/
+.cyclist-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  margin: 12px;
-  background-color: #404040;
+  top: 0.5rem;
+  right: 1rem;
+  display: grid;
+  grid-row-gap: 0rem;
+  grid-template-columns: 20rem;
+  grid-template-rows: 20rem 6rem 20rem;
+  z-index: 1;
   color: #ffffff;
-  z-index: 1 !important;
-  padding: 6px;
-  font-weight: bold;
+
 }
 
-.rightUI {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 12px;
-  color: #ffffff;
-  z-index: 1 !important;
-  padding: 6px;
-  font-weight: bold;
-  background-color: #404040;
+.cyclist-profile {
+  background-color: rgb(62, 68, 74);
+  margin: 0.8rem 1rem;
+  text-align: center;
 }
 
-/*** From Codepen, To cleanup ***/
+  .cyclist-picture {
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 1rem auto;     
+    border: 0.3rem solid #50597b;
+    width: 8.5rem;
+    height: 8.5rem;
+    box-sizing: content-box;
+  }
+    .cyclist-picture img {
+      width: 100%;
+    }
+
+  .cyclist-search {
+    margin-top: 1rem;
+  }
+
+    input::-webkit-search-decoration,
+    input::-webkit-search-cancel-button {
+      display: none; 
+    }
+    
+    input[type=search] {
+      outline: none;
+      box-sizing: content-box;
+      font-family: inherit;
+      font-size: 100%;
+      background: #dadada url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+      border: solid 1px #ccc;
+      padding: 9px 10px 9px 32px;
+      width: 3.2rem;
+      border-radius: 10em;
+      transition: all .5s;
+    }
+    input[type=search]:focus {
+      width: 8rem;
+      background-color: #fff;
+      border-color: #66CC75;
+      box-shadow: 0 0 5px rgba(109,207,246,.5);
+    }
+
+.cyclist-summary {
+  background-color: rgb(62, 68, 74);
+  margin: 0.8rem 1rem;
+  text-align: center;
+  display: flex;
+}
+  .key-wins {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+    .key-wins li {
+      display: flex;
+      flex: 1;
+    }
+    .flex-wins + .flex-wins {
+      border-left: 1px solid #1f253d; 
+    }
+      .key-wins p {
+        margin: auto;
+      }
+      .key-wins a { 
+        display: flex; 
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        transition: background .3s;
+        color: #fff;                     
+      }
+      .key-wins .icon {
+        font-size: 1.2rem;
+      }
+        .key-wins a:hover {
+          text-decoration: none;
+          background: #50597b;
+          color: #fff; 
+        }
+        .key-wins a:hover.stage-wins .icon {
+          color: #fcb150;
+        }
+        .key-wins a:hover.classique-wins .icon {
+          color: #11a8ab;
+        }
+        .key-wins a:hover.total-wins .icon {
+          color: #e64c65;
+        }
+        .key-wins .icon {
+          padding-right: 10px;
+        }
+        .key-wins .stage-wins {
+          border-top: 0.5rem solid #fcb150;
+        }
+        .key-wins .classique-wins {
+          border-top: 0.5rem solid #11a8ab;
+        }
+        .key-wins .total-wins {
+          border-top: 0.5rem solid #e64c65;
+          }
+
+.cyclist-wins {
+  background-color: rgb(62, 68, 74);
+  margin: 0.8rem 1rem;
+  padding: 0.2rem;
+  width: auto;
+}
+  .cyclist-wins .table-sm {
+    font-size: 0.92rem;
+  }
+
+
+
+
+
+  /*** From Codepen, To cleanup ***/
 /************************************ FONTS ************************************/
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
 @import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
@@ -101,465 +210,3 @@ code {
     content: "\e611";
 }
 /************************************* END FONTS *************************************/
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;  
-}
-
-body {
-    background: #1f253d;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left: 0;
-}
-
-h1 {
-    font-size: 23px;
-}
-
-h2 {
-    font-size: 17px;
-}
-
-p {
-    font-size: 15px;
-}
-
-a {
-    text-decoration: none;
-    font-size: 15px;
-}
-    a:hover {
-        text-decoration: underline;
-    }
-
-h1, h2, p, a, span{
-    color: #fff;
-}
-    .scnd-font-color {
-        color: #9099b7;
-    }
-
-    .input-container {
-      position: relative;
-  }
-      input[type=text]{
-          width: 260px;
-          height: 50px;
-          margin-left: 20px;
-          margin-bottom: 20px;
-          padding-left: 45px;
-          background: #50597b;
-          color: #fff;
-          border: solid 1px #1f253d;
-          border-radius: 5px;     
-      }
-          input[type=text]::-webkit-input-placeholder { /* WebKit browsers */
-              color: #fff;            
-          }
-          input[type=text]:-moz-input-placeholder { /* Mozilla Firefox 4 to 18 */
-              color: #fff;       
-          }
-          input[type=text]::-moz-input-placeholder { /* Mozilla Firefox 19+ */
-              color: #fff;
-          }
-          input[type=text]:-ms-input-placeholder { /* Internet Explorer 10+ */
-              color: #fff;        
-          }
-          input[type=text]:focus {
-              outline: none; /* removes the default orange border when focus */
-              border: 1px solid #11a8ab;
-          }
-      .input-icon {
-          font-size: 22px;
-          position: absolute;
-          left: 31px;
-          top: 10px;
-      }
-          .input-icon.password-icon {
-              left: 35px;
-          }
-  
-  .horizontal-list {
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-  }
-      .horizontal-list li {
-          float: left;
-      }
-  
-  .clear {
-      clear: both;
-  }
-  
-  .icon {
-      font-size: 25px;
-  }
-  
-  .titular {
-      display: block;
-      line-height: 60px;
-      margin: 0;
-      text-align: center;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-  }
-  
-  .button {
-      display: block;
-      width: 175px;
-      line-height: 50px;
-      font-size: 16px;
-      font-weight: 700;
-      text-align: center;
-      margin: 0 auto;
-      border-radius: 5px;
-      -webkit-transition: background .3s;
-      transition: background .3s;
-  }
-      .button:hover {
-          text-decoration: none;
-      }
-  
-  .arrow-btn-container {
-      position: relative;
-  }
-      .arrow-btn {
-          position: absolute;
-          display: block;
-          width: 60px;
-          height: 60px;
-          -webkit-transition: background .3s;
-          transition: background .3s;
-      }
-          .arrow-btn:hover {
-              text-decoration: none;
-          }
-          .arrow-btn.left {
-              border-top-left-radius: 5px;
-          }
-          .arrow-btn.right {
-              border-top-right-radius: 5px;
-              right: 0;
-              top: 0;
-          }
-          .arrow-btn .icon {
-              display: block;
-              font-size: 18px;
-              border: 2px solid #fff;
-              border-radius: 100%;
-              line-height: 17px;
-              width: 21px;
-              margin: 20px auto;
-              text-align: center;
-          }
-              .arrow-btn.left .icon {
-                  padding-right: 2px;
-              }
-  
-  .profile-picture {
-      border-radius: 100%;
-      overflow: hidden;
-      -webkit-box-sizing: content-box;
-      -moz-box-sizing: content-box;
-      box-sizing: content-box;    
-  }
-      .big-profile-picture {
-          margin: 0 auto;     
-          border: 5px solid #50597b;
-          width: 150px;
-          height: 150px;
-      }
-      .small-profile-picture {
-          border: 2px solid #50597b;
-          width: 40px;
-          height: 40px;
-      }
-
-/***  CYCLIST CONTAINER  ***/
-.middle-container {
-  font-family: 'Ubuntu', sans-serif;
-  margin: 10px 10px;
-  background-color: #404040;      
-}
-  .profile {
-      height: 410px;
-  }
-      .add-button .icon {
-          float: right;
-          line-height: 18px;
-          width: 23px;                    
-          border: 2px solid;
-          border-radius: 100%;
-          font-size: 18px;
-          text-align: center;
-          margin: 10px;                   
-      }
-          .add-button .icon:hover {
-              color: #e64c65;
-              border-color: #e64c65;
-          }
-      .user-name {
-          margin: 25px 0 16px;
-          text-align: center;
-      }
-      .profile-description {
-          width: 210px;
-          margin: 0 auto;
-          text-align: center;
-      }
-      .profile-options {
-          padding-top: 23px;
-      }
-          .profile-options li {
-              border-left: 1px solid #1f253d;
-          }
-              .profile-options p {
-                  margin: 0;
-              }
-              .profile-options a {
-                  display: block;                 
-                  width: 99px;
-                  line-height: 60px;
-                  text-align: center;
-                  -webkit-transition: background .3s;
-                  transition: background .3s;             
-              }
-                  .profile-options a:hover {
-                      text-decoration: none;
-                      background: #50597b;
-                  }
-                  .profile-options a:hover.comments .icon {
-                      color: #fcb150;
-                  }
-                  .profile-options a:hover.views .icon {
-                      color: #11a8ab;
-                  }
-                  .profile-options a:hover.likes .icon {
-                      color: #e64c65;
-                  }
-                  .profile-options .icon {
-                      padding-right: 10px;
-                  }
-                  .profile-options .comments {
-                      border-top: 4px solid #fcb150;
-                  }
-                  .profile-options .views {
-                      border-top: 4px solid #11a8ab;
-                  }
-                  .profile-options .likes {
-                      border-top: 4px solid #e64c65;
-                  }
-
-
-
-/***  Expandable Search Form  ***/
-input {
-	outline: none;
-}
-input[type=search] {
-	-webkit-appearance: textfield;
-	-webkit-box-sizing: content-box;
-	font-family: inherit;
-	font-size: 100%;
-}
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
-	display: none; 
-}
-
-
-input[type=search] {
-	background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-	border: solid 1px #ccc;
-	padding: 9px 10px 9px 32px;
-	width: 55px;
-	
-	-webkit-border-radius: 10em;
-	-moz-border-radius: 10em;
-	border-radius: 10em;
-	
-	-webkit-transition: all .5s;
-	-moz-transition: all .5s;
-	transition: all .5s;
-}
-input[type=search]:focus {
-	width: 130px;
-	background-color: #fff;
-	border-color: #66CC75;
-	
-	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
-	box-shadow: 0 0 5px rgba(109,207,246,.5);
-}
-
-
-input:-moz-placeholder {
-	color: #999;
-}
-input::-webkit-input-placeholder {
-	color: #999;
-}
-
-/* Demo 2 */
-#demo-2 input[type=search] {
-	width: 255px;
-	padding-left: 32px;
-	color: transparent;
-  cursor: pointer;
-}
-
-#demo-2 input[type=search]:hover {
-	background-color: #fff;
-}
-#demo-2 input[type=search]:focus {
-	width: 255px;
-	padding-left: 32px;
-	color: #000;
-	background-color: #fff;
-	cursor: auto;
-}
-/*
-#demo-2 input:-moz-placeholder {
-	color: transparent;
-}
-#demo-2 input::-webkit-input-placeholder {
-	color: transparent;
-}*/
-
-
-/*  Cyclist Table **/
-.table {
-  margin: 0 0 0 0;
-  width: 100%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  display: table;
-}
-
-.row {
-  display: table-row;
-}
-  
-  .header {
-    font-weight: 900;
-    color: #ffffff;
-    background: #ea6153;
-  }
-  
-  .green {
-    background: #27ae60;
-  }
-  
-  .blue {
-    background: #2980b9;
-  }
-
-.cell {
-  padding: 6px 12px;
-  display: table-cell;
-  }
-
-
-/** MAIN CONTAINER **/
-
-.main-container {
-  font-family: 'Ubuntu', sans-serif;
-}   
-      /** CONTAINERS **/
-      .container {
-        float: left;
-        width: 300px;
-    }
-        .block {
-            margin-bottom: 25px;
-            border-radius: 5px;
-        }
-
-/** Fresh restart with grid **/
-/** Everything above should be deleted **/
-
-.cyclist-container {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  display: grid;
-  grid-row-gap: 0rem;
-  grid-template-columns: 20rem;
-  grid-template-rows: 20rem 8rem 20rem;
-  background-color: #757575;
-  z-index: 1;
-  color: #ffffff;
-}
-
-  .cyclist-profile {
-    background-color: #404040;
-    margin: 1rem 1rem;
-    text-align: center;
-  }
-
-    .cyclist-picture {
-      border-radius: 100%;
-      overflow: hidden;
-      margin: 1rem auto;     
-      border: 0.3rem solid #50597b;
-      width: 9rem;
-      height: 9rem;
-    }
-
-    .cyclist-name {
-      
-    }
-
-    .cyclist-search {
-      
-    }
-
-.cyclist-summary {
-  background-color: #404040;
-  margin: 1rem 1rem;
-  text-align: center;
-}
-
-  .key-wins {
-    
-  }
-
-    .stage-wins {
-      
-    }
-
-    .classique-wins {
-      
-    }
-
-    .total-wins {
-      
-    }
-
-.cyclist-wins {
-  background-color: #404040;
-  margin: 1rem 1rem;
-  text-align: center;
-}
-
-  .wins-table {
-    
-  }
-
-    .row-header {
-      
-    }
-
-    .cell {
-      
-    }
-
-    .row {
-      
-    }
