@@ -157,6 +157,81 @@ body {
   }
 
 
+/** Race components **/
+.race-container {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: grid;
+  grid-row-gap: 0.5rem;
+  grid-template-columns: 20rem;
+  grid-template-rows: 5rem 18rem 20rem;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.race-head {
+  background-color: rgb(62, 68, 74);
+  text-align: center;
+  display: flex;
+}
+  .race-selector {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+    .race-selector li {
+      display: flex;
+      flex: 1;   
+    }
+    .flex-races + .flex-races {
+      border-left: 1px solid #1f253d; 
+    }
+    .race-selector a,h3 { 
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        transition: background .3s;
+        color: #fff;                     
+    }
+    .race-selector a:hover {
+      text-decoration: none;
+      background: #50597b;
+      color: #fff; 
+    }
+    .race-selector :nth-child(2){
+      flex: 7;
+    }
+    .race-selector :nth-child(odd) {
+      flex: 1.5;
+    }
+
+.race-winners {
+  background-color: rgb(62, 68, 74);
+  margin: 1rem 1rem;
+  padding: 0.2rem;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+  .race-winners .table-sm {
+    font-size: 0.8rem;
+  }
+
+.race-history {
+  background-color: rgb(62, 68, 74);
+  margin: 0rem 1rem;
+  padding: 0.2rem;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+  .race-history .table-sm {
+    font-size: 0.8rem;
+  }
+
 
 
 

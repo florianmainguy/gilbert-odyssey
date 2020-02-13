@@ -140,36 +140,6 @@ class Map extends React.Component {
     }
 }
 
-/*
-class CyclistPic extends React.Component {
-    render() {
-        return (
-            <div>
-                <div>Picture</div>
-            </div>
-        )
-    }
-}
-
-class CyclistName extends React.Component {
-    render() {
-        return (
-            <div>
-                <div>Name</div>
-            </div>
-        )
-    }
-}
-
-class CyclistKeyWins extends React.Component {
-    render() {
-        return (
-            <div>
-                <div>KeyWins</div>
-            </div>
-        )
-    }
-}*/
 
 class CyclistProfile extends React.Component {
     render() {
@@ -182,6 +152,146 @@ class CyclistProfile extends React.Component {
                 <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
                 </form>
+            </div>
+        )
+    }
+}
+
+class RaceHistory extends React.Component {
+    render() {
+        return (
+            <div className="race-history">
+                <h6>Race History</h6>
+                <div className="border border-dark table-responsive">
+                    <table className="table table-dark table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="column">Date</th>
+                                <th scope="column">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2019</td>
+                                <td>John Wick</td>
+                            </tr>
+                            <tr>
+                                <td>2018</td>
+                                <td>Jean Philippe Smet</td>
+                            </tr>
+                            <tr>
+                                <td>2017</td>
+                                <td>Alain Delon</td>
+                            </tr>
+                            <tr>
+                                <td>2016</td>
+                                <td>Le conte de Monte Christo et sa maman</td>
+                            </tr>
+                            <tr>
+                                <td>2015</td>
+                                <td>Philippe Gilbert</td>
+                            </tr>
+                            <tr>
+                                <td>2014</td>
+                                <td>Julian Alaphilippe</td>
+                            </tr>
+                            <tr>
+                                <td>2013</td>
+                                <td>Eddy Merkx</td>
+                            </tr>
+                            <tr>
+                                <td>2012</td>
+                                <td>Alain Deloin</td>
+                            </tr>
+                            <tr>
+                                <td>2011</td>
+                                <td>Alain Detrèsloin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        )
+    }
+}
+
+class RaceWinners extends React.Component {
+    render() {
+        return (
+            <div className="race-winners">
+                <h6>Best Monuments Winners</h6>
+                <div className="border border-dark table-responsive">
+                    <table className="table table-dark table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="column">Wins</th>
+                                <th scope="column">Nat.</th>
+                                <th scope="column">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>18</td>
+                                <td>flag</td>
+                                <td>John Wick</td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>flag</td>
+                                <td>Jean Philippe Smet</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>flag</td>
+                                <td>Alain Delon</td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td>flag</td>
+                                <td>Le conte de Monte Christo et sa maman</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>flag</td>
+                                <td>Philippe Gilbert</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>flag</td>
+                                <td>Julian Alaphilippe</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>flag</td>
+                                <td>Eddy Merkx</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>flag</td>
+                                <td>Alain Deloin</td>
+                            </tr>
+                            <tr>
+                                <td>12</td>
+                                <td>flag</td>
+                                <td>Alain Detrèsloin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        )
+    }
+}
+
+class RaceHead extends React.Component {
+    render() {
+        return (
+            <div className="race-head border border-dark">
+                <ul className="race-selector">
+                    <li className="flex-races"><a className="race-left" href="#40"><span className="icon fontawesome-comment-alt scnd-font-color"></span></a></li>
+                    <li className="flex-races"><h3 className="race-title">Milan Sanremo</h3></li>
+                    <li className="flex-races"><a className="race-right" href="#42"><span className="icon fontawesome-heart-empty scnd-font-color"></span></a></li>
+                </ul>
             </div>
         )
     }
@@ -264,6 +374,18 @@ class CyclistHistory extends React.Component {
     }
 }
 
+class Race extends React.Component {
+    render() {
+        return (
+            <div className="race-container">
+                <RaceHead />
+                <RaceWinners />
+                <RaceHistory />
+            </div>
+        )
+    }
+}
+
 class Cyclist extends React.Component {
     render() {
         return (
@@ -281,7 +403,7 @@ class RightUI extends React.Component {
     render() {
         return (
             <div>
-                <Cyclist />
+                <Race />
             </div>
         )
     }
