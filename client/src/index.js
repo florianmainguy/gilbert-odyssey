@@ -96,7 +96,7 @@ class Map extends React.Component {
                     hoveredClassiqueId = null;
                 });
 
-                map.on('click', classique.raceName, function() {
+                map.on('click', classique.raceName, () => {
                     // Geographic coordinates of the LineString
                     var coordinates = classique.geojsonData.features[2].geometry.coordinates;
                     
@@ -114,6 +114,9 @@ class Map extends React.Component {
                     //TODO: padding right, something like:
                     //document.getElementById('your_div').offsetWidth + 5
                     });
+
+                    //Change App state of rightUI
+                    this.props.handler('race');
 
                 });
             };
@@ -399,26 +402,56 @@ class Cyclist extends React.Component {
 }
 
 class RightUI extends React.Component {
-    //TODO: conditionnal to get Cyclist/Monument/Home UI
+    constructor(props) {
+        super(props);
+        this.renderRightUI = this.renderRightUI.bind(this);
+    }
+
+    renderRightUI() {
+        const rightUI = this.props.rightUI;
+        if (rightUI == 'race') {
+            return <Race />;
+        }
+        else {
+            return <Cyclist />;
+        }
+    }
+    
     render() {
         return (
             <div>
-                <Race />
+                <this.renderRightUI />
             </div>
         )
     }
 }
 
 class Application extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handlerRightUI = this.handlerRightUI.bind(this);
+        this.state = {
+            rightUI: 'cyclist'
+        };
+    }
+
+    handlerRightUI(val) {
+        this.setState({
+            rightUI: val
+        })
+    }
+
     render() {
         return (
             <div>
-                <Map />
-                <RightUI />
+                <Map handler = {this.handlerRightUI}/>
+                <RightUI rightUI = {this.state.rightUI}/>
             </div>
         )
     }
 }
+
+const ThemeContext = React.createContext("race");
 
 ReactDOM.render(<Application />, document.getElementById('app'));
 
