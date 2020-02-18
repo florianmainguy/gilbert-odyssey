@@ -19,11 +19,10 @@ class Map extends React.Component {
             zoom: 4.65,
             pitch: 0, // pitch in degrees
             bearing: 0, // bearing in degrees
-            classiques: []
         };
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const map = new mapboxgl.Map({
           container: this.mapContainer,
           style: 'mapbox://styles/chienchien1664/ck4k1ugrb1lr01cnxcrkxcvjr',
@@ -33,16 +32,9 @@ class Map extends React.Component {
           bearing: this.state.bearing
         });
 
-        await api.getAllClassiques()
-            .then(response => {
-                this.setState({
-                    classiques: response.data.data
-                });
-            })
-
         //console.log("this.state.classique", this.state.classiques);
         map.on('load', () => {
-            for (let classique of this.state.classiques){
+            for (let classique of this.props.classiques){
                 let hoveredClassiqueId = null;
 
                 //console.log("classique", classique);
@@ -116,7 +108,7 @@ class Map extends React.Component {
                     });
 
                     //Change App state of rightUI
-                    this.props.handler('race');
+                    this.props.handlerRightUI('race', classique.raceName);
 
                 });
             };
@@ -161,6 +153,27 @@ class CyclistProfile extends React.Component {
 }
 
 class RaceHistory extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderTable = this.renderTable.bind(this);
+    }
+
+    renderTable() {
+        if (!this.props.history) {
+            return null;
+        }
+
+        return (this.props.history.map(( listValue, index ) => {
+            return (
+                <tr key={index}>
+                    <td>{listValue.year}</td>
+                    <td>{listValue.flag}</td>
+                    <td>{listValue.winner}</td>
+                </tr>
+            );
+        }));
+    }
+
     render() {
         return (
             <div className="race-history">
@@ -169,47 +182,13 @@ class RaceHistory extends React.Component {
                     <table className="table table-dark table-sm table-striped">
                         <thead>
                             <tr>
-                                <th scope="column">Date</th>
-                                <th scope="column">Name</th>
+                                <th scope="column">Year</th>
+                                <th scope="column">Flag</th>
+                                <th scope="column">Winner</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>2019</td>
-                                <td>John Wick</td>
-                            </tr>
-                            <tr>
-                                <td>2018</td>
-                                <td>Jean Philippe Smet</td>
-                            </tr>
-                            <tr>
-                                <td>2017</td>
-                                <td>Alain Delon</td>
-                            </tr>
-                            <tr>
-                                <td>2016</td>
-                                <td>Le conte de Monte Christo et sa maman</td>
-                            </tr>
-                            <tr>
-                                <td>2015</td>
-                                <td>Philippe Gilbert</td>
-                            </tr>
-                            <tr>
-                                <td>2014</td>
-                                <td>Julian Alaphilippe</td>
-                            </tr>
-                            <tr>
-                                <td>2013</td>
-                                <td>Eddy Merkx</td>
-                            </tr>
-                            <tr>
-                                <td>2012</td>
-                                <td>Alain Deloin</td>
-                            </tr>
-                            <tr>
-                                <td>2011</td>
-                                <td>Alain Detrèsloin</td>
-                            </tr>
+                            <this.renderTable/>
                         </tbody>
                     </table>
                 </div>
@@ -378,18 +357,37 @@ class CyclistHistory extends React.Component {
 }
 
 class Race extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderHistory = this.renderHistory.bind(this);
+    }
+
+    renderHistory() {
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+
+        if (!classique) {
+            return <RaceHistory history = {null}/>
+        }
+
+        return <RaceHistory history = {classique.history}/>
+    }
+
     render() {
         return (
             <div className="race-container">
                 <RaceHead />
                 <RaceWinners />
-                <RaceHistory />
+                <this.renderHistory/>
             </div>
         )
     }
 }
 
 class Cyclist extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="cyclist-container">
@@ -408,19 +406,20 @@ class RightUI extends React.Component {
     }
 
     renderRightUI() {
-        const rightUI = this.props.rightUI;
-        if (rightUI == 'race') {
-            return <Race />;
+        let props = this.props;
+        if (props.rightUI == 'race') {
+            return <Race {...props}/>;
         }
         else {
-            return <Cyclist />;
+            return <Cyclist {...props}/>;
         }
     }
     
     render() {
+        let props = this.props;
         return (
             <div>
-                <this.renderRightUI />
+                <this.renderRightUI/>
             </div>
         )
     }
@@ -431,21 +430,40 @@ class Application extends React.Component {
         super(props);
         this.handlerRightUI = this.handlerRightUI.bind(this);
         this.state = {
-            rightUI: 'cyclist'
+            rightUI: 'race',
+            focusOn: 'milan-sanremo',
+            classiques: []
         };
     }
 
-    handlerRightUI(val) {
+
+    handlerRightUI(themeUI, name) {
         this.setState({
-            rightUI: val
+            rightUI: themeUI,
+            focusOn: name
+        })
+    }
+
+    async componentDidMount() {
+        await api.getAllClassiques()
+        .then(response => {
+            this.setState({
+                classiques: response.data.data
+            });
         })
     }
 
     render() {
+        let props = {
+            handlerRightUI: this.handlerRightUI,
+            rightUI: this.state.rightUI,
+            focusOn: this.state.focusOn,
+            classiques: this.state.classiques
+        }
         return (
             <div>
-                <Map handler = {this.handlerRightUI}/>
-                <RightUI rightUI = {this.state.rightUI}/>
+                <Map {...props}/>
+                <RightUI {...props}/>
             </div>
         )
     }
