@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./database')
 const classiqueRouter = require('./routes/classique-router')
+const cyclistRouter = require('./routes/cyclist-router')
 
 const app = express()
 const apiPort = 3000
@@ -18,5 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', classiqueRouter)
+app.use('/api', cyclistRouter)
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))

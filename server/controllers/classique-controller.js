@@ -1,39 +1,5 @@
 const Classique = require('../models/classique-model')
 
-/*
-createClassique = (req, res) => {
-    const body = req.body
-
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a classique',
-        })
-    }
-
-    const classique = new Classique(body)
-
-    if (!classique) {
-        return res.status(400).json({ success: false, error: err })
-    }
-
-    classique
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: classique._id,
-                message: 'Classique created!',
-            })
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'Classique not created!',
-            })
-        })
-}*/
-
 getClassiqueByName = async (req, res) => {
     await Classique.findOne({ raceName: req.params.name }, (err, classique) => {
         if (err) {
@@ -65,5 +31,5 @@ getClassiques = async (req, res) => {
 
 module.exports = {
     getClassiqueByName,
-    getClassiques,
+    getClassiques
 }

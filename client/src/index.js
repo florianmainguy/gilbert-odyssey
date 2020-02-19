@@ -168,7 +168,7 @@ class RaceHistory extends React.Component {
                 <tr key={index}>
                     <td>{listValue.year}</td>
                     <td>{listValue.flag}</td>
-                    <td>{listValue.winner}</td>
+                    <td><a href="#" class="stretched-link">{listValue.winner}</a></td>
                 </tr>
             );
         }));
@@ -179,7 +179,7 @@ class RaceHistory extends React.Component {
             <div className="race-history">
                 <h6>Race History</h6>
                 <div className="border border-dark table-responsive">
-                    <table className="table table-dark table-sm table-striped">
+                    <table className="table table-dark table-sm table-striped table-hover">
                         <thead>
                             <tr>
                                 <th scope="column">Year</th>
@@ -294,10 +294,30 @@ class CyclistSummary extends React.Component {
 }
 
 class CyclistHistory extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderTable = this.renderTable.bind(this);
+    }
+
+    renderTable() {
+        if (!this.props.palmares) {
+            return null;
+        }
+
+        return (this.props.palmares.map(( listValue, index ) => {
+            return (
+                <tr key={index}>
+                    <td>{listValue.year}</td>
+                    <td><a href="#" class="stretched-link">{listValue.race}</a></td>
+                </tr>
+            );
+        }));
+    }
+
     render() {
         return (
             <div className="cyclist-wins border border-dark table-responsive">
-                <table className="table table-dark table-sm table-striped">
+                <table className="table table-dark table-sm table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="column">Year</th>
@@ -305,50 +325,7 @@ class CyclistHistory extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>2019</td>
-                            <td>Milan-Sanremo</td>
-                        </tr>
-                        <tr>
-                            <td>2019</td>
-                            <td>Paris-Roubaix</td>
-                        </tr>
-                        <tr>
-                            <td>2018</td>
-                            <td>Milan-Sanremo</td>
-                        </tr>
-                        <tr>
-                            <td>2018</td>
-                            <td>Milan-Sanremo</td>
-                        </tr>
-                        <tr>
-                            <td>2018</td>
-                            <td>Paris-Roubaix</td>
-                        </tr>
-                        <tr>
-                            <td>2017</td>
-                            <td>Paris-Roubaix</td>          
-                        </tr>
-                        <tr>
-                            <td>2016</td>
-                            <td>Paris-Roubaix</td>
-                        </tr>
-                        <tr>
-                            <td>2016</td>
-                            <td>Milan-Sanremo</td>
-                        </tr>
-                        <tr>
-                            <td>2016</td>
-                            <td>Milan-Sanremo</td>
-                        </tr>
-                        <tr>
-                            <td>2015</td>
-                            <td>Paris-Roubaix</td>
-                        </tr>
-                        <tr>
-                            <td>2014</td>
-                            <td>Paris-Roubaix</td>          
-                        </tr>
+                        <this.renderTable/>
                     </tbody>
                 </table>
             </div>
@@ -386,6 +363,17 @@ class Race extends React.Component {
 class Cyclist extends React.Component {
     constructor(props) {
         super(props);
+        this.renderHistory = this.renderHistory.bind(this);
+    }
+
+    renderHistory() {
+        let cyclist = this.props.cyclists.find(x => x.cyclist === this.props.focusOn);
+
+        if (!cyclist) {
+            return <CyclistHistory history = {null}/>
+        }
+        console.log(cyclist.palmares);
+        return <CyclistHistory palmares = {cyclist.palmares}/>
     }
 
     render() {
@@ -393,7 +381,7 @@ class Cyclist extends React.Component {
             <div className="cyclist-container">
                 <CyclistProfile />
                 <CyclistSummary />
-                <CyclistHistory />
+                <this.renderHistory/>
             </div>
         )
     }
@@ -430,9 +418,10 @@ class Application extends React.Component {
         super(props);
         this.handlerRightUI = this.handlerRightUI.bind(this);
         this.state = {
-            rightUI: 'race',
-            focusOn: 'milan-sanremo',
-            classiques: []
+            rightUI: 'cyclist',
+            focusOn: 'Philippe Gilbert',
+            classiques: [],
+            cyclists: []
         };
     }
 
@@ -451,6 +440,13 @@ class Application extends React.Component {
                 classiques: response.data.data
             });
         })
+
+        await api.getAllCyclists()
+        .then(response => {
+            this.setState({
+                cyclists: response.data.data
+            });
+        })
     }
 
     render() {
@@ -458,7 +454,8 @@ class Application extends React.Component {
             handlerRightUI: this.handlerRightUI,
             rightUI: this.state.rightUI,
             focusOn: this.state.focusOn,
-            classiques: this.state.classiques
+            classiques: this.state.classiques,
+            cyclists: this.state.cyclists
         }
         return (
             <div>
