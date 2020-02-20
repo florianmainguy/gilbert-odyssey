@@ -387,6 +387,58 @@ class Cyclist extends React.Component {
     }
 }
 
+class HomeCyclist extends React.Component {
+    render() {
+        return (
+            <div className="home-cyclist border border-dark">
+                <h6>Search for a Monument Winner</h6>
+                <form className="cyclist-search">
+                    <input type="search" placeholder="Search Cyclist"/>
+                </form>
+            </div>
+        )
+    }
+}
+
+class HomeClassique extends React.Component {
+    render() {
+        return (
+            <div className="home-classiques">
+                <h6>Pick a race</h6>
+                <ul className="classique-list">
+                    <a href="#"><li className="flex-races"><h5 className="race-title">Milano-Sanremo</h5></li></a>
+                    <a href="#"><li className="flex-races"><h5 className="race-title">Ronde van Vlaanderen</h5></li></a>
+                    <a href="#"><li className="flex-races"><h5 className="race-title">Paris-Roubaix</h5></li></a>
+                    <a href="#"><li className="flex-races"><h5 className="race-title">Liège-Bastogne-Liège</h5></li></a>
+                    <a href="#"><li className="flex-races"><h5 className="race-title">Giro di Lombardia</h5></li></a>
+                </ul>
+            </div>
+        )
+    }
+}
+
+class HomeHeader extends React.Component {
+    render() {
+        return (
+            <div className="home-head border border-dark">
+                <h1>Les Monuments</h1>
+            </div>
+        )
+    }
+}
+
+class Home extends React.Component {
+    render() {
+        return (
+            <div className="home-container">
+                <HomeHeader />
+                <HomeClassique />
+                <HomeCyclist/>
+            </div>
+        )
+    }
+}
+
 class RightUI extends React.Component {
     constructor(props) {
         super(props);
@@ -398,8 +450,11 @@ class RightUI extends React.Component {
         if (props.rightUI == 'race') {
             return <Race {...props}/>;
         }
-        else {
+        else if (props.rightUI == 'cyclist') {
             return <Cyclist {...props}/>;
+        }
+        else {
+            return <Home/>;
         }
     }
     
@@ -418,7 +473,7 @@ class Application extends React.Component {
         super(props);
         this.handlerRightUI = this.handlerRightUI.bind(this);
         this.state = {
-            rightUI: 'cyclist',
+            rightUI: 'home',
             focusOn: 'Philippe Gilbert',
             classiques: [],
             cyclists: []

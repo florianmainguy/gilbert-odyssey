@@ -258,6 +258,72 @@ body {
 
 
 
+/** Home components **/
+.home-container {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: grid;
+  grid-row-gap: 0.5rem;
+  grid-template-columns: 20rem;
+  grid-template-rows: 7rem 18rem 8rem;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.home-head {
+  background-color: rgb(62, 68, 74);
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+  .home-head h1{
+    margin: auto;
+  }
+
+.home-classiques {
+  background-color: rgb(62, 68, 74);
+  margin: 1rem 1rem;
+  padding: 0.2rem;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+  .classique-list {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    flex-direction: column;
+  }
+    .classique-list a {
+      border-top: 1px solid #1f253d;
+      display: flex;
+      flex: 1;   
+    }
+    .classique-list a,h5 { 
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        transition: background .3s;
+        color: #fff;                     
+    }
+    .classique-list a:hover {
+      text-decoration: none;
+      background: #50597b;
+      color: #fff; 
+    }
+
+.home-cyclist {
+  background-color: rgb(62, 68, 74);
+  margin: 0.8rem 1rem;
+}
+  .home-cyclist .cyclist-search {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
   /*** From Codepen, To cleanup ***/
 /************************************ FONTS ************************************/
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
