@@ -18,8 +18,26 @@ class Map extends React.Component {
             lat: 45.851,
             zoom: 4.65,
             pitch: 0, // pitch in degrees
-            bearing: 0, // bearing in degrees
+            bearing: 0 // bearing in degrees
         };
+    }
+
+    zoomOnRace(race, map) {
+        // Geographic coordinates of the LineString
+        var coordinates = race.geojsonData.features[2].geometry.coordinates;
+
+        // Pass the first coordinates in the LineString to `lngLatBounds` &
+        // wrap each coordinate pair in `extend` to include them in the bounds
+        // result. A variation of this technique could be applied to zooming
+        // to the bounds of multiple Points or Polygon geomteries - it just
+        // requires wrapping all the coordinates with the extend method.
+        var bounds = coordinates.reduce(function(bounds, coord) {
+        return bounds.extend(coord);
+        }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+        
+        map.fitBounds(bounds, {
+        padding: {top: 40, bottom:40, left: 15, right: 500}
+        });
     }
 
     componentDidMount() {
@@ -88,28 +106,16 @@ class Map extends React.Component {
                     hoveredClassiqueId = null;
                 });
 
+                // When we click on the race, we zoom in and trigger the race right UI
                 map.on('click', classique.raceName, () => {
-                    // Geographic coordinates of the LineString
-                    var coordinates = classique.geojsonData.features[2].geometry.coordinates;
-                    
-                    // Pass the first coordinates in the LineString to `lngLatBounds` &
-                    // wrap each coordinate pair in `extend` to include them in the bounds
-                    // result. A variation of this technique could be applied to zooming
-                    // to the bounds of multiple Points or Polygon geomteries - it just
-                    // requires wrapping all the coordinates with the extend method.
-                    var bounds = coordinates.reduce(function(bounds, coord) {
-                    return bounds.extend(coord);
-                    }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
-                    
-                    map.fitBounds(bounds, {
-                    padding: {top: 40, bottom:40, left: 15, right: 500}
-                    //TODO: padding right, something like:
-                    //document.getElementById('your_div').offsetWidth + 5
-                    });
-
-                    //Change App state of rightUI
+                    this.zoomOnRace(classique, map);
                     this.props.handlerRightUI('race', classique.raceName);
 
+                    // Remove hover bold effect
+                    map.setFeatureState(
+                        { source: classique.raceName, id: hoveredClassiqueId },
+                        { hover: false }
+                    );
                 });
             };
         });
@@ -121,6 +127,13 @@ class Map extends React.Component {
               zoom: map.getZoom().toFixed(2)
             });
         });
+    }
+
+    componentDidUpdate() {
+        // Zoom on race when clicked on in right UI
+        //if (this.props.rightUI === 'race') {
+        //    this.zoomOnRace(this.props.focusOn, map);
+        //}
     }
 
     render() {
@@ -168,7 +181,7 @@ class RaceHistory extends React.Component {
                 <tr key={index}>
                     <td>{listValue.year}</td>
                     <td>{listValue.flag}</td>
-                    <td><a href="#" class="stretched-link">{listValue.winner}</a></td>
+                    <td><a href="#" className="stretched-link">{listValue.winner}</a></td>
                 </tr>
             );
         }));
@@ -308,7 +321,7 @@ class CyclistHistory extends React.Component {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
-                    <td><a href="#" class="stretched-link">{listValue.race}</a></td>
+                    <td><a href="#" className="stretched-link">{listValue.race}</a></td>
                 </tr>
             );
         }));
@@ -401,12 +414,21 @@ class HomeCyclist extends React.Component {
 }
 
 class HomeClassique extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleRace = this.handleRace.bind(this);
+    }
+
+    handleRace() {
+        this.props.handlerRightUI('race','Milano-Sanremo');
+    }
+
     render() {
         return (
             <div className="home-classiques">
                 <h6>Pick a race</h6>
                 <ul className="classique-list">
-                    <a href="#"><li className="flex-races"><h5 className="race-title">Milano-Sanremo</h5></li></a>
+                    <a href="#" onClick={this.handleRace}><li className="flex-races"><h5 className="race-title">Milano-Sanremo</h5></li></a>
                     <a href="#"><li className="flex-races"><h5 className="race-title">Ronde van Vlaanderen</h5></li></a>
                     <a href="#"><li className="flex-races"><h5 className="race-title">Paris-Roubaix</h5></li></a>
                     <a href="#"><li className="flex-races"><h5 className="race-title">Liège-Bastogne-Liège</h5></li></a>
@@ -428,11 +450,16 @@ class HomeHeader extends React.Component {
 }
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        let props = this.props;
         return (
             <div className="home-container">
                 <HomeHeader />
-                <HomeClassique />
+                <HomeClassique {...props}/>
                 <HomeCyclist/>
             </div>
         )
@@ -454,7 +481,7 @@ class RightUI extends React.Component {
             return <Cyclist {...props}/>;
         }
         else {
-            return <Home/>;
+            return <Home {...props}/>;
         }
     }
     
