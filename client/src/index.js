@@ -22,7 +22,7 @@ class Map extends React.Component {
         };
     }
 
-    zoomOnRace(race, map) {
+    zoomOnRace(race) {
         // Geographic coordinates of the LineString
         var coordinates = race.geojsonData.features[2].geometry.coordinates;
 
@@ -35,13 +35,13 @@ class Map extends React.Component {
         return bounds.extend(coord);
         }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
         
-        map.fitBounds(bounds, {
+        this.map.fitBounds(bounds, {
         padding: {top: 40, bottom:40, left: 15, right: 500}
         });
     }
 
     componentDidMount() {
-        const map = new mapboxgl.Map({
+        this.map = new mapboxgl.Map({
           container: this.mapContainer,
           style: 'mapbox://styles/chienchien1664/ck4k1ugrb1lr01cnxcrkxcvjr',
           center: [this.state.lng, this.state.lat],
@@ -51,13 +51,13 @@ class Map extends React.Component {
         });
 
         //console.log("this.state.classique", this.state.classiques);
-        map.on('load', () => {
+        this.map.on('load', () => {
             for (let classique of this.props.classiques){
                 let hoveredClassiqueId = null;
 
                 //console.log("classique", classique);
-                map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
-                map.addLayer({
+                this.map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
+                this.map.addLayer({
                     'id': classique.raceName,
                     'type': 'line',
                     'source': classique.raceName,
@@ -77,28 +77,28 @@ class Map extends React.Component {
                 });
 
                 // When the user moves their mouse over the classique line
-                map.on('mousemove', classique.raceName, function(e) {
-                    map.getCanvas().style.cursor = 'pointer';
+                this.map.on('mousemove', classique.raceName, (e) => {
+                    this.map.getCanvas().style.cursor = 'pointer';
 
                     if (hoveredClassiqueId) {
-                        map.setFeatureState(
+                        this.map.setFeatureState(
                             { source: classique.raceName, id: hoveredClassiqueId },
                             { hover: false }
                         );
                     }
                     hoveredClassiqueId = e.features[0].id;
-                    map.setFeatureState(
+                    this.map.setFeatureState(
                         { source: classique.raceName, id: hoveredClassiqueId },
                         { hover: true }
                     );
                 });
                     
                 // When the mouse leaves the classique line
-                map.on('mouseleave', classique.raceName, function(e) {
-                    map.getCanvas().style.cursor = '';
+                this.map.on('mouseleave', classique.raceName, () => {
+                    this.map.getCanvas().style.cursor = '';
 
                     if (hoveredClassiqueId) {
-                        map.setFeatureState(
+                        this.map.setFeatureState(
                             { source: classique.raceName, id: hoveredClassiqueId },
                             { hover: false }
                         );
@@ -107,12 +107,12 @@ class Map extends React.Component {
                 });
 
                 // When we click on the race, we zoom in and trigger the race right UI
-                map.on('click', classique.raceName, () => {
-                    this.zoomOnRace(classique, map);
+                this.map.on('click', classique.raceName, () => {
+                    this.zoomOnRace(classique);
                     this.props.handlerRightUI('race', classique.raceName);
 
                     // Remove hover bold effect
-                    map.setFeatureState(
+                    this.map.setFeatureState(
                         { source: classique.raceName, id: hoveredClassiqueId },
                         { hover: false }
                     );
@@ -120,20 +120,21 @@ class Map extends React.Component {
             };
         });
 
-        map.on('move', () => {
+        this.map.on('move', () => {
             this.setState({
-              lng: map.getCenter().lng.toFixed(4),
-              lat: map.getCenter().lat.toFixed(4),
-              zoom: map.getZoom().toFixed(2)
+              lng: this.map.getCenter().lng.toFixed(4),
+              lat: this.map.getCenter().lat.toFixed(4),
+              zoom: this.map.getZoom().toFixed(2)
             });
         });
     }
 
     componentDidUpdate() {
-        // Zoom on race when clicked on in right UI
-        //if (this.props.rightUI === 'race') {
-        //    this.zoomOnRace(this.props.focusOn, map);
-        //}
+        //Zoom on race when clicked on in right UI
+        if (this.props.rightUI === 'race') {
+            let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+            this.zoomOnRace(classique);
+        }
     }
 
     render() {
