@@ -280,13 +280,38 @@ class RaceWinners extends React.Component {
 }
 
 class RaceHead extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleRace = this.handleRace.bind(this);
+        this.toRace = this.toRace.bind(this);
+    }
+
+    handleRace(raceName) {
+        this.props.handlerRightUI('race', raceName);
+    }
+
+    toRace(direction) {
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        let races = ['Milano-Sanremo', 'Ronde van Vlaanderen', 'Paris-Roubaix', 'Liège-Bastogne-Liège', 'Giro di Lombardia'];
+        let raceIdx = races.indexOf(classique.raceName);
+        let len = races.length;
+
+        if (direction === 'next') {
+            return this.handleRace(races[(raceIdx+1)%len]);
+        }
+        else if (direction === 'previous') {
+            return this.handleRace(races[(raceIdx+len-1)%len]);
+        }
+    }
+
     render() {
+        let raceName = this.props.classiques.find(x => x.raceName === this.props.focusOn).raceName;
         return (
             <div className="race-head border border-dark">
                 <ul className="race-selector">
-                    <li className="flex-races"><a className="race-left" href="#40"><span className="icon fontawesome-comment-alt scnd-font-color"></span></a></li>
-                    <li className="flex-races"><h3 className="race-title">Milan Sanremo</h3></li>
-                    <li className="flex-races"><a className="race-right" href="#42"><span className="icon fontawesome-heart-empty scnd-font-color"></span></a></li>
+                    <li className="flex-races"><a className="race-left" href="#40" onClick={() => this.toRace('previous')}><span className="icon fontawesome-arrow-left scnd-font-color"></span></a></li>
+                    <li className="flex-races"><h3 className="race-title">{raceName}</h3></li>
+                    <li className="flex-races"><a className="race-right" href="#42" onClick={() => this.toRace('next')}><span className="icon fontawesome-arrow-right scnd-font-color"></span></a></li>
                 </ul>
             </div>
         )
@@ -350,7 +375,18 @@ class CyclistHistory extends React.Component {
 class Race extends React.Component {
     constructor(props) {
         super(props);
+        this.renderHead = this.renderHead.bind(this);
         this.renderHistory = this.renderHistory.bind(this);
+    }
+
+    renderHead() {
+        let props = this.props;
+
+        //if (!classique) {
+        //    return <RaceHead raceName = {null}/>
+        //}
+
+        return <RaceHead {...props}/>
     }
 
     renderHistory() {
@@ -366,7 +402,7 @@ class Race extends React.Component {
     render() {
         return (
             <div className="race-container">
-                <RaceHead />
+                <this.renderHead/>
                 <RaceWinners />
                 <this.renderHistory/>
             </div>
@@ -512,7 +548,6 @@ class Application extends React.Component {
             cyclists: []
         };
     }
-
 
     handlerRightUI(themeUI, name) {
         this.setState({
