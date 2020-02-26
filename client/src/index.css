@@ -231,6 +231,17 @@ body {
   .race-winners .table-sm {
     font-size: 0.8rem;
   }
+  .race-winners tr{
+    transform: rotate(0);
+  }
+  
+  .race-winners a {
+    color: #fff; 
+  }
+  .race-winners a:hover {
+    text-decoration: none;
+    color: #fff; 
+  }
 
 .race-history {
   background-color: rgb(62, 68, 74);

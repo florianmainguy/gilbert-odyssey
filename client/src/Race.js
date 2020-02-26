@@ -87,7 +87,7 @@ class RaceWinners extends React.Component {
             <div className="race-winners">
                 <h6>Best Monuments Winners</h6>
                 <div className="border border-dark table-responsive">
-                    <table className="table table-dark table-sm table-striped">
+                    <table className="table table-dark table-sm table-striped table-hover">
                         <thead>
                             <tr>
                                 <th scope="column">Wins</th>
