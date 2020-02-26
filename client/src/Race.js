@@ -46,6 +46,42 @@ class RaceHistory extends React.Component {
 }
 
 class RaceWinners extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderTable = this.renderTable.bind(this);
+    }
+
+    renderTable() {
+        if (!this.props.history) {
+            return null;
+        }
+
+        // Creates an array of Winner/Number of wins, then sorts it
+        let winners = this.props.history.reduce(function(acc, obj) {
+            const found = acc.find(a => a.name === obj.winner);
+            if (found) {
+              found.count += 1;
+            }
+            else {
+              acc.push({ name: obj.winner, count: 1 });
+            }
+            return acc;
+        }, []);
+
+        winners.sort(function(a,b) {
+            return b.count - a.count;
+        });
+
+        return (winners.map(( listValue, index ) => {
+            return (
+                <tr key={index}>
+                    <td>{listValue.count}</td>
+                    <td><a href="#" className="stretched-link">{listValue.name}</a></td>
+                </tr>
+            );
+        }));
+    }
+
     render() {
         return (
             <div className="race-winners">
@@ -55,56 +91,11 @@ class RaceWinners extends React.Component {
                         <thead>
                             <tr>
                                 <th scope="column">Wins</th>
-                                <th scope="column">Nat.</th>
                                 <th scope="column">Name</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>18</td>
-                                <td>flag</td>
-                                <td>John Wick</td>
-                            </tr>
-                            <tr>
-                                <td>16</td>
-                                <td>flag</td>
-                                <td>Jean Philippe Smet</td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td>flag</td>
-                                <td>Alain Delon</td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td>flag</td>
-                                <td>Le conte de Monte Christo et sa maman</td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>flag</td>
-                                <td>Philippe Gilbert</td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>flag</td>
-                                <td>Julian Alaphilippe</td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>flag</td>
-                                <td>Eddy Merkx</td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>flag</td>
-                                <td>Alain Deloin</td>
-                            </tr>
-                            <tr>
-                                <td>12</td>
-                                <td>flag</td>
-                                <td>Alain Detrèsloin</td>
-                            </tr>
+                            <this.renderTable/>
                         </tbody>
                     </table>
                 </div>
@@ -171,7 +162,13 @@ class Race extends React.Component {
     }
 
     renderWinners() {
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
 
+        if (!classique) {
+            return <RaceWinners history = {null}/>
+        }
+
+        return <RaceWinners history = {classique.history}/>
     }
 
     renderHistory() {
@@ -188,7 +185,7 @@ class Race extends React.Component {
         return (
             <div className="race-container">
                 <this.renderHead/>
-                <RaceWinners />
+                <this.renderWinners/>
                 <this.renderHistory/>
             </div>
         )
