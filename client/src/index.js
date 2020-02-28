@@ -17,6 +17,7 @@ class RightUI extends React.Component {
 
     renderRightUI() {
         let props = this.props;
+
         if (props.rightUI === 'race') {
             return <Race {...props}/>;
         }
@@ -29,7 +30,6 @@ class RightUI extends React.Component {
     }
     
     render() {
-        let props = this.props;
         return (
             <div>
                 <this.renderRightUI/>

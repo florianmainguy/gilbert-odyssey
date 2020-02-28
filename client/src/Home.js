@@ -65,7 +65,7 @@ class Home extends React.Component {
             <div className="home-container">
                 <HomeHeader />
                 <HomeClassique {...props}/>
-                <HomeCyclist/>
+                <HomeCyclist {...props}/>
             </div>
         )
     }

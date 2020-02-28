@@ -3,7 +3,12 @@ import React from 'react';
 class RaceHistory extends React.Component {
     constructor(props) {
         super(props);
+        this.handleCyclist = this.handleCyclist.bind(this);
         this.renderTable = this.renderTable.bind(this);
+    }
+
+    handleCyclist(cyclistName) {
+        this.props.props.handlerRightUI('cyclist', cyclistName);
     }
 
     renderTable() {
@@ -11,12 +16,12 @@ class RaceHistory extends React.Component {
             return null;
         }
 
-        return (this.props.history.map(( listValue, index ) => {
+        return (this.props.history.reverse().map(( listValue, index ) => {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
                     <td>{listValue.flag}</td>
-                    <td><a href="#" className="stretched-link">{listValue.winner}</a></td>
+                    <td><a href="#" onClick={() => this.handleCyclist(listValue.winner)} className="stretched-link">{listValue.winner}</a></td>
                 </tr>
             );
         }));
@@ -31,8 +36,8 @@ class RaceHistory extends React.Component {
                         <thead>
                             <tr>
                                 <th scope="column">Year</th>
-                                <th scope="column">Flag</th>
-                                <th scope="column">Winner</th>
+                                <th scope="column">Nat</th>
+                                <th scope="column">Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +53,12 @@ class RaceHistory extends React.Component {
 class RaceWinners extends React.Component {
     constructor(props) {
         super(props);
+        this.handleCyclist = this.handleCyclist.bind(this);
         this.renderTable = this.renderTable.bind(this);
+    }
+
+    handleCyclist(cyclistName) {
+        this.props.props.handlerRightUI('cyclist', cyclistName);
     }
 
     renderTable() {
@@ -63,7 +73,7 @@ class RaceWinners extends React.Component {
               found.count += 1;
             }
             else {
-              acc.push({ name: obj.winner, count: 1 });
+              acc.push({ name: obj.winner, count: 1, flag: obj.flag });
             }
             return acc;
         }, []);
@@ -75,8 +85,9 @@ class RaceWinners extends React.Component {
         return (winners.map(( listValue, index ) => {
             return (
                 <tr key={index}>
-                    <td>{listValue.count}</td>
-                    <td><a href="#" className="stretched-link">{listValue.name}</a></td>
+                    <td className="winsColumn">{listValue.count}</td>
+                    <td>{listValue.flag}</td>
+                    <td><a href="#" onClick={() => this.handleCyclist(listValue.name)} className="stretched-link">{listValue.name}</a></td>
                 </tr>
             );
         }));
@@ -91,6 +102,7 @@ class RaceWinners extends React.Component {
                         <thead>
                             <tr>
                                 <th scope="column">Wins</th>
+                                <th scope="column">Nat</th>
                                 <th scope="column">Name</th>
                             </tr>
                         </thead>
@@ -154,31 +166,35 @@ class Race extends React.Component {
     renderHead() {
         let props = this.props;
 
-        //if (!classique) {
-        //    return <RaceHead raceName = {null}/>
-        //}
-
         return <RaceHead {...props}/>
     }
 
     renderWinners() {
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-
-        if (!classique) {
-            return <RaceWinners history = {null}/>
+        let params = {
+            props: this.props,
+            history: null 
         }
 
-        return <RaceWinners history = {classique.history}/>
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        if (classique) {
+            params.history = classique.history;
+        }
+
+        return <RaceWinners {...params}/>
     }
 
     renderHistory() {
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-
-        if (!classique) {
-            return <RaceHistory history = {null}/>
+        let params = {
+            props: this.props,
+            history: null 
         }
 
-        return <RaceHistory history = {classique.history}/>
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        if (classique) {
+            params.history = classique.history;
+        }
+
+        return <RaceHistory {...params}/>
     }
 
     render() {

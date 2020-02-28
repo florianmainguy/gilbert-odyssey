@@ -4,19 +4,24 @@ import profilePic from './cyclists/default.png';
 class CyclistHistory extends React.Component {
     constructor(props) {
         super(props);
+        this.handleRace = this.handleRace.bind(this);
         this.renderTable = this.renderTable.bind(this);
     }
 
+    handleRace(raceName) {
+        this.props.props.handlerRightUI('race', raceName);
+    }
+
     renderTable() {
-        if (!this.props.palmares) {
+        if (!this.props.history) {
             return null;
         }
 
-        return (this.props.palmares.map(( listValue, index ) => {
+        return (this.props.history.map(( listValue, index ) => {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
-                    <td><a href="#" className="stretched-link">{listValue.race}</a></td>
+                    <td><a href="#" onClick={() => this.handleRace(listValue.race)} className="stretched-link">{listValue.race}</a></td>
                 </tr>
             );
         }));
@@ -56,13 +61,17 @@ class CyclistSummary extends React.Component {
 }
 
 class CyclistProfile extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="cyclist-profile border border-dark">
                 <div className="cyclist-picture">
                     <img alt="Default picture" src={profilePic} />
                 </div>
-                <h4 className="cyclist-name">John Wick</h4>
+                <h4 className="cyclist-name">{this.props.focusOn}</h4>
                 <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
                 </form>
@@ -78,19 +87,25 @@ class Cyclist extends React.Component {
     }
 
     renderHistory() {
-        let cyclist = this.props.cyclists.find(x => x.cyclist === this.props.focusOn);
-
-        if (!cyclist) {
-            return <CyclistHistory history = {null}/>
+        let params = {
+            props: this.props,
+            history: null 
         }
-        console.log(cyclist.palmares);
-        return <CyclistHistory palmares = {cyclist.palmares}/>
+
+        let cyclist = this.props.cyclists.find(x => x.cyclist === this.props.focusOn);
+        if (cyclist) {
+            params.history = cyclist.palmares;
+        }
+
+        return <CyclistHistory {...params}/>
     }
 
     render() {
+        let props = this.props;
+
         return (
             <div className="cyclist-container">
-                <CyclistProfile />
+                <CyclistProfile  {...props}/>
                 <CyclistSummary />
                 <this.renderHistory/>
             </div>

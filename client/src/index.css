@@ -242,6 +242,9 @@ body {
     text-decoration: none;
     color: #fff; 
   }
+  .race-winners td.winsColumn {
+    text-align: center;
+  }
 
 .race-history {
   background-color: rgb(62, 68, 74);
