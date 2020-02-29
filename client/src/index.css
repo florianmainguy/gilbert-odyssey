@@ -57,8 +57,12 @@ body {
       width: 100%;
     }
 
+  .cyclist-name {
+    margin-bottom: 0;
+  }
+  
   .cyclist-search {
-    margin-top: 1rem;
+    margin-top: 0.2rem;
   }
 
     input::-webkit-search-decoration,

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCountryFlag from "react-country-flag"
 import profilePic from './cyclists/default.png';
 
 class CyclistHistory extends React.Component {
@@ -63,20 +64,29 @@ class CyclistSummary extends React.Component {
 class CyclistProfile extends React.Component {
     constructor(props) {
         super(props);
+        this.renderFlag = this.renderFlag.bind(this);
     }
 
-    render() {
+    renderFlag() {
+        let flag = this.props.cyclists.find(x => x.cyclist === this.props.focusOn).flag;
+
+        console.log(flag);
         return (
             <div className="cyclist-profile border border-dark">
                 <div className="cyclist-picture">
                     <img alt="Default picture" src={profilePic} />
                 </div>
                 <h4 className="cyclist-name">{this.props.focusOn}</h4>
+                <ReactCountryFlag countryCode={flag}/>
                 <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
                 </form>
             </div>
         )
+    }
+
+    render() {
+        return <this.renderFlag/>
     }
 }
 

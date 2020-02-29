@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCountryFlag from "react-country-flag"
 
 class RaceHistory extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class RaceHistory extends React.Component {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
-                    <td>{listValue.flag}</td>
+                    <td><ReactCountryFlag countryCode={listValue.flag}/></td>
                     <td><a href="#" onClick={() => this.handleCyclist(listValue.winner)} className="stretched-link">{listValue.winner}</a></td>
                 </tr>
             );
@@ -86,7 +87,7 @@ class RaceWinners extends React.Component {
             return (
                 <tr key={index}>
                     <td className="winsColumn">{listValue.count}</td>
-                    <td>{listValue.flag}</td>
+                    <td><ReactCountryFlag countryCode={listValue.flag}/></td>
                     <td><a href="#" onClick={() => this.handleCyclist(listValue.name)} className="stretched-link">{listValue.name}</a></td>
                 </tr>
             );
