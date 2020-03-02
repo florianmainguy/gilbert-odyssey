@@ -3,8 +3,8 @@ import React from 'react';
 class HomeCyclist extends React.Component {
     render() {
         return (
-            <div className="home-cyclist border border-dark">
-                <h6>Search for a Monument Winner</h6>
+            <div className="home-cyclist">
+                <h6>Find a Cyclist:</h6>
                 <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
                 </form>
@@ -26,17 +26,17 @@ class HomeClassique extends React.Component {
     render() {
         return (
             <div className="home-classiques">
-                <h6>Pick a race</h6>
+                <h6>Pick a classic:</h6>
                 <ul className="classique-list">
-                    <a href="#" onClick={() => this.handleRace('Milano-Sanremo')}>
+                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Milano-Sanremo')}>
                         <li className="flex-races"><h5 className="race-title">Milano-Sanremo</h5></li></a>
-                    <a href="#" onClick={() => this.handleRace('Ronde van Vlaanderen')}>
+                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Ronde van Vlaanderen')}>
                         <li className="flex-races"><h5 className="race-title">Ronde van Vlaanderen</h5></li></a>
-                    <a href="#" onClick={() => this.handleRace('Paris-Roubaix')}>
+                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Paris-Roubaix')}>
                         <li className="flex-races"><h5 className="race-title">Paris-Roubaix</h5></li></a>
-                    <a href="#" onClick={() => this.handleRace('Liège-Bastogne-Liège')}>
+                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Liège-Bastogne-Liège')}>
                         <li className="flex-races"><h5 className="race-title">Liège-Bastogne-Liège</h5></li></a>
-                    <a href="#" onClick={() => this.handleRace('Giro di Lombardia')}>
+                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Giro di Lombardia')}>
                         <li className="flex-races"><h5 className="race-title">Giro di Lombardia</h5></li></a>
                 </ul>
             </div>
@@ -47,8 +47,8 @@ class HomeClassique extends React.Component {
 class HomeHeader extends React.Component {
     render() {
         return (
-            <div className="home-head border border-dark">
-                <h1>Les Monuments</h1>
+            <div className="home-head">
+                <h1>THE MONUMENTS</h1>
             </div>
         )
     }
@@ -63,7 +63,7 @@ class Home extends React.Component {
         let props = this.props;
         return (
             <div className="home-container">
-                <HomeHeader />
+                <HomeHeader/>
                 <HomeClassique {...props}/>
                 <HomeCyclist {...props}/>
             </div>
