@@ -1,5 +1,8 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
+import startPic from './map/start.png';
+import finishPic from './map/finish.png';
+import climbPic from './map/climb1.png';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZW5jaGllbjE2NjQiLCJhIjoiY2s0aDc0OHd2MTNpOTN0bzJyNjRzOWxpaiJ9.OAzfshgQGxK4VRYepd-ysw';
 
@@ -39,6 +42,16 @@ class Map extends React.Component {
         zoom: this.state.zoom,
       });
 
+        this.map.loadImage(startPic, (error, image) => {
+            this.map.addImage('start', image);
+        });
+        this.map.loadImage(finishPic, (error, image) => {
+            this.map.addImage('finish', image);
+        });
+        this.map.loadImage(climbPic, (error, image) => {
+            this.map.addImage('climb', image);
+        });
+
       //console.log("this.state.classique", this.state.classiques);
       this.map.on('load', () => {
           for (let classique of this.props.classiques){
@@ -46,6 +59,8 @@ class Map extends React.Component {
 
               //console.log("classique", classique);
               this.map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
+
+              // Layer for actual race
               this.map.addLayer({
                   'id': classique.raceName,
                   'type': 'line',
@@ -59,11 +74,50 @@ class Map extends React.Component {
                       'line-width': [
                           'case',
                           ['boolean', ['feature-state', 'hover'], false],
-                          8,
-                          4
+                          4,
+                          3
                       ]
                   }
               });
+
+            // Layer for race start
+            this.map.addLayer({
+                'id': 'start ' + classique.raceName,
+                'type': 'symbol',
+                'source': classique.raceName,
+                'layout': {
+                    'icon-image': 'start',
+                    'icon-size': 0.4,
+                    "icon-allow-overlap": true
+                },
+                'filter': ['==', ["get", "icon"], 'start']
+            });
+
+            // Layer for race finish
+            this.map.addLayer({
+                'id': 'finish ' + classique.raceName,
+                'type': 'symbol',
+                'source': classique.raceName,
+                'layout': {
+                    'icon-image': 'finish',
+                    'icon-size': 0.4,
+                    "icon-allow-overlap": true
+                },
+                'filter': ['==', ["get", "icon"], 'finish']
+            });
+
+            // Layer for race climbs
+            this.map.addLayer({
+                'id': 'climb ' + classique.raceName,
+                'type': 'symbol',
+                'source': classique.raceName,
+                'layout': {
+                    'icon-image': 'climb',
+                    'icon-size': 0.4
+                },
+                'filter': ['==', ["get", "icon"], 'climb'],
+                'minzoom': 7
+            });
 
               // When the user moves their mouse over the classique line
               this.map.on('mousemove', classique.raceName, (e) => {
