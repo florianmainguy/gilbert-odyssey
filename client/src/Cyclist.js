@@ -65,19 +65,25 @@ class CyclistProfile extends React.Component {
     constructor(props) {
         super(props);
         this.renderFlag = this.renderFlag.bind(this);
+        this.state = {
+            flag: ''
+        }
     }
 
     renderFlag() {
-        let flag = this.props.cyclists.find(x => x.cyclist === this.props.focusOn).flag;
+        // Keep in state cyclist data for unmounting/sliding transition
+        let cyclist = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        if (cyclist) {
+            this.state.flag = cyclist.flag;
+        }
 
-        console.log(flag);
         return (
             <div className="cyclist-profile border border-dark">
                 <div className="cyclist-picture">
                     <img alt="Default picture" src={profilePic} />
                 </div>
                 <h4 className="cyclist-name">{this.props.focusOn}</h4>
-                <ReactCountryFlag countryCode={flag}/>
+                <ReactCountryFlag countryCode={this.state.flag}/>
                 <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
                 </form>

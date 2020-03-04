@@ -122,6 +122,9 @@ class RaceHead extends React.Component {
         super(props);
         this.handleRace = this.handleRace.bind(this);
         this.toRace = this.toRace.bind(this);
+        this.state = {
+            raceName: ''
+        }
     }
 
     handleRace(raceName) {
@@ -143,12 +146,17 @@ class RaceHead extends React.Component {
     }
 
     render() {
-        let raceName = this.props.classiques.find(x => x.raceName === this.props.focusOn).raceName;
+        // Keep in state classique data for unmounting/sliding transition
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        if (classique) {
+            this.state.raceName = classique.raceName;
+        }
+
         return (
             <div className="race-head border border-dark">
                 <ul className="race-selector">
                     <li className="flex-races"><a className="race-left" href="#40" onClick={() => this.toRace('previous')}><span className="icon fontawesome-arrow-left scnd-font-color"></span></a></li>
-                    <li className="flex-races"><h3 className="race-title">{raceName}</h3></li>
+                    <li className="flex-races"><h3 className="race-title">{this.state.raceName}</h3></li>
                     <li className="flex-races"><a className="race-right" href="#42" onClick={() => this.toRace('next')}><span className="icon fontawesome-arrow-right scnd-font-color"></span></a></li>
                 </ul>
             </div>

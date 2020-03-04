@@ -8,6 +8,7 @@ import Race from './Race';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import Slide from '@material-ui/core/Slide';
 
 class RightUI extends React.Component {
     constructor(props) {
@@ -18,22 +19,26 @@ class RightUI extends React.Component {
     renderRightUI() {
         let props = this.props;
 
-        if (props.rightUI === 'race') {
-            return <Race {...props}/>;
-        }
-        else if (props.rightUI === 'cyclist') {
-            return <Cyclist {...props}/>;
-        }
-        else {
-            return <Home {...props}/>;
-        }
+        return (
+            <div>
+                <Slide direction="right" in={props.rightUI === 'home'} mountOnEnter unmountOnExit>
+                    <Home {...props}/>
+                </Slide>
+
+                <Slide direction="left" in={props.rightUI === 'race'} mountOnEnter unmountOnExit>
+                    <Race {...props}/>
+                </Slide>
+
+                <Slide direction="left" in={props.rightUI === 'cyclist'} mountOnEnter unmountOnExit>
+                    <Cyclist {...props}/>
+                </Slide>
+            </div>
+        )
     }
     
     render() {
         return (
-            <div>
-                <this.renderRightUI/>
-            </div>
+            <this.renderRightUI/>
         )
     }
 }
