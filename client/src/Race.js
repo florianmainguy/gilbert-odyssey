@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCountryFlag from "react-country-flag"
+import {Line} from 'react-chartjs-2';
 
 class RaceHistory extends React.Component {
     constructor(props) {
@@ -164,12 +165,63 @@ class RaceHead extends React.Component {
     }
 }
 
+class RaceProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderChart = this.renderChart.bind(this);
+    }
+
+    renderChart() {
+        if (!this.props.history) {
+            return null;
+        }
+
+        let dataChart = {
+            labels: Array(this.props.elevation.length).map((x) => x),
+            datasets: [
+              {
+                label: 'My First dataset',
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: this.props.elevation
+              }
+            ]
+          };
+        
+        return <Line data={dataChart}/>
+    }
+
+    render() {
+        return (
+            <div className="race-chart border border-dark">
+                <this.renderChart/>
+            </div>
+        )
+    }
+}
+
 class Race extends React.Component {
     constructor(props) {
         super(props);
         this.renderHead = this.renderHead.bind(this);
         this.renderWinners = this.renderWinners.bind(this);
         this.renderHistory = this.renderHistory.bind(this);
+        this.renderProfile = this.renderProfile.bind(this);
     }
 
     renderHead() {
@@ -206,12 +258,35 @@ class Race extends React.Component {
         return <RaceHistory {...params}/>
     }
 
+    renderProfile() {
+        let params = {
+            props: this.props,
+            history: null,
+            elevation: null
+        }
+
+        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        if (classique) {
+            params.history = classique.history;
+
+            let coordinates = classique.geojsonData.features[2].geometry.coordinates;
+            params.elevation = coordinates.map(point => point[2]);
+        }
+
+        return <RaceProfile {...params}/>
+    }
+
     render() {
         return (
-            <div className="race-container">
-                <this.renderHead/>
-                <this.renderWinners/>
-                <this.renderHistory/>
+            <div>
+                <div className="race-container">
+                    <this.renderHead/>
+                    <this.renderWinners/>
+                    <this.renderHistory/>
+                </div>
+                <div className="race-profile">
+                    <this.renderProfile/>
+                </div>
             </div>
         )
     }

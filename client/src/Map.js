@@ -160,6 +160,9 @@ class Map extends React.Component {
                       { hover: false }
                   );
               });
+
+            // Add zoom and rotation controls to the map.
+            //this.map.addControl(new mapboxgl.NavigationControl());
           };
       });
 
