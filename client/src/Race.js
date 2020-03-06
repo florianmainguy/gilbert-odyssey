@@ -98,7 +98,7 @@ class RaceWinners extends React.Component {
     render() {
         return (
             <div className="race-winners">
-                <h6>Best Monuments Winners</h6>
+                <h6>Best Monument Winners</h6>
                 <div className="border border-dark table-responsive">
                     <table className="table table-dark table-sm table-striped table-hover">
                         <thead>
@@ -180,7 +180,7 @@ class RaceProfile extends React.Component {
             labels: Array(this.props.elevation.length).map((x) => x),
             datasets: [
               {
-                label: 'My First dataset',
+                label: "Elevation",
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: 'rgba(75,192,192,0.4)',
@@ -191,26 +191,45 @@ class RaceProfile extends React.Component {
                 borderJoinStyle: 'miter',
                 pointBorderColor: 'rgba(75,192,192,1)',
                 pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
+                pointBorderWidth: 0.5,
                 pointHoverRadius: 5,
                 pointHoverBackgroundColor: 'rgba(75,192,192,1)',
                 pointHoverBorderColor: 'rgba(220,220,220,1)',
                 pointHoverBorderWidth: 2,
-                pointRadius: 1,
+                pointRadius: 0.5,
                 pointHitRadius: 10,
                 data: this.props.elevation
               }
             ]
           };
+
+          // Maybe add tooltip and x axis
+          let options = {
+              legend: {
+                  display: false
+              },
+              tooltips: {
+                  enabled: false
+              },
+              maintainAspectRatio: false,
+              scales:{
+                xAxes: [{
+                    display: false
+                }]
+            }
+          }
         
-        return <Line data={dataChart}/>
+        return <Line data={dataChart} options={options}/>
     }
 
+    // Add chart into new div
     render() {
         return (
             <div className="race-chart border border-dark">
                 <h6>Elevation Profile</h6>
-                <this.renderChart/>
+                <div className="chart">
+                    <this.renderChart/>
+                </div>
             </div>
         )
     }
