@@ -1,7 +1,11 @@
 /** General Stuff **/
 html {
-  font-size: 100%;
+  font-size: 75%;
 }
+@media screen and (min-width: 768px){
+html {
+  font-size: 100%;
+}}
 
 body {
   margin: 0;
@@ -213,8 +217,8 @@ body {
   background-color: rgb(62, 68, 74);
   text-align: center;
   grid-area: race-head;
-  min-width: 20rem;
-  max-width: 24rem;
+  min-width: 10rem;
+  max-width: 20rem;
   min-height: 4rem;
   overflow: scroll;
   margin: auto;
@@ -222,6 +226,13 @@ body {
   flex: 1;  
   flex-direction: column;
 }
+
+@media screen and (min-width: 768px){
+.race-head {
+  min-width: 20rem;
+  max-width: 24rem;
+  min-height: 4rem;
+}}
   .race-selector {
     display: flex;
     flex: 1;
@@ -258,17 +269,31 @@ body {
 
 .race-winners {
   background-color: rgb(62, 68, 74);
-  margin: 1rem auto;
+  /*margin: 1rem auto;*/
+  /*margin: 0rem auto;*/
   padding: 0.2rem;
   grid-area: race-winners;
+  min-width: 7rem;
+  min-height: 0;
+  /*max-width: 14rem;*/
+  overflow: scroll;
+
+}
+
+@media screen and (min-width: 768px){
+.race-winners {
+  margin: 0rem auto;
   min-width: 17rem;
   min-height: 0;
   max-width: 18rem;
-  overflow: scroll;
-}
+}}
   .race-winners .table-sm {
     font-size: 0.8rem;
   }
+  @media screen and (min-width: 768px){
+  .race-winners .table-sm {
+    font-size: 0.8rem;
+  }}
   .race-winners tr{
     transform: rotate(0);
   }
@@ -286,17 +311,28 @@ body {
 
 .race-history {
   background-color: rgb(62, 68, 74);
-  margin: 0rem auto;
+  /*margin: 0rem auto;*/
   padding: 0.2rem;
   grid-area: race-history;
-  min-width: 17rem;
-  max-width: 18rem;
+  min-width: 7rem;
+  /*max-width: 14rem;*/
   min-height: 0;
   overflow: scroll;
 }
+@media screen and (min-width: 768px){
+.race-history {
+  margin: 0rem auto;
+  min-width: 17rem;
+  max-width: 18rem;
+  min-height: 0;
+}}
   .race-history .table-sm {
     font-size: 0.8rem;
   }
+  @media screen and (min-width: 768px){
+  .race-history .table-sm {
+    font-size: 0.8rem;
+  }}
   .race-history tr{
     transform: rotate(0);
   }
@@ -314,13 +350,19 @@ body {
   grid-area: race-chart;
   min-width: 0;
   min-height: 0;
+  /*max-height: 5rem;*/
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
   .race-chart h6{
     margin: 0;
   }
   .chart {
-   
+   /*max-height: 100%;*/
+   position: relative;
+   flex-grow: 1;
+   min-height: 0;
   }
 
 

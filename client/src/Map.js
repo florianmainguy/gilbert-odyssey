@@ -29,9 +29,18 @@ class Map extends React.Component {
       return bounds.extend(coord);
       }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
       
-      this.map.fitBounds(bounds, {
-      padding: {top: 40, bottom:230, left: 15, right: 500}
-      });
+      // Responsive layout 
+      let x = window.matchMedia("(max-width: 768px)");
+      if (x.matches) {
+        this.map.fitBounds(bounds, {
+            padding: {top: 120, bottom:450, left: 15, right: 15}
+        });
+      } else {
+        this.map.fitBounds(bounds, {
+            padding: {top: 70, bottom:250, left: 15, right: 400}
+        }); 
+      }
+      
   }
 
   componentDidMount() {
