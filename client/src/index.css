@@ -174,21 +174,24 @@ body {
 
 
 /** Race components **/
-.race-profile {
+.race-grid {
   position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  display: flex;
-  flex: 1;
+  top: 2rem;
   z-index: 1;
   color: #ffffff;
-  height: 20rem;
-  max-width: 10rem; /*??*/
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr;
+  grid-template-areas: 
+    ". race-head"
+    ". race-winners"
+    "race-chart race-history";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  min-width: 0;
+  min-height: 0;
+  max-height: 100vh;
 }
-.race-chart {
-  background-color: rgb(62, 68, 74);
-}
-
 
 .race-container {
   position: absolute;
@@ -205,7 +208,10 @@ body {
 .race-head {
   background-color: rgb(62, 68, 74);
   text-align: center;
-  display: flex;
+  grid-area: race-head;
+  min-width: 0;
+  min-height: 0;
+  overflow: scroll;
 }
   .race-selector {
     display: flex;
@@ -244,9 +250,10 @@ body {
   background-color: rgb(62, 68, 74);
   margin: 1rem 1rem;
   padding: 0.2rem;
-  width: auto;
-  display: flex;
-  flex-direction: column;
+  grid-area: race-winners;
+  min-width: 0;
+  min-height: 0;
+  overflow: scroll;
 }
   .race-winners .table-sm {
     font-size: 0.8rem;
@@ -270,9 +277,10 @@ body {
   background-color: rgb(62, 68, 74);
   margin: 0rem 1rem;
   padding: 0.2rem;
-  width: auto;
-  display: flex;
-  flex-direction: column;
+  grid-area: race-history;
+  min-width: 0;
+  min-height: 0;
+  overflow: scroll;
 }
   .race-history .table-sm {
     font-size: 0.8rem;
@@ -289,7 +297,13 @@ body {
     color: #fff; 
   }
 
-
+.race-chart {
+  background-color: rgb(62, 68, 74);
+  grid-area: race-chart;
+  min-width: 0;
+  min-height: 0;
+  overflow: scroll;
+}
 
 
 /** Home components **/

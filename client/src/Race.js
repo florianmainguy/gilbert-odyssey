@@ -209,6 +209,7 @@ class RaceProfile extends React.Component {
     render() {
         return (
             <div className="race-chart border border-dark">
+                <h6>Elevation Profile</h6>
                 <this.renderChart/>
             </div>
         )
@@ -278,15 +279,11 @@ class Race extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="race-container">
-                    <this.renderHead/>
-                    <this.renderWinners/>
-                    <this.renderHistory/>
-                </div>
-                <div className="race-profile">
-                    <this.renderProfile/>
-                </div>
+            <div className="race-grid">
+                <this.renderHead/>
+                <this.renderWinners/>
+                <this.renderHistory/>
+                <this.renderProfile/>
             </div>
         )
     }
