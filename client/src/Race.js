@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactCountryFlag from "react-country-flag"
 import {Line} from 'react-chartjs-2';
+import * as turf from '@turf/turf';
 
 class RaceHistory extends React.Component {
     constructor(props) {
@@ -177,7 +178,7 @@ class RaceProfile extends React.Component {
         }
 
         let dataChart = {
-            labels: Array(this.props.elevation.length).map((x) => x),
+            labels: this.props.elevation.map((val, idx) => Math.round(idx*this.props.distance/this.props.elevation.length)),
             datasets: [
               {
                 label: "Elevation",
@@ -214,7 +215,14 @@ class RaceProfile extends React.Component {
               maintainAspectRatio: false,
               scales:{
                 xAxes: [{
-                    display: false
+                    display: true
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true,
+                        suggestedMax: 1200
+                    }
                 }]
             }
           }
@@ -282,7 +290,8 @@ class Race extends React.Component {
         let params = {
             props: this.props,
             history: null,
-            elevation: null
+            elevation: null,
+            distance: null
         }
 
         let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
@@ -291,6 +300,7 @@ class Race extends React.Component {
 
             let coordinates = classique.geojsonData.features[2].geometry.coordinates;
             params.elevation = coordinates.map(point => point[2]);
+            params.distance = turf.length(classique.geojsonData.features[2]);
         }
 
         return <RaceProfile {...params}/>
