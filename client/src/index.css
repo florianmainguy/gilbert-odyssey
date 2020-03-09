@@ -218,10 +218,10 @@ body {
   text-align: center;
   grid-area: race-head;
   min-width: 10rem;
-  max-width: 20rem;
+
   min-height: 4rem;
   overflow: scroll;
-  margin: auto;
+  /*margin: auto;*/
   display: flex;
   flex: 1;  
   flex-direction: column;
