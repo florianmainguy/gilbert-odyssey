@@ -23,4 +23,4 @@ app.get('/', (req, res) => {
 app.use('/api', classiqueRouter)
 app.use('/api', cyclistRouter)
 
-app.listen(process.env.PORT || 3000, () => console.log(`Server running on port ${apiPort}`))
+app.listen(process.env.PORT || 3000)
