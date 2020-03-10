@@ -83,10 +83,12 @@ class Application extends React.Component {
             focusOn: this.state.focusOn
         }
 
-        if (!this.state.classiques && !this.state.cyclists) {
+        if (!this.state.classiques || !this.state.cyclists) {
             return <div>...Loading...</div>;
         }
         else {
+            //console.log("classiques" + this.state.classiques);
+            //console.log("cyclists" + this.state.cyclists);
             return (
                 <div>
                     <Map {...props}/>

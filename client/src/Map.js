@@ -61,7 +61,7 @@ class Map extends React.Component {
             this.map.addImage('climb', image);
         });
 
-      //console.log("this.state.classique", this.state.classiques);
+      console.log("this.state.classique", this.state.classiques);
       this.map.on('load', () => {
           for (let classique of this.props.classiques){
               let hoveredClassiqueId = null;
