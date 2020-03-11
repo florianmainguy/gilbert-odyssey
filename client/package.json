@@ -21,12 +21,13 @@
     "react-scripts": "3.3.0"
   },
   "scripts": {
-    "start": "PORT=3000 react-scripts start",
-    "start-pc": "set PORT=3000&& react-scripts start",
+    "start": "react-scripts start",
+    "start-pc": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
