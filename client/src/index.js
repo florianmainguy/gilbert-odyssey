@@ -83,7 +83,7 @@ class Application extends React.Component {
             focusOn: this.state.focusOn
         }
 
-        if (!this.state.classiques || !this.state.cyclists) {
+        if (this.state.classiques.length === 0 || this.state.cyclists.length === 0) {
             return <div>...Loading...</div>;
         }
         else {

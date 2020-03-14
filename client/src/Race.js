@@ -236,7 +236,7 @@ class RaceProfile extends React.Component {
             <div className="race-chart border border-dark">
                 <h6>Elevation Profile</h6>
                 <div className="chart">
-                    <this.renderChart/>
+                   
                 </div>
             </div>
         )

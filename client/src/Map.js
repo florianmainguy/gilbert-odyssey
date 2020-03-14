@@ -4,6 +4,7 @@ import startPic from './map/start.png';
 import finishPic from './map/finish.png';
 import climbPic from './map/climb1.png';
 
+//Hide access token
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZW5jaGllbjE2NjQiLCJhIjoiY2s0aDc0OHd2MTNpOTN0bzJyNjRzOWxpaiJ9.OAzfshgQGxK4VRYepd-ysw';
 
 class Map extends React.Component {
@@ -26,18 +27,20 @@ class Map extends React.Component {
       // to the bounds of multiple Points or Polygon geomteries - it just
       // requires wrapping all the coordinates with the extend method.
       var bounds = coordinates.reduce(function(bounds, coord) {
-      return bounds.extend(coord);
-      }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+        return bounds.extend(coord);
+        }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
       
       // Responsive layout 
       let x = window.matchMedia("(max-width: 768px)");
       if (x.matches) {
         this.map.fitBounds(bounds, {
-            padding: {top: 120, bottom:450, left: 15, right: 15}
+            padding: {top: 120, bottom:450, left: 15, right: 15},
+            linear: true
         });
       } else {
         this.map.fitBounds(bounds, {
-            padding: {top: 70, bottom:250, left: 15, right: 400}
+            padding: {top: 70, bottom:250, left: 15, right: 400},
+            linear: true
         }); 
       }
       
@@ -69,6 +72,7 @@ class Map extends React.Component {
               //console.log("classique", classique);
               this.map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
 
+              console.log("coucou layer actual race");
               // Layer for actual race
               this.map.addLayer({
                   'id': classique.raceName,
