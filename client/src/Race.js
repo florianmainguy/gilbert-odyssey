@@ -215,7 +215,10 @@ class RaceProfile extends React.Component {
               maintainAspectRatio: false,
               scales:{
                 xAxes: [{
-                    display: true
+                    display: true,
+                    ticks: {
+                        //sampleSize: 100   Nto wirking :(
+                    }
                 }],
                 yAxes: [{
                     display: true,
@@ -224,9 +227,12 @@ class RaceProfile extends React.Component {
                         suggestedMax: 1200
                     }
                 }]
+              },
+              animation: {
+                duration: 0
             }
           }
-        
+    
         return <Line data={dataChart} options={options}/>
     }
 
@@ -234,9 +240,9 @@ class RaceProfile extends React.Component {
     render() {
         return (
             <div className="race-chart border border-dark">
-                <h6>Elevation Profile</h6>
+                <h6>Elevation Profile (m/km)</h6>
                 <div className="chart">
-                   
+                    <this.renderChart/>
                 </div>
             </div>
         )
@@ -299,7 +305,13 @@ class Race extends React.Component {
             params.history = classique.history;
 
             let coordinates = classique.geojsonData.features[2].geometry.coordinates;
-            params.elevation = coordinates.map(point => point[2]);
+
+            //takes only sample of coordinates, to avoid lagging of chart drawing
+            var filtered = coordinates.filter(function(element, index, array) {
+                return (index % 30 === 0);
+              });
+              
+            params.elevation = filtered.map(point => point[2]);
             params.distance = turf.length(classique.geojsonData.features[2]);
         }
 

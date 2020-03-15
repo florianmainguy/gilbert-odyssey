@@ -34,13 +34,11 @@ class Map extends React.Component {
       let x = window.matchMedia("(max-width: 768px)");
       if (x.matches) {
         this.map.fitBounds(bounds, {
-            padding: {top: 120, bottom:450, left: 15, right: 15},
-            linear: true
+            padding: {top: 120, bottom:450, left: 15, right: 15}
         });
       } else {
         this.map.fitBounds(bounds, {
-            padding: {top: 70, bottom:250, left: 15, right: 400},
-            linear: true
+            padding: {top: 70, bottom:250, left: 15, right: 400}
         }); 
       }
       
@@ -72,7 +70,7 @@ class Map extends React.Component {
               //console.log("classique", classique);
               this.map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
 
-              console.log("coucou layer actual race");
+              //console.log("coucou layer actual race");
               // Layer for actual race
               this.map.addLayer({
                   'id': classique.raceName,
