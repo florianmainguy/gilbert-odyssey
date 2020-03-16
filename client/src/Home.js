@@ -63,7 +63,7 @@ class Home extends React.Component {
         let props = this.props;
         //Add About link
         return (
-            <div className="home-container">
+            <div className="home-grid">
                 <HomeHeader/>
                 <HomeClassique {...props}/>
                 <HomeCyclist {...props}/>
