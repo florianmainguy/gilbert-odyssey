@@ -52,9 +52,11 @@ class CyclistSummary extends React.Component {
         return (
             <div className="cyclist-summary border border-dark">
                 <ul className="key-wins">
-                    <li className="flex-wins"><a className="stage-wins" href="#40"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
-                    <li className="flex-wins"><a className="classique-wins" href="#41"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>1</p></a></li>
-                    <li className="flex-wins"><a className="total-wins" href="#42"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>23</p></a></li>
+                    <li className="flex-wins"><a className="race-1" href="#"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
+                    <li className="flex-wins"><a className="race-2" href="#"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
+                    <li className="flex-wins"><a className="race-3" href="#"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
+                    <li className="flex-wins"><a className="race-4" href="#"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>1</p></a></li>
+                    <li className="flex-wins"><a className="race-5" href="#"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>23</p></a></li>
                 </ul>
             </div>
         )
