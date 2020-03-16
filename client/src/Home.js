@@ -25,7 +25,7 @@ class HomeClassique extends React.Component {
 
     render() {
         return (
-            <div className="home-classiques">
+            <div className="home-race">
                 <h6>Pick a classic:</h6>
                 <ul className="classique-list">
                     <a href="#" className="flex-races-a" onClick={() => this.handleRace('Milano-Sanremo')}>
@@ -61,6 +61,7 @@ class Home extends React.Component {
 
     render() {
         let props = this.props;
+        //Add About link
         return (
             <div className="home-container">
                 <HomeHeader/>
