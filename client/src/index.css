@@ -33,25 +33,73 @@ h6 {
 
 
 /** Cyclist components **/
-.cyclist-container {
+.cyclist-grid {
   position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  display: grid;
-  grid-row-gap: 0rem;
-  grid-template-columns: 20rem;
-  grid-template-rows: 20rem 6rem 20rem;
+  top: 1rem;
+  bottom: 1rem;
+  left: 2rem;
+  right: 2rem;
   z-index: 1;
   color: #ffffff;
-
+  display: grid;
+  
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 5fr 5fr 2fr;
+  grid-template-areas: 
+    "cyclist-head cyclist-head"
+    ". ."
+    "cyclist-profile cyclist-wins"
+    "cyclist-summary cyclist-summary";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 }
+@media screen and (min-width: 768px){
+.race-grid {
+  top: 2rem;
+  bottom: 2rem;
+  grid-template-columns: 7fr 3fr;
+  grid-template-rows: 1fr 2fr 1fr 3fr;
+  grid-template-areas: 
+    ". cyclist-head"
+    ". cyclist-profile"
+    ". cyclist-summary"
+    ". cyclist-wins";
+}}
+
+
+.cyclist-head {
+  background-color: rgb(62, 68, 74);
+  text-align: center;
+  grid-area: cyclist-head;
+  min-width: 10rem;
+  min-height: 4rem;
+  /*overflow: scroll;*/
+  /*margin: auto;*/ 
+  /*display: flex;
+  flex: 1;*/
+}
+@media screen and (min-width: 768px){
+.race-head {
+  min-width: 20rem;
+  max-width: 24rem;
+  min-height: 4rem;
+  margin: auto;
+}}
+
 
 .cyclist-profile {
   background-color: rgb(62, 68, 74);
-  margin: 0.8rem 1rem;
+  /*margin: 0.8rem 1rem;*/
   text-align: center;
+  grid-area: cyclist-profile;
 }
-
+@media screen and (min-width: 768px){
+.cyclist-profile {
+  margin: 0rem auto;
+  min-width: 17rem;
+  min-height: 0;
+  max-width: 18rem;
+}}
   .cyclist-picture {
     border-radius: 100%;
     overflow: hidden;
@@ -64,11 +112,6 @@ h6 {
     .cyclist-picture img {
       width: 100%;
     }
-
-  .cyclist-name {
-    margin-bottom: 0;
-  }
-
   .cyclist-search {
     margin-top: 0.2rem;
   }
@@ -99,10 +142,18 @@ h6 {
 
 .cyclist-summary {
   background-color: rgb(62, 68, 74);
-  margin: 0.8rem 1rem;
+  /*margin: 0.8rem 1rem;*/
   text-align: center;
   display: flex;
+  grid-area: cyclist-summary;
 }
+@media screen and (min-width: 768px){
+.cyclist-summary {
+  margin: 0rem auto;
+  min-width: 17rem;
+  max-width: 18rem;
+  min-height: 0;
+}}
   .key-wins {
     display: flex;
     flex: 1;
@@ -160,10 +211,17 @@ h6 {
 
 .cyclist-wins {
   background-color: rgb(62, 68, 74);
-  margin: 0.8rem 1rem;
+  /*margin: 0.8rem 1rem;*/
   padding: 0.2rem;
   width: auto;
 }
+@media screen and (min-width: 768px){
+.cyclist-wins {
+  margin: 0rem auto;
+  min-width: 17rem;
+  max-width: 18rem;
+  min-height: 0;
+}}
   .cyclist-wins .table-sm {
     font-size: 0.92rem;
   }
@@ -370,26 +428,47 @@ h6 {
 
 
 /** Home components **/
-.home-container {
+.home-grid {
   position: absolute;
   z-index: 1;
-  width: 50%;
-  display: grid;
-  grid-template: 
-    'header header'
-    'left right';
   color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 2fr 2fr;
+  grid-template-areas: 
+    "home-head home-head"
+    "home-race home-cyclist";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 }
+@media screen and (min-width: 768px){
+.home-grid {
+  top: 2rem;
+  bottom: 2rem;
+  /*width: 50%;*/
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+    "home-head home-head"
+    "home-race home-cyclist";
+}}
 
 .home-head {
+  grid-area: home-head;
   text-align: left;
   justify-content: center;
   display: flex;
-  grid-area: header;
-  margin-left: 4rem;
+  /*margin-left: 4rem;
   margin-top: 6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;*/
   }
+@media screen and (min-width: 768px){
+.home-head {
+  /*min-width: 20rem;
+  max-width: 24rem;
+  min-height: 4rem;*/
+  margin: auto;
+}}
   .home-head h1{
     font-family: 'Josefin Sans';
     margin: auto;
@@ -397,7 +476,7 @@ h6 {
     font-size: 6rem;
   }
 
-.home-classiques {  
+.home-race {  
   margin-left: 4rem;
   padding-top: 1rem;
   padding-left: 1rem;
@@ -406,9 +485,16 @@ h6 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  grid-area: left;
+  grid-area: home-race;
 }
-  .home-classiques h6 {
+@media screen and (min-width: 768px){
+.home-race {
+  /*margin: 0rem auto;
+  min-width: 17rem;
+  min-height: 0;
+  max-width: 18rem;*/
+}}
+  .home-race h6 {
     margin-bottom: 0;
     padding-left: 1rem;;
   }
@@ -447,9 +533,16 @@ h6 {
   margin: 0.8rem 1rem;
   display: flex;
   flex: 1;
-  grid-area: right;
+  grid-area: home-cyclist;
   flex-direction: column;
 }
+@media screen and (min-width: 768px){
+.home-cyclist {
+  /*margin: 0rem auto;
+  min-width: 17rem;
+  min-height: 0;
+  max-width: 18rem;*/
+}}
   .home-cyclist .cyclist-search {
     margin-top: 1rem;
     text-align: left;
