@@ -82,7 +82,6 @@ class CyclistProfile extends React.Component {
                 <div className="cyclist-picture">
                     <img alt="Default picture" src={profilePic} />
                 </div>
-                <h4 className="cyclist-name">{this.props.focusOn}</h4>
                 <ReactCountryFlag countryCode={this.state.flag}/>
                 <form className="cyclist-search">
                     <input type="search" placeholder="Search Cyclist"/>
@@ -93,6 +92,20 @@ class CyclistProfile extends React.Component {
 
     render() {
         return <this.renderFlag/>
+    }
+}
+    
+class CyclistHead extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="cyclist-head border border-dark">
+                <h3>{this.props.focusOn}</h3>
+            </div>
+        )
     }
 }
 
@@ -120,7 +133,8 @@ class Cyclist extends React.Component {
         let props = this.props;
 
         return (
-            <div className="cyclist-container">
+            <div className="cyclist-grid">
+                <CyclistHead {...props}/>
                 <CyclistProfile  {...props}/>
                 <CyclistSummary />
                 <this.renderHistory/>
