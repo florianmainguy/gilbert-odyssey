@@ -11,11 +11,22 @@ class Map extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          lng: -3.1699,
-          lat: 47.1543,
-          zoom: 5.05,
+          lng: -5.2394,
+          lat: 46.8270,
+          zoom: 4.87,
       };
   }
+
+  /*lng: -3.1699,
+  lat: 47.1543,
+  zoom: 5.05,*/
+
+  //default coord for mobile
+  /*{
+    "lng": "1.4177",
+    "lat": "45.7013",
+    "zoom": "3.34"
+  }*/
 
   zoomOnRace(race) {
       // Geographic coordinates of the LineString
