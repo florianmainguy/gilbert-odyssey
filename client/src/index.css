@@ -58,7 +58,7 @@ h6 {
   top: 2rem;
   bottom: 2rem;
   grid-template-columns: 7fr 3fr;
-  grid-template-rows: 1fr 2fr 1fr 3fr;
+  grid-template-rows: 1fr 4fr 1fr 4fr;
   grid-template-areas: 
     ". cyclist-head"
     ". cyclist-profile"
@@ -70,20 +70,22 @@ h6 {
 .cyclist-head {
   background-color: rgb(62, 68, 74);
   text-align: center;
+  justify-content: center;
   grid-area: cyclist-head;
   min-width: 10rem;
   min-height: 4rem;
   /*overflow: scroll;*/
   /*margin: auto;*/ 
-  /*display: flex;
-  flex: 1;*/
+  display: flex;
+  flex: 1;
 }
 @media screen and (min-width: 768px){
-.race-head {
-  min-width: 20rem;
+.cyclist-head {
+  /*min-height: 4rem;*/
+  min-width: 18rem;
   max-width: 24rem;
-  min-height: 4rem;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }}
 
 
@@ -95,10 +97,11 @@ h6 {
 }
 @media screen and (min-width: 768px){
 .cyclist-profile {
-  margin: 0rem auto;
-  min-width: 17rem;
   min-height: 0;
-  max-width: 18rem;
+  min-width: 18rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
 }}
   .cyclist-picture {
     border-radius: 100%;
@@ -113,7 +116,7 @@ h6 {
       width: 100%;
     }
   .cyclist-search {
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
   }
 
     input::-webkit-search-decoration,
@@ -149,10 +152,11 @@ h6 {
 }
 @media screen and (min-width: 768px){
 .cyclist-summary {
-  margin: 0rem auto;
-  min-width: 17rem;
-  max-width: 18rem;
   min-height: 0;
+  min-width: 18rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
 }}
   .key-wins {
     display: flex;
@@ -214,16 +218,18 @@ h6 {
   /*margin: 0.8rem 1rem;*/
   padding: 0.2rem;
   width: auto;
+  grid-area: cyclist-wins;
 }
 @media screen and (min-width: 768px){
 .cyclist-wins {
-  margin: 0rem auto;
-  min-width: 17rem;
-  max-width: 18rem;
   min-height: 0;
+  min-width: 18rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
 }}
   .cyclist-wins .table-sm {
-    font-size: 0.92rem;
+    font-size: 0.8rem;
   }
 
   .cyclist-wins tr{
@@ -291,7 +297,7 @@ h6 {
 
 @media screen and (min-width: 768px){
 .race-head {
-  min-width: 20rem;
+  min-width: 18rem;
   max-width: 24rem;
   min-height: 4rem;
   margin: auto;
@@ -345,10 +351,11 @@ h6 {
 
 @media screen and (min-width: 768px){
 .race-winners {
-  margin: 0rem auto;
-  min-width: 17rem;
   min-height: 0;
-  max-width: 18rem;
+  min-width: 18rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
 }}
   .race-winners .table-sm {
     font-size: 0.8rem;
@@ -384,10 +391,11 @@ h6 {
 }
 @media screen and (min-width: 768px){
 .race-history {
-  margin: 0rem auto;
-  min-width: 17rem;
-  max-width: 18rem;
   min-height: 0;
+  min-width: 18rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
 }}
   .race-history .table-sm {
     font-size: 0.8rem;

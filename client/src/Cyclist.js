@@ -74,7 +74,8 @@ class CyclistProfile extends React.Component {
 
     renderFlag() {
         // Keep in state cyclist data for unmounting/sliding transition
-        let cyclist = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+        let cyclist = this.props.cyclists.find(x => x.cyclist === this.props.focusOn);
+        console.log(cyclist);
         if (cyclist) {
             this.state.flag = cyclist.flag;
         }
