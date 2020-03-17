@@ -309,10 +309,11 @@ h6 {
 
 @media screen and (min-width: 768px){
 .race-head {
-  min-width: 18rem;
+  width: 18rem;
   max-width: 24rem;
   min-height: 4rem;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }}
   .race-selector {
     display: flex;
@@ -334,7 +335,8 @@ h6 {
         align-items: center;
         justify-content: center;
         transition: background .3s;
-        color: #fff;                     
+        color: #fff;
+        font-size: 1.60rem;                     
     }
     .race-selector a:hover {
       text-decoration: none;
