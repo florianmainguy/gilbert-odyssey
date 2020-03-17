@@ -191,27 +191,39 @@ h6 {
           background: #50597b;
           color: #fff; 
         }
-        .key-wins a:hover.stage-wins .icon {
+        .key-wins a:hover.race-1 .icon {
           color: #fcb150;
         }
-        .key-wins a:hover.classique-wins .icon {
+        .key-wins a:hover.race-2 .icon {
           color: #11a8ab;
         }
-        .key-wins a:hover.total-wins .icon {
+        .key-wins a:hover.race-3 .icon {
           color: #e64c65;
+        }
+        .key-wins a:hover.race-4 .icon {
+          color: #11ab2b;
+        }
+        .key-wins a:hover.race-5 .icon {
+          color: #e64cbf;
         }
         .key-wins .icon {
           padding-right: 10px;
         }
-        .key-wins .stage-wins {
+        .key-wins .race-1 {
           border-top: 0.5rem solid #fcb150;
         }
-        .key-wins .classique-wins {
+        .key-wins .race-2 {
           border-top: 0.5rem solid #11a8ab;
         }
-        .key-wins .total-wins {
+        .key-wins .race-3 {
           border-top: 0.5rem solid #e64c65;
-          }
+        }
+        .key-wins .race-4 {
+          border-top: 0.5rem solid #11ab2b;
+        }
+        .key-wins .race-5 {
+          border-top: 0.5rem solid #e64cbf;
+        }
 
 .cyclist-wins {
   background-color: rgb(62, 68, 74);
@@ -592,7 +604,7 @@ h6 {
   /*** From Codepen, To cleanup ***/
 /************************************ FONTS ************************************/
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
-@import url(http://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
+@import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
 /* entypo */
 [class*="entypo-"]:before {
   font-family: 'entypo', sans-serif;
