@@ -157,9 +157,9 @@ class RaceHead extends React.Component {
         return (
             <div className="race-head border border-dark">
                 <ul className="race-selector">
-                    <li className="flex-races"><a className="race-left" href="#40" onClick={() => this.toRace('previous')}><span className="icon fontawesome-arrow-left scnd-font-color"></span></a></li>
+                    <li className="flex-races"><a className="race-left" href="#40" onClick={() => this.toRace('previous')}><span className="icon fontawesome-angle-left scnd-font-color"></span></a></li>
                     <li className="flex-races"><h3 className="race-title">{this.state.raceName}</h3></li>
-                    <li className="flex-races"><a className="race-right" href="#42" onClick={() => this.toRace('next')}><span className="icon fontawesome-arrow-right scnd-font-color"></span></a></li>
+                    <li className="flex-races"><a className="race-right" href="#42" onClick={() => this.toRace('next')}><span className="icon fontawesome-angle-right scnd-font-color"></span></a></li>
                 </ul>
             </div>
         )

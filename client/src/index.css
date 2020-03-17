@@ -336,7 +336,7 @@ h6 {
         justify-content: center;
         transition: background .3s;
         color: #fff;
-        font-size: 1.60rem;                     
+        font-size: 1.5rem;                     
     }
     .race-selector a:hover {
       text-decoration: none;
@@ -347,7 +347,7 @@ h6 {
       flex: 7;
     }
     .race-selector :nth-child(odd) {
-      flex: 1.5;
+      flex: 1.2;
     }
 
 .race-winners {
