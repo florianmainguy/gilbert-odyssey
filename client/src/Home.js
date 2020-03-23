@@ -12,11 +12,19 @@ class HomeCyclist extends React.Component {
             value: ''
         };
         this.initialState = this.state;
+        this.handleCyclist = this.handleCyclist.bind(this);
+    }
+
+    handleCyclist(cyclistName) {
+        this.props.handlerRightUI('cyclist', cyclistName);
     }
 
     resultRenderer = ({ title }) => <Label content={title} />
 
-    handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+    handleResultSelect = (e, { result }) => {
+        //this.setState({ value: result.title })
+        this.handleCyclist(result.title);
+    }
 
     handleSearchChange = (e, { value }) => {
         this.setState({ isLoading: true, value })
@@ -44,9 +52,9 @@ class HomeCyclist extends React.Component {
             <div className="home-cyclist">
                 <h6>Find a Cyclist:</h6>
                 <form className="cyclist-search">
-                    <input type="search" placeholder="Search Cyclist"/>
                     <Search
-                        className= "semantic-search"
+                        minCharacters='3'
+                        input={{ iconPosition: 'left', placeholder: "Search cyclist..." }}
                         loading={this.state.isLoading}
                         onResultSelect={this.handleResultSelect}
                         onSearchChange={_.debounce(this.handleSearchChange, 500, {

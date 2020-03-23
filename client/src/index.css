@@ -501,7 +501,7 @@ h6 {
     font-family: 'Josefin Sans';
     margin: auto;
     margin-bottom: 2rem;
-    color: rgb(224, 220, 220);/*#dadada;*/
+    color: rgb(236, 233, 233);/*#dadada;*/
     font-size: 3.5rem;
   }
   @media screen and (min-width: 768px){
@@ -602,6 +602,44 @@ h6 {
     margin-left: 0.5rem;;
     text-align: left;
   }
+  @media screen and (min-width: 768px){
+  .home-cyclist .cyclist-search {
+    padding-left: 0.5rem;
+  }}
+
+  .home-cyclist input.prompt{
+    background-color: #e0e0e0;
+  }
+
+  input::-webkit-input-placeholder {
+    color: rgb(121, 121, 121) !important;
+    }
+    /*Change below*/
+    input:-moz-placeholder { /* Firefox 18- */
+    color: red !important;  
+    }
+     
+    input::-moz-placeholder {  /* Firefox 19+ */
+    color: red !important;  
+    }
+     
+    input:-ms-input-placeholder {  
+    color: red !important;  
+    }
+
+  .ui.search>.results {
+    width: 13rem;
+    left: 1rem;
+  }
+  .ui.search>.results .result {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+  }
+  .ui.label {
+    background-color: #ffffff;
+  }
+
 
   /*** From Codepen, To cleanup ***/
 /************************************ FONTS ************************************/
