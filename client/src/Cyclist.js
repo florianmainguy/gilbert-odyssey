@@ -31,18 +31,21 @@ class CyclistHistory extends React.Component {
 
     render() {
         return (
-            <div className="cyclist-wins border border-dark table-responsive">
-                <table className="table table-dark table-sm table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="column">Year</th>
-                            <th scope="column">Race</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <this.renderTable/>
-                    </tbody>
-                </table>
+            <div className="cyclist-wins">
+                <h6>Monuments Palmares</h6>
+                <div className="border border-dark table-responsive">
+                    <table className="table table-dark table-sm table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="column">Year</th>
+                                <th scope="column">Race</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <this.renderTable/>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
     }
