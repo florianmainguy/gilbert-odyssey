@@ -19,7 +19,10 @@ class RaceHistory extends React.Component {
             return null;
         }
 
-        return (this.props.history.reverse().map(( listValue, index ) => {
+        // Copy history array by value otherwise reference array is reverse sorted at every render
+        let history = this.props.history.slice();
+
+        return (history.reverse().map(( listValue, index ) => {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
