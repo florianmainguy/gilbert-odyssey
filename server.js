@@ -3,8 +3,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const db = require('./database')
-const classiqueRouter = require('./routes/classique-router')
-const cyclistRouter = require('./routes/cyclist-router')
+const Router = require('./router')
 const proxy = require('http-proxy-middleware')
 const app = express()
 const port = process.env.PORT || 5000;
@@ -27,8 +26,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', classiqueRouter)
-app.use('/api', cyclistRouter)
+app.use('/api', Router)
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

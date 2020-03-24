@@ -9,6 +9,8 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Slide from '@material-ui/core/Slide';
+import { css } from "@emotion/core";
+import BeatLoader from "react-spinners/BeatLoader";
 
 class RightUI extends React.Component {
     constructor(props) {
@@ -48,11 +50,17 @@ class Application extends React.Component {
         super(props);
         this.handlerRightUI = this.handlerRightUI.bind(this);
         this.state = {
+            loading: true,
             classiques: [],
             cyclists: [],
             rightUI: 'home',
             focusOn: 'Philippe Gilbert'
         };
+        this.loader = css`
+            display: block;
+            margin: 0 auto;
+            border-color: red;
+        `;
     }
 
     handlerRightUI(themeUI, name) {
@@ -63,14 +71,13 @@ class Application extends React.Component {
     }
 
     componentDidMount() {
-        api.getAllClassiques()
+        api.getClassiquesAndCyclists()
             .then(response => {
-                this.setState({classiques: response.data.data});
-            })
-    
-        api.getAllCyclists()
-            .then(response => {
-                this.setState({cyclists: response.data.data});
+                this.setState({
+                    classiques: response.data.classiques,
+                    cyclists: response.data.cyclists,
+                    loading: false
+                 });
             })
     }
 
@@ -83,12 +90,19 @@ class Application extends React.Component {
             focusOn: this.state.focusOn
         }
 
-        if (this.state.classiques.length === 0 || this.state.cyclists.length === 0) {
-            return <div>...Loading...</div>;
+        if (this.state.loading === true) {
+            return (
+                <div className="loading">
+                    <BeatLoader
+                        css={this.loader}
+                        size={150}
+                        color={"#123abc"}
+                        loading={this.state.loading}
+                    />
+                </div>
+            )
         }
         else {
-            //console.log("classiques" + this.state.classiques);
-            //console.log("cyclists" + this.state.cyclists);
             return (
                 <div>
                     <Map {...props}/>
