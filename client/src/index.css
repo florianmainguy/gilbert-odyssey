@@ -43,8 +43,8 @@ h6 {
   color: #ffffff;
   display: grid;
   
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 5fr 5fr 2fr;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows: minmax(0,1fr) minmax(0,5fr) minmax(0,5fr) minmax(0,2fr);
   grid-template-areas: 
     "cyclist-head cyclist-head"
     ". ."
@@ -94,6 +94,9 @@ h6 {
   /*margin: 0.8rem 1rem;*/
   text-align: center;
   grid-area: cyclist-profile;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 @media screen and (min-width: 768px){
 .cyclist-profile {
@@ -106,7 +109,7 @@ h6 {
   .cyclist-picture {
     border-radius: 100%;
     overflow: hidden;
-    margin: 1rem auto;     
+    margin: 1.2rem auto;     
     border: 0.3rem solid #50597b;
     width: 8.5rem;
     height: 8.5rem;
@@ -116,9 +119,28 @@ h6 {
       width: 100%;
     }
   .cyclist-search {
-    margin-top: 0.5rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
   }
-
+  .cyclist-search .ui.search{
+    min-width: 0;
+  }
+  .cyclist-search .ui.input{
+    max-width: 70%;
+  }
+  .cyclist-search .ui.input>input{
+    /*max-width: 75%;*/
+  }
+  .cyclist-search .ui.search>.results {
+    width: 10.5rem;
+    left: 2rem;
+  }
+  .cyclist-search .ui.search>.results .result {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+  }
     input::-webkit-search-decoration,
     input::-webkit-search-cancel-button {
       display: none; 
@@ -596,18 +618,18 @@ h6 {
   .home-cyclist h6 {
     padding-left: 1rem;
   }
-  .home-cyclist .cyclist-search {
+  .home-cyclist .home-search {
     padding-left: 1.5rem;
     margin-top: 1rem;
     margin-left: 0.5rem;;
     text-align: left;
   }
   @media screen and (min-width: 768px){
-  .home-cyclist .cyclist-search {
+  .home-cyclist .home-search {
     padding-left: 0.5rem;
   }}
 
-  .home-cyclist input.prompt{
+  input.prompt{
     background-color: #e0e0e0;
   }
 
@@ -627,11 +649,11 @@ h6 {
     color: red !important;  
     }
 
-  .ui.search>.results {
+  .home-search .ui.search>.results {
     width: 13rem;
     left: 1rem;
   }
-  .ui.search>.results .result {
+  .home-search .ui.search>.results .result {
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 0;

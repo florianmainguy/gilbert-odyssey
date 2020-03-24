@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactCountryFlag from "react-country-flag"
 import profilePic from './cyclists/default.png';
+import SearchCyclist from './Search'
 
 class CyclistHistory extends React.Component {
     constructor(props) {
@@ -86,9 +87,9 @@ class CyclistProfile extends React.Component {
                     <img alt="Default picture" src={profilePic} />
                 </div>
                 <ReactCountryFlag countryCode={this.state.flag}/>
-                <form className="cyclist-search">
-                    <input type="search" placeholder="Search Cyclist"/>
-                </form>
+                <div className="cyclist-search">
+                    <SearchCyclist {...this.props}/>
+                </div>
             </div>
         )
     }
