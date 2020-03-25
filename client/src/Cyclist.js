@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCountryFlag from "react-country-flag"
 import profilePic from './cyclists/default.png';
-import SearchCyclist from './Search'
+import SearchCyclist from './search'
 
 class CyclistHistory extends React.Component {
     constructor(props) {
@@ -140,7 +140,7 @@ class Cyclist extends React.Component {
         let props = this.props;
 
         return (
-            <div className="cyclist-grid">
+            <div className="main-grid cyclist-grid">
                 <CyclistHead {...props}/>
                 <CyclistProfile  {...props}/>
                 <CyclistSummary />

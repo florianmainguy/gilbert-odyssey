@@ -1,4 +1,4 @@
-/** General Stuff **/
+/** General Styles **/
 html {
   font-size: 75%;
 }
@@ -7,12 +7,8 @@ html {
   font-size: 100%;
 }}
 
+/*TODO investigate webkit etc*/
 body {
-  margin: 0;
-  background: transparent;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,13 +23,61 @@ h6 {
   font-size: 95%;
 }}
 
+/*TODO keep import in css?*/
+@import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+
+/** Common Styles **/
+.main-grid {
+  top: 1rem;
+  bottom: 1rem;
+  left: 2rem;
+  right: 2rem;
+  position: absolute;
+  z-index: 1;
+  color: #ffffff;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.table-sm {
+  font-size: 0.8rem;
+}
+tr{
+  transform: rotate(0);
+}
+
+input.prompt{
+  background-color: #e0e0e0;
+}
+input::-webkit-input-placeholder {
+  color: rgb(121, 121, 121) !important;
+}
+/*TODO Change below*/
+input:-moz-placeholder { /* Firefox 18- */
+color: red !important;  
+}
+input::-moz-placeholder {  /* Firefox 19+ */
+color: red !important;  
+} 
+input:-ms-input-placeholder {  
+color: red !important;  
+}
+.ui.label {
+  background-color: #ffffff;
+}
+
 
 /** Loading **/
 #app {
   height: 100%;
 }
 
-.loading {
+.home-loading {
   background-color: #236a80;
   display: flex;
   height: 100%;
@@ -41,7 +85,7 @@ h6 {
 
 
 /** Map Container **/
-.mapContainer {
+.map-container {
   position: absolute;
   top: 0;
   right: 0;
@@ -50,17 +94,141 @@ h6 {
 }
 
 
+/** Home components **/
+.home-grid {
+  grid-template-columns: minmax(0,1fr);
+  grid-template-rows: minmax(0,3fr) minmax(0,2fr) minmax(0,2fr) minmax(0,1fr);
+  grid-template-areas: 
+    "home-head"
+    "home-race"
+    "home-cyclist";
+}
+@media screen and (min-width: 768px){
+.home-grid {
+  top: 3rem;
+  bottom: 2rem;
+  left: 2rem;
+  width: 50%;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows: minmax(0,4fr) minmax(0,5fr);
+  grid-template-areas: 
+    "home-head home-head"
+    "home-race home-cyclist";
+}}
+
+  .home-head {
+    grid-area: home-head;
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    }
+  @media screen and (min-width: 768px){
+  .home-head {
+    margin-left: 2rem;
+  }}
+    .home-head h1{
+      font-family: 'Josefin Sans';
+      margin: auto;
+      margin-bottom: 2rem;
+      color: rgb(236, 233, 233);
+      font-size: 3.5rem;
+    }
+    @media screen and (min-width: 768px){
+    .home-head h1{
+      font-size: 6rem;
+      margin-bottom: auto;
+    }}
+
+  .home-race {  
+    grid-area: home-race;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 2rem;
+    width: auto;
+  }
+  @media screen and (min-width: 768px){
+  .home-race {
+    margin-left: 4rem;
+  }}
+    .home-race h6 {
+      margin-bottom: 0;
+      padding-left: 1rem;
+    }
+    .race-list {
+      display: flex;
+      flex: 1;
+      padding: 1rem;
+      padding-left: 2rem;
+      list-style-type: none;
+      flex-direction: column;
+      margin-right: 6rem;
+    }
+    @media screen and (min-width: 768px){
+    .race-list {
+      margin-right: 0;
+      padding-left: 1rem;
+    }}
+      .race-list li{
+        display:flex;
+        flex:1;
+      }
+      /*TODO keep line?*/
+      .race-list .race-link + .race-link {
+        border-top: 1px solid #1f253d; 
+      }
+      .race-list a:hover {
+        text-decoration: none;
+        background: #50597b;
+        color: #fff; 
+      }
+      .race-list h5 { 
+        margin-top: 0.5rem;;
+        display: flex; 
+        align-items: left;
+        justify-content: left;
+        transition: background .3s;
+        color: #fff;
+        font-size: 1rem;                     
+      }
+      @media screen and (min-width: 768px){
+      .race-list h5 {
+        font-size: 1.25rem;
+      }}
+
+  .home-cyclist {
+    grid-area: home-cyclist;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 2rem;
+  }
+    .home-cyclist h6 {
+      padding-left: 1rem;
+    }
+    .home-search {
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+      margin-left: 0.5rem;;
+      text-align: left;
+    }
+    @media screen and (min-width: 768px){
+    .home-search {
+      padding-left: 0.5rem;
+    }}
+    .home-search .ui.search>.results {
+      width: 13rem;
+      left: 1rem;
+    }
+    .home-search .ui.search>.results .result {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+    }
+
+
 /** Cyclist components **/
 .cyclist-grid {
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  left: 2rem;
-  right: 2rem;
-  z-index: 1;
-  color: #ffffff;
-  display: grid;
-  
   grid-template-columns: minmax(0,1fr) minmax(0,1fr);
   grid-template-rows: minmax(0,1fr) minmax(0,5fr) minmax(0,5fr) minmax(0,2fr);
   grid-template-areas: 
@@ -68,8 +236,6 @@ h6 {
     ". ."
     "cyclist-profile cyclist-wins"
     "cyclist-summary cyclist-summary";
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
 }
 @media screen and (min-width: 768px){
 .cyclist-grid {
@@ -84,136 +250,103 @@ h6 {
     ". cyclist-wins";
 }}
 
-
-.cyclist-head {
-  background-color: rgb(62, 68, 74);
-  text-align: center;
-  justify-content: center;
-  grid-area: cyclist-head;
-  min-width: 10rem;
-  min-height: 4rem;
-  /*overflow: scroll;*/
-  /*margin: auto;*/ 
-  display: flex;
-  flex: 1;
-}
-@media screen and (min-width: 768px){
-.cyclist-head {
-  /*min-height: 4rem;*/
-  min-width: 18rem;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-
-
-.cyclist-profile {
-  background-color: rgb(62, 68, 74);
-  /*margin: 0.8rem 1rem;*/
-  text-align: center;
-  grid-area: cyclist-profile;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-@media screen and (min-width: 768px){
-.cyclist-profile {
-  min-height: 0;
-  min-width: 18rem;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-  .cyclist-picture {
-    border-radius: 100%;
-    overflow: hidden;
-    margin: 1.2rem auto;     
-    border: 0.3rem solid #50597b;
-    width: 8.5rem;
-    height: 8.5rem;
-    box-sizing: content-box;
-  }
-    .cyclist-picture img {
-      width: 100%;
-    }
-  .cyclist-search {
-    margin-top: auto;
-    margin-bottom: auto;
-    display: flex;
-  }
-  .cyclist-search .ui.search{
-    min-width: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cyclist-search .ui.input{
-    max-width: 70%;
-  }
-  .cyclist-search .ui.input>input{
-    /*max-width: 75%;*/
-  }
-  .cyclist-search .ui.search>.results {
-    width: 10.5rem;
-    left: 2rem;
-  }
-  .cyclist-search .ui.search>.results .result {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-  }
-    input::-webkit-search-decoration,
-    input::-webkit-search-cancel-button {
-      display: none; 
-    }
-    
-    input[type=search] {
-      outline: none;
-      box-sizing: content-box;
-      font-family: inherit;
-      font-size: 100%;
-      background: #dadada url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-      border: solid 1px #ccc;
-      padding: 9px 10px 9px 32px;
-      width: 3.2rem;
-      border-radius: 10em;
-      transition: all .5s;
-    }
-    input[type=search]:focus {
-      width: 8rem;
-      background-color: #fff;
-      border-color: #66CC75;
-      box-shadow: 0 0 5px rgba(109,207,246,.5);
-    }
-
-.cyclist-summary {
-  background-color: rgb(62, 68, 74);
-  /*margin: 0.8rem 1rem;*/
-  text-align: center;
-  display: flex;
-  grid-area: cyclist-summary;
-}
-@media screen and (min-width: 768px){
-.cyclist-summary {
-  min-height: 0;
-  min-width: 18rem;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-  .key-wins {
+  .cyclist-head {
+    grid-area: cyclist-head;
     display: flex;
     flex: 1;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+    background-color: rgb(62, 68, 74);
+    text-align: center;
+    justify-content: center;
+    min-width: 10rem;
+    min-height: 4rem;
   }
-    .key-wins li {
+  @media screen and (min-width: 768px){
+  .cyclist-head {
+    min-width: 18rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+
+  .cyclist-profile {
+    grid-area: cyclist-profile;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: rgb(62, 68, 74);
+    text-align: center;
+  }
+  @media screen and (min-width: 768px){
+  .cyclist-profile {
+    min-height: 0;
+    min-width: 18rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+    .cyclist-picture {
+      border-radius: 100%;
+      overflow: hidden;
+      margin: auto;     
+      border: 0.3rem solid #50597b;
+      width: 8.5rem;
+      height: 8.5rem;
+      box-sizing: content-box;
+    }
+      .cyclist-picture img {
+        width: 100%;
+      }
+    .cyclist-search {
+      display: flex;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .cyclist-search .ui.search{
+      min-width: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cyclist-search .ui.input{
+      max-width: 70%;
+    }
+    .cyclist-search .ui.search>.results {
+      width: 10.5rem;
+      left: 2rem;
+    }
+    .cyclist-search .ui.search>.results .result {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+    }
+
+  .cyclist-summary {
+    grid-area: cyclist-summary;
+    display: flex;
+    background-color: rgb(62, 68, 74);
+    text-align: center;
+  }
+  @media screen and (min-width: 768px){
+  .cyclist-summary {
+    min-height: 0;
+    min-width: 18rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+    .key-wins {
       display: flex;
       flex: 1;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
     }
-    .flex-wins + .flex-wins {
-      border-left: 1px solid #1f253d; 
-    }
+      .key-wins li {
+        display: flex;
+        flex: 1;
+      }
+      .flex-wins + .flex-wins {
+        border-left: 1px solid #1f253d; 
+      }
       .key-wins p {
         margin: auto;
       }
@@ -225,103 +358,79 @@ h6 {
         transition: background .3s;
         color: #fff;                     
       }
+      .key-wins a:hover {
+        text-decoration: none;
+        background: #50597b;
+        color: #fff; 
+      }
+      .key-wins a:hover.race-1 .icon {
+        color: #fcb150;
+      }
+      .key-wins a:hover.race-2 .icon {
+        color: #11a8ab;
+      }
+      .key-wins a:hover.race-3 .icon {
+        color: #e64c65;
+      }
+      .key-wins a:hover.race-4 .icon {
+        color: #11ab2b;
+      }
+      .key-wins a:hover.race-5 .icon {
+        color: #e64cbf;
+      }
       .key-wins .icon {
         font-size: 1.2rem;
+        padding-right: 10px;
       }
-        .key-wins a:hover {
-          text-decoration: none;
-          background: #50597b;
-          color: #fff; 
-        }
-        .key-wins a:hover.race-1 .icon {
-          color: #fcb150;
-        }
-        .key-wins a:hover.race-2 .icon {
-          color: #11a8ab;
-        }
-        .key-wins a:hover.race-3 .icon {
-          color: #e64c65;
-        }
-        .key-wins a:hover.race-4 .icon {
-          color: #11ab2b;
-        }
-        .key-wins a:hover.race-5 .icon {
-          color: #e64cbf;
-        }
-        .key-wins .icon {
-          padding-right: 10px;
-        }
-        .key-wins .race-1 {
-          border-top: 0.5rem solid #fcb150;
-        }
-        .key-wins .race-2 {
-          border-top: 0.5rem solid #11a8ab;
-        }
-        .key-wins .race-3 {
-          border-top: 0.5rem solid #e64c65;
-        }
-        .key-wins .race-4 {
-          border-top: 0.5rem solid #11ab2b;
-        }
-        .key-wins .race-5 {
-          border-top: 0.5rem solid #e64cbf;
-        }
+      .key-wins .race-1 {
+        border-top: 0.5rem solid #fcb150;
+      }
+      .key-wins .race-2 {
+        border-top: 0.5rem solid #11a8ab;
+      }
+      .key-wins .race-3 {
+        border-top: 0.5rem solid #e64c65;
+      }
+      .key-wins .race-4 {
+        border-top: 0.5rem solid #11ab2b;
+      }
+      .key-wins .race-5 {
+        border-top: 0.5rem solid #e64cbf;
+      }
 
-.cyclist-wins {
-  background-color: rgb(62, 68, 74);
-  /*margin: 0.8rem 1rem;*/
-  padding: 0.2rem;
-  width: auto;
-  grid-area: cyclist-wins;
-  overflow: scroll;
-}
-@media screen and (min-width: 768px){
-.cyclist-wins {
-  min-height: 0;
-  min-width: 18rem;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-  .cyclist-wins .table-sm {
-    font-size: 0.8rem;
+  .cyclist-wins {
+    grid-area: cyclist-wins;
+    background-color: rgb(62, 68, 74);
+    padding: 0.2rem;
+    width: auto;
+    overflow: scroll;
   }
-
-  .cyclist-wins tr{
-    transform: rotate(0);
-  }
-  
-  .cyclist-wins a {
-    color: #fff; 
-  }
-  .cyclist-wins a:hover {
-    text-decoration: none;
-    color: #fff; 
-  }
+  @media screen and (min-width: 768px){
+  .cyclist-wins {
+    min-height: 0;
+    min-width: 18rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+    .cyclist-wins a {
+      color: #fff; 
+    }
+    .cyclist-wins a:hover {
+      text-decoration: none;
+      color: #fff; 
+    }
 
 
 /** Race components **/
 .race-grid {
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  left: 2rem;
-  right: 2rem;
-  z-index: 1;
-  color: #ffffff;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 5fr 5fr 2fr;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows: minmax(0,1fr) minmax(0,5fr) minmax(0,5fr) minmax(0,2fr);
   grid-template-areas: 
     "race-head race-head"
     ". ."
     "race-winners race-history"
     "race-chart race-chart";
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  /*min-width: 0;
-  min-height: 0;
-  max-height: 100vh;*/
 }
 @media screen and (min-width: 768px){
 .race-grid {
@@ -337,401 +446,122 @@ h6 {
   grid-column-gap: 2rem;;
 }}
 
-.race-head {
-  background-color: rgb(62, 68, 74);
-  text-align: center;
-  grid-area: race-head;
-  min-width: 10rem;
-
-  min-height: 4rem;
-  /*overflow: scroll;*/
-  /*margin: auto;*/ 
-  display: flex;
-  flex: 1;  
-  flex-direction: column;
-}
-
-@media screen and (min-width: 768px){
-.race-head {
-  width: 18rem;
-  max-width: 24rem;
-  min-height: 4rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-  .race-selector {
+  .race-head {
+    grid-area: race-head;
     display: flex;
-    flex: 1;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    height: 100%;
+    flex: 1;  
+    flex-direction: column;
+    background-color: rgb(62, 68, 74);
+    text-align: center;
+    min-width: 10rem;
+    min-height: 4rem;
   }
-    .race-selector li {
+  @media screen and (min-width: 768px){
+  .race-head {
+    width: 18rem;
+    max-width: 24rem;
+    min-height: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+    .race-selector {
       display: flex;
-      flex: 1;   
+      flex: 1;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      height: 100%;
     }
-    .flex-races + .flex-races {
-      border-left: 1px solid #1f253d; 
-    }
-    .race-selector a,h3 { 
+      .race-selector li {
+        display: flex;
+        flex: 1;   
+      }
+      /*TODO No ITF?*/
+      .flex-races + .flex-races {
+        border-left: 1px solid #1f253d; 
+      }
+      .race-selector a,h3 { 
         display: flex; 
         align-items: center;
         justify-content: center;
         transition: background .3s;
         color: #fff;
         font-size: 1.5rem;                     
-    }
-    .race-selector a:hover {
-      text-decoration: none;
-      background: #50597b;
+      }
+      .race-selector a:hover {
+        text-decoration: none;
+        background: #50597b;
+        color: #fff; 
+      }
+      .race-selector :nth-child(2){
+        flex: 7;
+      }
+      .race-selector :nth-child(odd) {
+        flex: 1.2;
+      }
+
+  .race-winners {
+    grid-area: race-winners;
+    background-color: rgb(62, 68, 74);
+    padding: 0.2rem; 
+    min-width: 7rem;
+    min-height: 0;
+    overflow: scroll;
+  }
+  @media screen and (min-width: 768px){
+  .race-winners {
+    min-height: 0;
+    min-width: 18rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+    .race-winners a {
       color: #fff; 
     }
-    .race-selector :nth-child(2){
-      flex: 7;
+    .race-winners a:hover {
+      text-decoration: none;
+      color: #fff; 
     }
-    .race-selector :nth-child(odd) {
-      flex: 1.2;
+    .race-winners td.winsColumn {
+      text-align: center;
     }
 
-.race-winners {
-  background-color: rgb(62, 68, 74);
-  /*margin: 1rem auto;*/
-  /*margin: 0rem auto;*/
-  padding: 0.2rem;
-  grid-area: race-winners;
-  min-width: 7rem;
-  min-height: 0;
-  /*max-width: 14rem;*/
-  overflow: scroll;
-
-}
-
-@media screen and (min-width: 768px){
-.race-winners {
-  min-height: 0;
-  min-width: 18rem;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-  .race-winners .table-sm {
-    font-size: 0.8rem;
+  .race-history {
+    grid-area: race-history;
+    background-color: rgb(62, 68, 74);
+    padding: 0.2rem;
+    min-width: 7rem;
+    min-height: 0;
+    overflow: scroll;
   }
   @media screen and (min-width: 768px){
-  .race-winners .table-sm {
-    font-size: 0.8rem;
+  .race-history {
+    min-height: 0;
+    min-width: 18rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
   }}
-  .race-winners tr{
-    transform: rotate(0);
-  }
-  
-  .race-winners a {
-    color: #fff; 
-  }
-  .race-winners a:hover {
-    text-decoration: none;
-    color: #fff; 
-  }
-  .race-winners td.winsColumn {
-    text-align: center;
-  }
+    .race-history a {
+      color: #fff; 
+    }
+    .race-history a:hover {
+      text-decoration: none;
+      color: #fff; 
+    }
 
-.race-history {
-  background-color: rgb(62, 68, 74);
-  /*margin: 0rem auto;*/
-  padding: 0.2rem;
-  grid-area: race-history;
-  min-width: 7rem;
-  /*max-width: 14rem;*/
-  min-height: 0;
-  overflow: scroll;
-}
-@media screen and (min-width: 768px){
-.race-history {
-  min-height: 0;
-  min-width: 18rem;
-  max-width: 24rem;
-  margin-left: auto;
-  margin-right: auto;
-}}
-  .race-history .table-sm {
-    font-size: 0.8rem;
-  }
-  @media screen and (min-width: 768px){
-  .race-history .table-sm {
-    font-size: 0.8rem;
-  }}
-  .race-history tr{
-    transform: rotate(0);
-  }
-  
-  .race-history a {
-    color: #fff; 
-  }
-  .race-history a:hover {
-    text-decoration: none;
-    color: #fff; 
-  }
-
-.race-chart {
-  background-color: rgb(62, 68, 74);
-  grid-area: race-chart;
-  min-width: 0;
-  min-height: 0;
-  padding: 0.2rem;
-  /*max-height: 5rem;*/
-  /*overflow: scroll;*/
-  display: flex;
-  flex-direction: column;
-}
-  .chart {
-   /*max-height: 100%;*/
-   position: relative;
-   flex-grow: 1;
-   min-height: 0;
-  }
-
-
-/** Home components **/
-.home-grid {
-  top: 1rem;
-  bottom: 1rem;
-  left: 2rem;
-  right: 2rem;
-  position: absolute;
-  z-index: 1;
-  color: #ffffff;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3fr 2fr 2fr 1fr;
-  grid-template-areas: 
-    "home-head"
-    "home-race"
-    "home-cyclist";
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-}
-@media screen and (min-width: 768px){
-.home-grid {
-  top: 3rem;
-  bottom: 2rem;
-  left: 2rem;
-  width: 50%;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 4fr 5fr;
-  grid-template-areas: 
-    "home-head home-head"
-    "home-race home-cyclist";
-}}
-
-.home-head {
-  grid-area: home-head;
-  text-align: left;
-  justify-content: center;
-  display: flex;
-  /*margin-left: 4rem;
-  margin-top: 6rem;*/
-  }
-@media screen and (min-width: 768px){
-.home-head {
-  /*min-width: 20rem;
-  max-width: 24rem;
-  min-height: 4rem;*/
-  /*margin: auto;*/
-  margin-left: 2rem;
-}}
-  .home-head h1{
-    font-family: 'Josefin Sans';
-    margin: auto;
-    margin-bottom: 2rem;
-    color: rgb(236, 233, 233);/*#dadada;*/
-    font-size: 3.5rem;
-  }
-  @media screen and (min-width: 768px){
-    .home-head h1{
-      font-size: 6rem;
-      margin-bottom: auto;
-      
-    }}
-
-.home-race {  
-  margin-left: 2rem;
-  /*padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 5rem;*/
-  width: auto;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  grid-area: home-race;
-}
-@media screen and (min-width: 768px){
-.home-race {
-  margin-left: 4rem;
-  /*margin: 0rem auto;
-  min-width: 17rem;
-  min-height: 0;
-  max-width: 18rem;*/
-}}
-  .home-race h6 {
-    margin-bottom: 0;
-    padding-left: 1rem;
-  }
-  .classique-list {
+  .race-chart {
+    grid-area: race-chart;
     display: flex;
-    flex: 1;
-    padding: 1rem;
-    padding-left: 2rem;
-    list-style-type: none;
     flex-direction: column;
-    margin-right: 6rem;
+    background-color: rgb(62, 68, 74);
+    min-width: 0;
+    min-height: 0;
+    padding: 0.2rem;
   }
-  @media screen and (min-width: 768px){
-    .classique-list {
-      margin-right: 0;
-      padding-left: 1rem;
-    }}
-    .flex-races-a {
-      /*display: flex;
-      flex: 1;*/
+    .chart {
+    position: relative;
+    flex-grow: 1;
+    min-height: 0;
     }
-    .flex-races-a + .flex-races-a {
-      border-top: 1px solid #1f253d; 
-    }
-    .classique-list li{
-      display:flex;
-      flex:1;
-    }
-    .classique-list h5 { 
-      margin-top: 0.5rem;;
-        display: flex; 
-        align-items: left;
-        justify-content: left;
-        transition: background .3s;
-        color: #fff;
-        font-size: 1rem;                     
-    }
-    @media screen and (min-width: 768px){
-      .classique-list h5 {
-        font-size: 1.25rem;
-      }}
-    .classique-list a:hover {
-      text-decoration: none;
-      background: #50597b;
-      color: #fff; 
-    }
-
-.home-cyclist {
-  /*margin: 0.8rem 1rem;*/
-  margin-left: 2rem;
-  display: flex;
-  flex: 1;
-  grid-area: home-cyclist;
-  flex-direction: column;
-}
-@media screen and (min-width: 768px){
-.home-cyclist {
-  /*margin: 0rem auto;
-  min-width: 17rem;
-  min-height: 0;
-  max-width: 18rem;*/
-}}
-  .home-cyclist h6 {
-    padding-left: 1rem;
-  }
-  .home-cyclist .home-search {
-    padding-left: 1.5rem;
-    margin-top: 1rem;
-    margin-left: 0.5rem;;
-    text-align: left;
-  }
-  @media screen and (min-width: 768px){
-  .home-cyclist .home-search {
-    padding-left: 0.5rem;
-  }}
-
-  input.prompt{
-    background-color: #e0e0e0;
-  }
-
-  input::-webkit-input-placeholder {
-    color: rgb(121, 121, 121) !important;
-    }
-    /*Change below*/
-    input:-moz-placeholder { /* Firefox 18- */
-    color: red !important;  
-    }
-     
-    input::-moz-placeholder {  /* Firefox 19+ */
-    color: red !important;  
-    }
-     
-    input:-ms-input-placeholder {  
-    color: red !important;  
-    }
-
-  .home-search .ui.search>.results {
-    width: 13rem;
-    left: 1rem;
-  }
-  .home-search .ui.search>.results .result {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-  }
-  .ui.label {
-    background-color: #ffffff;
-  }
-
-
-  /*** From Codepen, To cleanup ***/
-/************************************ FONTS ************************************/
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
-@import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
-/* entypo */
-[class*="entypo-"]:before {
-  font-family: 'entypo', sans-serif;
-}
-/* fontawesome */
-[class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
-}
-/* zocial */
-[class*="zocial-"]:before {
-  font-family: 'zocial', sans-serif;
-}
-@font-face {
-    font-family: 'icomoon';
-    src:url('https://jlalovi-cv.herokuapp.com/font/icomoon.eot');
-    src:url('https://jlalovi-cv.herokuapp.com/font/icomoon.eot?#iefix') format('embedded-opentype'),
-        url('https://jlalovi-cv.herokuapp.com/font/icomoon.ttf') format('truetype'),
-        url('https://jlalovi-cv.herokuapp.com/font/icomoon.woff') format('woff'),
-        url('https://jlalovi-cv.herokuapp.com/font/icomoon.svg#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.icon-cloudy:before {
-    content: "\e60f";
-}
-.icon-sun:before {
-    content: "\e610";
-}
-.icon-cloudy2:before {
-    content: "\e611";
-}
-/************************************* END FONTS *************************************/

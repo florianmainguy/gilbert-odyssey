@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchCyclist from './Search';
+import SearchCyclist from './search';
 
 class HomeCyclist extends React.Component {
     constructor(props) {
@@ -32,17 +32,17 @@ class HomeClassique extends React.Component {
         return (
             <div className="home-race">
                 <h6>Pick a classic:</h6>
-                <ul className="classique-list">
-                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Milano-Sanremo')}>
-                        <li className="flex-races"><h5 className="race-title">Milano-Sanremo</h5></li></a>
-                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Ronde van Vlaanderen')}>
-                        <li className="flex-races"><h5 className="race-title">Ronde van Vlaanderen</h5></li></a>
-                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Paris-Roubaix')}>
-                        <li className="flex-races"><h5 className="race-title">Paris-Roubaix</h5></li></a>
-                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Liège-Bastogne-Liège')}>
-                        <li className="flex-races"><h5 className="race-title">Liège-Bastogne-Liège</h5></li></a>
-                    <a href="#" className="flex-races-a" onClick={() => this.handleRace('Giro di Lombardia')}>
-                        <li className="flex-races"><h5 className="race-title">Giro di Lombardia</h5></li></a>
+                <ul className="race-list">
+                    <a href="#" className="race-link" onClick={() => this.handleRace('Milano-Sanremo')}>
+                        <li className="flex-races"><h5>Milano-Sanremo</h5></li></a>
+                    <a href="#" className="race-link" onClick={() => this.handleRace('Ronde van Vlaanderen')}>
+                        <li className="flex-races"><h5>Ronde van Vlaanderen</h5></li></a>
+                    <a href="#" className="race-link" onClick={() => this.handleRace('Paris-Roubaix')}>
+                        <li className="flex-races"><h5>Paris-Roubaix</h5></li></a>
+                    <a href="#" className="race-link" onClick={() => this.handleRace('Liège-Bastogne-Liège')}>
+                        <li className="flex-races"><h5>Liège-Bastogne-Liège</h5></li></a>
+                    <a href="#" className="race-link" onClick={() => this.handleRace('Giro di Lombardia')}>
+                        <li className="flex-races"><h5>Giro di Lombardia</h5></li></a>
                 </ul>
             </div>
         )
@@ -65,13 +65,12 @@ class Home extends React.Component {
     }
 
     render() {
-        let props = this.props;
-        //Add About link
+        //TODO Add About link
         return (
-            <div className="home-grid">
+            <div className="main-grid home-grid">
                 <HomeHeader/>
-                <HomeClassique {...props}/>
-                <HomeCyclist {...props}/>
+                <HomeClassique {...this.props}/>
+                <HomeCyclist {...this.props}/>
             </div>
         )
     }

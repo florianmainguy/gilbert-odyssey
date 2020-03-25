@@ -323,7 +323,7 @@ class Race extends React.Component {
 
     render() {
         return (
-            <div className="race-grid">
+            <div className="main-grid race-grid">
                 <this.renderHead/>
                 <this.renderWinners/>
                 <this.renderHistory/>
