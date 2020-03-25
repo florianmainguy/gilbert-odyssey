@@ -56,11 +56,6 @@ class Application extends React.Component {
             rightUI: 'home',
             focusOn: 'Philippe Gilbert'
         };
-        this.loader = css`
-            display: block;
-            margin: 0 auto;
-            border-color: red;
-        `;
     }
 
     handlerRightUI(themeUI, name) {
@@ -94,9 +89,9 @@ class Application extends React.Component {
             return (
                 <div className="loading">
                     <BeatLoader
-                        css={this.loader}
-                        size={150}
-                        color={"#123abc"}
+                        css={css`margin: auto;`}
+                        size={10}
+                        color={"#e3d21c"}
                         loading={this.state.loading}
                     />
                 </div>
