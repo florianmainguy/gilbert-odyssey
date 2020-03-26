@@ -1,8 +1,8 @@
-const Classique = require('./models/classique-model')
-const Cyclist = require('./models/cyclist-model')
+const {classiquesModel} = require('./model');
+const {cyclistsModel} = require('./model');
 
 getClassiquesAndCyclists = async (req, res) => {
-    let classiques = await Classique.find({}, (err, classiques) => {
+    let classiques = await classiquesModel.find({}, (err, classiques) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -11,10 +11,9 @@ getClassiquesAndCyclists = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Classiques not found` })
         }
-        //return res.status(200).json({ success: true, data: classiques })
     }).catch(err => console.log(err))
 
-    let cyclists = await Cyclist.find({}, (err, cyclists) => {
+    let cyclists = await cyclistsModel.find({}, (err, cyclists) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -23,7 +22,6 @@ getClassiquesAndCyclists = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Cyclists not found` })
         }
-        //return res.status(200).json({ success: true, data: cyclists })
     }).catch(err => console.log(err))
 
     return res
@@ -33,4 +31,4 @@ getClassiquesAndCyclists = async (req, res) => {
 
 module.exports = {
     getClassiquesAndCyclists
-}
+};

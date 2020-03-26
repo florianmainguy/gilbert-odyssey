@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 //TODO => hide password
 const password = 'xWaxbKSJhFU5MD8T';
@@ -12,6 +12,6 @@ mongoose
         console.error('Database connection error', err.message)
     })
     
-const db = mongoose.connection
+const db = mongoose.connection;
 
-module.exports = db
+module.exports = db;
