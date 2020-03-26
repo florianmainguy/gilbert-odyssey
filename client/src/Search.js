@@ -5,21 +5,21 @@ import { Search, Label } from 'semantic-ui-react'
 class SearchCyclist extends React.Component {
     constructor(props) {
         super(props);
+        this.handleCyclist = this.handleCyclist.bind(this);
         this.cyclistSearch = [];
+        this.initialState = this.state;
         this.state = {
             isLoading: false,
             results: [],
             value: ''
         };
-        this.initialState = this.state;
-        this.handleCyclist = this.handleCyclist.bind(this);
     }
 
     handleCyclist(cyclistName) {
         this.props.handlerRightUI('cyclist', cyclistName);
     }
 
-    resultRenderer = ({ title }) => <Label content={title} />
+    resultRenderer = ({ title }) => <Label content={title}/>
 
     handleResultSelect = (e, { result }) => {
         this.setState({ value: '' })
@@ -44,7 +44,6 @@ class SearchCyclist extends React.Component {
 
     componentDidMount() {
         this.cyclistSearch = this.props.cyclists.map( value => ({ "title": value.cyclist }));
-        //console.log(this.cyclistSearch);
     }
 
     render() {
@@ -60,7 +59,6 @@ class SearchCyclist extends React.Component {
                 results={this.state.results}
                 value={this.state.value}
                 resultRenderer={this.resultRenderer}
-                {...this.props}
             />
         )
     }

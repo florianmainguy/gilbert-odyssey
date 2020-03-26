@@ -3,6 +3,89 @@ import ReactCountryFlag from "react-country-flag"
 import {Line} from 'react-chartjs-2';
 import * as turf from '@turf/turf';
 
+class RaceProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderChart = this.renderChart.bind(this);
+    }
+
+    renderChart() {
+        if (!this.props.classique) {
+            return null;
+        }
+
+        let dataChart = {
+            labels: this.props.chart.elevation.map((val, idx) => Math.round(idx*this.props.chart.distance/this.props.chart.elevation.length)),
+            datasets: [
+              {
+                label: "Elevation",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 0.5,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 0.5,
+                pointHitRadius: 10,
+                data: this.props.chart.elevation
+              }
+            ]
+        };
+
+        // Maybe add tooltip and x axis
+        let options = {
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+            },
+            maintainAspectRatio: false,
+            scales:{
+            xAxes: [{
+                display: true,
+                ticks: {
+                    //sampleSize: 100   Nto wirking :(
+                }
+            }],
+            yAxes: [{
+                display: true,
+                ticks: {
+                    beginAtZero: true,
+                    suggestedMax: 1200
+                }
+            }]
+            },
+            animation: {
+            duration: 0
+        }
+        }
+    
+        return <Line data={dataChart} options={options}/>
+    }
+
+    // Add chart into new div
+    render() {
+        return (
+            <div className="race-chart border border-dark">
+                <h6>Elevation Profile (m/km)</h6>
+                <div className="chart">
+                    <this.renderChart/>
+                </div>
+            </div>
+        )
+    }
+}
+
 class RaceHistory extends React.Component {
     constructor(props) {
         super(props);
@@ -11,16 +94,12 @@ class RaceHistory extends React.Component {
     }
 
     handleCyclist(cyclistName) {
-        this.props.props.handlerRightUI('cyclist', cyclistName);
+        this.props.handlerRightUI('cyclist', cyclistName);
     }
 
     renderTable() {
-        if (!this.props.history) {
-            return null;
-        }
-
         // Copy history array by value otherwise reference array is reverse sorted at every render
-        let history = this.props.history.slice();
+        let history = this.props.classique.history.slice();
 
         return (history.reverse().map(( listValue, index ) => {
             return (
@@ -34,6 +113,10 @@ class RaceHistory extends React.Component {
     }
 
     render() {
+        if (!this.props.classique) {
+            return null;
+        }
+
         return (
             <div className="race-history">
                 <h6>Race History</h6>
@@ -64,16 +147,12 @@ class RaceWinners extends React.Component {
     }
 
     handleCyclist(cyclistName) {
-        this.props.props.handlerRightUI('cyclist', cyclistName);
+        this.props.handlerRightUI('cyclist', cyclistName);
     }
 
     renderTable() {
-        if (!this.props.history) {
-            return null;
-        }
-
-        // Creates an array of Winner/Number of wins, then sorts it
-        let winners = this.props.history.reduce(function(acc, obj) {
+        // Create an array of Winner/Number of wins, then sort it
+        let winners = this.props.classique.history.reduce(function(acc, obj) {
             const found = acc.find(a => a.name === obj.winner);
             if (found) {
               found.count += 1;
@@ -100,6 +179,10 @@ class RaceWinners extends React.Component {
     }
 
     render() {
+        if (!this.props.classique) {
+            return null;
+        }
+
         return (
             <div className="race-winners">
                 <h6>Best Monument Winners</h6>
@@ -126,127 +209,38 @@ class RaceHead extends React.Component {
     constructor(props) {
         super(props);
         this.handleRace = this.handleRace.bind(this);
-        this.toRace = this.toRace.bind(this);
-        this.state = {
-            raceName: ''
-        }
+        this.goToRace = this.goToRace.bind(this);
+        this.races = ['Milano-Sanremo', 'Ronde van Vlaanderen', 'Paris-Roubaix', 'Liège-Bastogne-Liège', 'Giro di Lombardia'];
     }
 
     handleRace(raceName) {
         this.props.handlerRightUI('race', raceName);
     }
 
-    toRace(direction) {
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-        let races = ['Milano-Sanremo', 'Ronde van Vlaanderen', 'Paris-Roubaix', 'Liège-Bastogne-Liège', 'Giro di Lombardia'];
-        let raceIdx = races.indexOf(classique.raceName);
-        let len = races.length;
+    goToRace(direction) {
+        let raceIdx = this.races.indexOf(this.props.classique.raceName);
+        let len = this.races.length;
 
         if (direction === 'next') {
-            return this.handleRace(races[(raceIdx+1)%len]);
+            return this.handleRace(this.races[(raceIdx+1)%len]);
         }
         else if (direction === 'previous') {
-            return this.handleRace(races[(raceIdx+len-1)%len]);
+            return this.handleRace(this.races[(raceIdx+len-1)%len]);
         }
     }
 
     render() {
-        // Keep in state classique data for unmounting/sliding transition
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-        if (classique) {
-            this.state.raceName = classique.raceName;
+        if (!this.props.classique){
+            return null;
         }
 
         return (
             <div className="race-head border border-dark">
                 <ul className="race-selector">
-                    <li className="flex-races"><a className="race-left" href="#40" onClick={() => this.toRace('previous')}><span className="icon fontawesome-angle-left scnd-font-color"></span></a></li>
-                    <li className="flex-races"><h3 className="race-title">{this.state.raceName}</h3></li>
-                    <li className="flex-races"><a className="race-right" href="#42" onClick={() => this.toRace('next')}><span className="icon fontawesome-angle-right scnd-font-color"></span></a></li>
+                    <li className="flex-races"><a className="race-left" href="#40" onClick={() => this.goToRace('previous')}><span className="icon fontawesome-angle-left scnd-font-color"></span></a></li>
+                    <li className="flex-races"><h3 className="race-title">{this.props.classique.raceName}</h3></li>
+                    <li className="flex-races"><a className="race-right" href="#42" onClick={() => this.goToRace('next')}><span className="icon fontawesome-angle-right scnd-font-color"></span></a></li>
                 </ul>
-            </div>
-        )
-    }
-}
-
-class RaceProfile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderChart = this.renderChart.bind(this);
-    }
-
-    renderChart() {
-        if (!this.props.history) {
-            return null;
-        }
-
-        let dataChart = {
-            labels: this.props.elevation.map((val, idx) => Math.round(idx*this.props.distance/this.props.elevation.length)),
-            datasets: [
-              {
-                label: "Elevation",
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 0.5,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 0.5,
-                pointHitRadius: 10,
-                data: this.props.elevation
-              }
-            ]
-          };
-
-          // Maybe add tooltip and x axis
-          let options = {
-              legend: {
-                  display: false
-              },
-              tooltips: {
-                  enabled: false
-              },
-              maintainAspectRatio: false,
-              scales:{
-                xAxes: [{
-                    display: true,
-                    ticks: {
-                        //sampleSize: 100   Nto wirking :(
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    ticks: {
-                        beginAtZero: true,
-                        suggestedMax: 1200
-                    }
-                }]
-              },
-              animation: {
-                duration: 0
-            }
-          }
-    
-        return <Line data={dataChart} options={options}/>
-    }
-
-    // Add chart into new div
-    render() {
-        return (
-            <div className="race-chart border border-dark">
-                <h6>Elevation Profile (m/km)</h6>
-                <div className="chart">
-                    <this.renderChart/>
-                </div>
             </div>
         )
     }
@@ -255,78 +249,49 @@ class RaceProfile extends React.Component {
 class Race extends React.Component {
     constructor(props) {
         super(props);
-        this.renderHead = this.renderHead.bind(this);
-        this.renderWinners = this.renderWinners.bind(this);
-        this.renderHistory = this.renderHistory.bind(this);
         this.renderProfile = this.renderProfile.bind(this);
-    }
-
-    renderHead() {
-        let props = this.props;
-
-        return <RaceHead {...props}/>
-    }
-
-    renderWinners() {
-        let params = {
-            props: this.props,
-            history: null 
-        }
-
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-        if (classique) {
-            params.history = classique.history;
-        }
-
-        return <RaceWinners {...params}/>
-    }
-
-    renderHistory() {
-        let params = {
-            props: this.props,
-            history: null 
-        }
-
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-        if (classique) {
-            params.history = classique.history;
-        }
-
-        return <RaceHistory {...params}/>
+        this.state = {
+            classique: null
+        };
     }
 
     renderProfile() {
-        let params = {
-            props: this.props,
-            history: null,
+        let chart = {
             elevation: null,
             distance: null
         }
 
-        let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-        if (classique) {
-            params.history = classique.history;
+        if (this.state.classique) {
+            let coordinates = this.state.classique.geojsonData.features[2].geometry.coordinates;
 
-            let coordinates = classique.geojsonData.features[2].geometry.coordinates;
-
-            //takes only sample of coordinates, to avoid lagging of chart drawing
+            // Takes only sample of coordinates, to avoid lagging of chart drawing
             var filtered = coordinates.filter(function(element, index, array) {
                 return (index % 30 === 0);
-              });
+            });
               
-            params.elevation = filtered.map(point => point[2]);
-            params.distance = turf.length(classique.geojsonData.features[2]);
+            chart.elevation = filtered.map(point => point[2]);
+            chart.distance = turf.length(this.state.classique.geojsonData.features[2]);
         }
 
-        return <RaceProfile {...params}/>
+        return <RaceProfile chart={chart} classique={this.state.classique}/>
+    }
+
+    componentDidMount() {
+        this.setState({classique: this.props.classiques.find(x => x.raceName === this.props.focusOn)});
+    }
+    
+    componentDidUpdate(prevProps) {
+        if (this.props.focusOn !== prevProps.focusOn) {
+            this.setState({classique: this.props.classiques.find(x => x.raceName === this.props.focusOn)});
+        }
     }
 
     render() {
         return (
             <div className="main-grid race-grid">
-                <this.renderHead/>
-                <this.renderWinners/>
-                <this.renderHistory/>
+                <RaceHead {...this.props} classique={this.state.classique}/>
+                <RaceWinners {...this.props} classique={this.state.classique}/>
+                <RaceHistory {...this.props} classique={this.state.classique}/>
                 <this.renderProfile/>
             </div>
         )

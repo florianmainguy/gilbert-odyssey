@@ -11,15 +11,11 @@ class CyclistHistory extends React.Component {
     }
 
     handleRace(raceName) {
-        this.props.props.handlerRightUI('race', raceName);
+        this.props.handlerRightUI('race', raceName);
     }
 
     renderTable() {
-        if (!this.props.history) {
-            return null;
-        }
-
-        return (this.props.history.map(( listValue, index ) => {
+        return (this.props.cyclist.palmares.map(( listValue, index ) => {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
@@ -30,6 +26,10 @@ class CyclistHistory extends React.Component {
     }
 
     render() {
+        if (!this.props.cyclist) {
+            return null;
+        }
+
         return (
             <div className="cyclist-wins">
                 <h6>Monuments Palmares</h6>
@@ -70,18 +70,12 @@ class CyclistSummary extends React.Component {
 class CyclistProfile extends React.Component {
     constructor(props) {
         super(props);
-        this.renderFlag = this.renderFlag.bind(this);
-        this.state = {
-            flag: ''
-        }
     }
 
-    renderFlag() {
-        // Keep in state cyclist data for unmounting/sliding transition
-        let cyclist = this.props.cyclists.find(x => x.cyclist === this.props.focusOn);
-        console.log(cyclist);
-        if (cyclist) {
-            this.state.flag = cyclist.flag;
+    //TODO add profilepic in DB and implement logic
+    render() {
+        if (!this.props.cyclist) {
+            return null;
         }
 
         return (
@@ -89,16 +83,12 @@ class CyclistProfile extends React.Component {
                 <div className="cyclist-picture">
                     <img alt="Default picture" src={profilePic} />
                 </div>
-                <ReactCountryFlag countryCode={this.state.flag}/>
+                <ReactCountryFlag countryCode={this.props.cyclist.flag}/>
                 <div className="cyclist-search">
                     <SearchCyclist {...this.props}/>
                 </div>
             </div>
         )
-    }
-
-    render() {
-        return <this.renderFlag/>
     }
 }
     
@@ -110,7 +100,7 @@ class CyclistHead extends React.Component {
     render() {
         return (
             <div className="cyclist-head border border-dark">
-                <h3>{this.props.focusOn}</h3>
+                <h3>{this.props.name}</h3>
             </div>
         )
     }
@@ -119,32 +109,29 @@ class CyclistHead extends React.Component {
 class Cyclist extends React.Component {
     constructor(props) {
         super(props);
-        this.renderHistory = this.renderHistory.bind(this);
+        this.state = {
+            cyclist: null
+        };
     }
 
-    renderHistory() {
-        let params = {
-            props: this.props,
-            history: null 
+    componentDidMount() {
+        this.setState({cyclist: this.props.cyclists.find(x => x.cyclist === this.props.focusOn)});
+    }
+    
+    componentDidUpdate(prevProps) {
+        if (this.props.focusOn !== prevProps.focusOn) {
+            this.setState({cyclist: this.props.cyclists.find(x => x.cyclist === this.props.focusOn)});
         }
-
-        let cyclist = this.props.cyclists.find(x => x.cyclist === this.props.focusOn);
-        if (cyclist) {
-            params.history = cyclist.palmares;
-        }
-
-        return <CyclistHistory {...params}/>
     }
 
+    //TODO implement cyclistSummary
     render() {
-        let props = this.props;
-
         return (
             <div className="main-grid cyclist-grid">
-                <CyclistHead {...props}/>
-                <CyclistProfile  {...props}/>
-                <CyclistSummary />
-                <this.renderHistory/>
+                <CyclistHead name={this.props.focusOn}/>
+                <CyclistProfile  {...this.props} cyclist={this.state.cyclist}/>
+                <CyclistSummary/>
+                <CyclistHistory {...this.props} cyclist={this.state.cyclist}/>
             </div>
         )
     }
