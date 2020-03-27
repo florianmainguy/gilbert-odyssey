@@ -71,8 +71,6 @@ class Map extends React.Component {
 
         this.map.on('load', () => {
             for (let classique of this.props.classiques){
-                let hoveredClassiqueId = null;
-
                 this.map.addSource(classique.raceName, { type: 'geojson', data: classique.geojsonData, generateId: true});
 
                 // Layer for actual race linestring
@@ -102,7 +100,7 @@ class Map extends React.Component {
                     'source': classique.raceName,
                     'layout': {
                         'icon-image': 'start',
-                        'icon-size': 0.4,
+                        'icon-size': 0.5,
                         "icon-allow-overlap": true
                     },
                     'filter': ['==', ["get", "icon"], 'start']
@@ -115,7 +113,7 @@ class Map extends React.Component {
                     'source': classique.raceName,
                     'layout': {
                         'icon-image': 'finish',
-                        'icon-size': 0.4,
+                        'icon-size': 0.5,
                         "icon-allow-overlap": true
                     },
                     'filter': ['==', ["get", "icon"], 'finish']
@@ -128,32 +126,13 @@ class Map extends React.Component {
                     'source': classique.raceName,
                     'layout': {
                         'icon-image': 'climb',
-                        'icon-size': 0.2
+                        'icon-size': 0.4
                     },
                     'filter': ['==', ["get", "icon"], 'climb'],
                     'minzoom': 7
                 });
 
-//Add permanent POPUp, how? Change to marker?
-                // When a click event occurs on a feature in the places layer, open a popup at the
-                // location of the feature, with description HTML from its properties.
-                /*this.map.on('click', 'climb ' + classique.raceName, (e) => {
-                    var coordinates = e.features[0].geometry.coordinates.slice();
-                    var description = "test";
-                    console.log(coordinates);
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-                    
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(description)
-                        .addTo(this.map)
-                });*/
-
+                let hoveredClassiqueId = null;
                 // When the user moves their mouse over the classique line
                 this.map.on('mousemove', classique.raceName, (e) => {
                     this.map.getCanvas().style.cursor = 'pointer';
@@ -199,19 +178,10 @@ class Map extends React.Component {
                 //TODO Add zoom and rotation controls to the map.
                 //this.map.addControl(new mapboxgl.NavigationControl());
 
-                // Add Popup to icons
-                classique.geojsonData.features.forEach((feature) => {
-                    if (feature.properties.icon === 'climb') {
-                        new mapboxgl.Popup()
-                            .setLngLat(feature.geometry.coordinates)
-                            .setHTML(feature.properties.name)
-                            .addTo(this.map) 
-                    }
-                });
-
+                // Add permanent Popups for start and finish
                 classique.geojsonData.features.forEach((feature) => {
                     if (feature.properties.icon === 'start') {
-                        new mapboxgl.Popup()
+                        new mapboxgl.Popup({ className: 'start-finish'})
                             .setLngLat(feature.geometry.coordinates)
                             .setHTML(feature.properties.name)
                             .addTo(this.map) 
@@ -220,11 +190,31 @@ class Map extends React.Component {
 
                 classique.geojsonData.features.forEach((feature) => {
                     if (feature.properties.icon === 'finish') {
-                        new mapboxgl.Popup()
+                        new mapboxgl.Popup({ className: 'start-finish'})
                             .setLngLat(feature.geometry.coordinates)
                             .setHTML(feature.properties.name)
                             .addTo(this.map) 
                     }
+                });
+
+                //TODO add cobblestone
+                // Add hover Popup to climbs and cobblestone
+                let popup = new mapboxgl.Popup({
+                    closeOnClick: false
+                });
+
+                this.map.on('mouseenter', 'climb ' + classique.raceName, (e) => {
+                    this.map.getCanvas().style.cursor = 'pointer';
+
+                    popup
+                        .setLngLat(e.features[0].geometry.coordinates)
+                        .setHTML(e.features[0].properties.name)
+                        .addTo(this.map) 
+                });
+
+                this.map.on('mouseleave', 'climb ' + classique.raceName, () => {
+                    this.map.getCanvas().style.cursor = '';
+                    popup.remove();
                 });
             };
         });

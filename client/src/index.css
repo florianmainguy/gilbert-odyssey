@@ -571,9 +571,33 @@ color: red !important;
 /*TODO clean*/
 .mapboxgl-popup {
   max-width: 200px;
+  will-change: unset;
+  /*opacity: 80%;*/
+}
+.mapboxgl-popup.start-finish {
+  padding-bottom: 7px;
+}
+
+.mapboxgl-popup-tip {
+  border: 5px solid transparent;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: rgb(62, 68, 74);
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
 }
 
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  /*font-size: 100%;*/
+  color: #fff;
+  background: rgb(62, 68, 74);
 }
