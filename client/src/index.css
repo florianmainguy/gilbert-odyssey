@@ -34,8 +34,8 @@ h6 {
 .main-grid {
   top: 1rem;
   bottom: 1rem;
-  left: 2rem;
-  right: 2rem;
+  left: 1rem;
+  right: 1rem;
   position: absolute;
   z-index: 1;
   color: #ffffff;
@@ -47,11 +47,11 @@ h6 {
 .table-sm {
   font-size: 0.8rem;
 }
-tr{
+tr {
   transform: rotate(0);
 }
 
-input.prompt{
+input.prompt {
   background-color: #e0e0e0;
 }
 input::-webkit-input-placeholder {
@@ -94,6 +94,36 @@ color: red !important;
 }
 
 
+/** Full Screen Container **/
+.full-screen-container {
+  z-index: 1;
+  position: absolute;
+  left: 1rem;
+  top: 5.3rem;
+  background-color: rgb(62, 68, 74);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+@media screen and (min-width: 768px){
+.full-screen-container {
+  top: 1rem;
+}}
+.full-screen-container a {
+  color: rgb(247, 243, 243);
+  font-size: 1.2rem;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.full-screen-container a:hover {
+  color: #c9cfe6; 
+}
+
+
 /** Home components **/
 .home-grid {
   grid-template-columns: minmax(0,1fr);
@@ -121,15 +151,17 @@ color: red !important;
     display: flex;
     text-align: left;
     justify-content: center;
+    margin-left: 1rem;
     }
   @media screen and (min-width: 768px){
   .home-head {
+    display: block;
     margin-left: 2rem;
   }}
     .home-head h1{
       font-family: 'Josefin Sans';
       margin: auto;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       color: rgb(236, 233, 233);
       font-size: 3.5rem;
     }
@@ -239,8 +271,8 @@ color: red !important;
 }
 @media screen and (min-width: 768px){
 .cyclist-grid {
-  top: 2rem;
-  bottom: 2rem;
+  /*top: 2rem;
+  bottom: 2rem;*/
   grid-template-columns: 7fr 1fr;
   grid-template-rows: 1fr 4fr 1fr 4fr;
   grid-template-areas: 
@@ -434,8 +466,8 @@ color: red !important;
 }
 @media screen and (min-width: 768px){
 .race-grid {
-  top: 2rem;
-  bottom: 2rem;
+  /*top: 2rem;
+  bottom: 2rem;*/
   grid-template-columns: 7fr 1fr;
   grid-template-rows: 1fr 3fr 2fr 2fr;
   grid-template-areas: 

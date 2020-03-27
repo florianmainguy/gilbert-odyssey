@@ -41,7 +41,7 @@ class Map extends React.Component {
         let x = window.matchMedia("(max-width: 768px)");
         if (x.matches) {
             this.map.fitBounds(bounds, {
-                padding: {top: 120, bottom:450, left: 15, right: 15}
+                padding: {top: 120, bottom:375, left: 15, right: 15}
             });
         }
         else {
@@ -129,7 +129,7 @@ class Map extends React.Component {
                         'icon-size': 0.4
                     },
                     'filter': ['==', ["get", "icon"], 'climb'],
-                    'minzoom': 7
+                    'minzoom': 5
                 });
 
                 let hoveredClassiqueId = null;

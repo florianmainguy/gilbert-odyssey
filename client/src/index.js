@@ -19,6 +19,10 @@ class RightUI extends React.Component {
     }
 
     renderRightUI() {
+        if (this.props.fullScreen) {
+            return null;
+        }
+
         return (
             <div>
                 <Slide direction="right" in={this.props.rightUI === 'home'} mountOnEnter unmountOnExit>
@@ -47,12 +51,15 @@ class Application extends React.Component {
     constructor(props) {
         super(props);
         this.handlerRightUI = this.handlerRightUI.bind(this);
+        this.toggleFullScreen = this.toggleFullScreen.bind(this);
+        this.renderFullScreen = this.renderFullScreen.bind(this);
         this.state = {
             loading: true,
             classiques: [],
             cyclists: [],
             rightUI: 'home',
-            focusOn: 'Philippe Gilbert'
+            focusOn: 'Philippe Gilbert',
+            fullScreen: false
         };
     }
 
@@ -61,6 +68,15 @@ class Application extends React.Component {
             rightUI: themeUI,
             focusOn: name
         })
+    }
+
+    toggleFullScreen() {
+        if (this.state.fullScreen === false) {
+            this.setState({fullScreen: true});
+        }
+        else {
+            this.setState({fullScreen: false});
+        }
     }
 
     componentDidMount() {
@@ -74,13 +90,25 @@ class Application extends React.Component {
             })
     }
 
+    renderFullScreen() {
+        return (
+            <div>
+                <Slide direction="left" in={this.state.rightUI === 'cyclist' || this.state.rightUI === 'race'} mountOnEnter unmountOnExit>
+                    <div className='full-screen-container border border-dark rounded-circle'>
+                        <a href="#" onClick={() => this.toggleFullScreen()}><span className="icon fontawesome-fullscreen"></span></a>
+                    </div>
+                </Slide>
+            </div>
+        )
+    }
     render() {
         let props = {
             handlerRightUI: this.handlerRightUI,
             classiques: this.state.classiques,
             cyclists: this.state.cyclists,
             rightUI: this.state.rightUI,
-            focusOn: this.state.focusOn
+            focusOn: this.state.focusOn,
+            fullScreen: this.state.fullScreen
         }
 
         if (this.state.loading === true) {
@@ -100,6 +128,7 @@ class Application extends React.Component {
                 <div>
                     <Map {...props}/>
                     <RightUI {...props}/>
+                    <this.renderFullScreen/>
                 </div>
             )
         }
