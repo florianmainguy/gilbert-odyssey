@@ -128,11 +128,31 @@ class Map extends React.Component {
                     'source': classique.raceName,
                     'layout': {
                         'icon-image': 'climb',
-                        'icon-size': 0.4
+                        'icon-size': 0.2
                     },
                     'filter': ['==', ["get", "icon"], 'climb'],
                     'minzoom': 7
                 });
+
+//Add permanent POPUp, how? Change to marker?
+                // When a click event occurs on a feature in the places layer, open a popup at the
+                // location of the feature, with description HTML from its properties.
+                /*this.map.on('click', 'climb ' + classique.raceName, (e) => {
+                    var coordinates = e.features[0].geometry.coordinates.slice();
+                    var description = "test";
+                    console.log(coordinates);
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                    }
+                    
+                    new mapboxgl.Popup()
+                        .setLngLat(coordinates)
+                        .setHTML(description)
+                        .addTo(this.map)
+                });*/
 
                 // When the user moves their mouse over the classique line
                 this.map.on('mousemove', classique.raceName, (e) => {
@@ -178,6 +198,34 @@ class Map extends React.Component {
 
                 //TODO Add zoom and rotation controls to the map.
                 //this.map.addControl(new mapboxgl.NavigationControl());
+
+                // Add Popup to icons
+                classique.geojsonData.features.forEach((feature) => {
+                    if (feature.properties.icon === 'climb') {
+                        new mapboxgl.Popup()
+                            .setLngLat(feature.geometry.coordinates)
+                            .setHTML(feature.properties.name)
+                            .addTo(this.map) 
+                    }
+                });
+
+                classique.geojsonData.features.forEach((feature) => {
+                    if (feature.properties.icon === 'start') {
+                        new mapboxgl.Popup()
+                            .setLngLat(feature.geometry.coordinates)
+                            .setHTML(feature.properties.name)
+                            .addTo(this.map) 
+                    }
+                });
+
+                classique.geojsonData.features.forEach((feature) => {
+                    if (feature.properties.icon === 'finish') {
+                        new mapboxgl.Popup()
+                            .setLngLat(feature.geometry.coordinates)
+                            .setHTML(feature.properties.name)
+                            .addTo(this.map) 
+                    }
+                });
             };
         });
 

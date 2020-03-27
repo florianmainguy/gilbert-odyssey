@@ -565,3 +565,15 @@ color: red !important;
     flex-grow: 1;
     min-height: 0;
     }
+
+
+
+/*TODO clean*/
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
