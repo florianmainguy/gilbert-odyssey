@@ -395,39 +395,40 @@ color: red !important;
         background: #50597b;
         color: #fff; 
       }
+      .key-wins a:hover.race-0 .icon {
+        color: #d634ce;
+      }
       .key-wins a:hover.race-1 .icon {
-        color: #fcb150;
+        color: #fda93b;
       }
       .key-wins a:hover.race-2 .icon {
-        color: #11a8ab;
-      }
-      .key-wins a:hover.race-3 .icon {
         color: #e64c65;
       }
-      .key-wins a:hover.race-4 .icon {
-        color: #11ab2b;
+      .key-wins a:hover.race-3 .icon {
+        color: #0da526;
       }
-      .key-wins a:hover.race-5 .icon {
-        color: #e64cbf;
+      .key-wins a:hover.race-4 .icon {
+        color: #1187ab;
       }
       .key-wins .icon {
-        font-size: 1.2rem;
+        font-size: 1rem;
         padding-right: 10px;
+        color: rgb(221, 219, 219);
+      }
+      .key-wins .race-0 {
+        border-top: 0.5rem solid #d634ce;
       }
       .key-wins .race-1 {
-        border-top: 0.5rem solid #fcb150;
+        border-top: 0.5rem solid #fda93b;
       }
       .key-wins .race-2 {
-        border-top: 0.5rem solid #11a8ab;
-      }
-      .key-wins .race-3 {
         border-top: 0.5rem solid #e64c65;
       }
-      .key-wins .race-4 {
-        border-top: 0.5rem solid #11ab2b;
+      .key-wins .race-3 {
+        border-top: 0.5rem solid #0da526;
       }
-      .key-wins .race-5 {
-        border-top: 0.5rem solid #e64cbf;
+      .key-wins .race-4 {
+        border-top: 0.5rem solid #1187ab;
       }
 
   .cyclist-wins {
@@ -451,6 +452,21 @@ color: red !important;
     .cyclist-wins a:hover {
       text-decoration: none;
       color: #fff; 
+    }
+    .cyclist-wins .milano-sanremo {
+      color: #e64cbf;
+    }
+    .cyclist-wins .ronde-van-vlaanderen {
+      color: #fcb150;
+    }
+    .cyclist-wins .paris-roubaix {
+      color: #e64c65;
+    }
+    .cyclist-wins .liège-bastogne-liège {
+      color: #11ab2b;
+    }
+    .cyclist-wins .giro-di-lombardia {
+      color: #11a8ab;
     }
 
 

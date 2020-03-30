@@ -16,10 +16,17 @@ class CyclistHistory extends React.Component {
 
     renderTable() {
         return (this.props.cyclist.palmares.map(( listValue, index ) => {
+            let raceClicked = null;
+            if (listValue.race === this.props.clickedOn) {
+                raceClicked = listValue.race.toLowerCase().replace(/\s+/g, '-');
+            }
+
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
-                    <td><a href="#" onClick={() => this.handleRace(listValue.race)} className="stretched-link">{listValue.race}</a></td>
+                    <td><a href="#" onClick={() => 
+                        this.handleRace(listValue.race)} className={"stretched-link " + raceClicked}>{listValue.race}
+                    </a></td>
                 </tr>
             );
         }));
@@ -52,15 +59,41 @@ class CyclistHistory extends React.Component {
 }
 
 class CyclistSummary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderSummary = this.renderSummary.bind(this);
+        this.handleKey = this.handleKey.bind(this);
+        this.races = ['Milano-Sanremo', 'Ronde van Vlaanderen', 'Paris-Roubaix', 'Liège-Bastogne-Liège', 'Giro di Lombardia'];
+    }
+
+    handleKey(race) {
+        this.props.handlerKeyClick(race);
+    }
+
+    renderSummary() {
+        return (
+            this.races.map((race, index) => {
+                let count = this.props.cyclist.palmares.reduce((acc, cur) => cur.race === race ? ++acc : acc, 0);
+                return (
+                    <li className="flex-wins">
+                        <a onClick={() => this.handleKey(race)} className={"race-" + index} href="#">
+                            <p><span className={"icon fontawesome-trophy"}></span>{count}</p>
+                        </a>
+                    </li>
+                )
+            })
+        )
+    }
+
     render() {
+        if (!this.props.cyclist) {
+            return null;
+        }
+
         return (
             <div className="cyclist-summary border border-dark">
                 <ul className="key-wins">
-                    <li className="flex-wins"><a className="race-1" href="#"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
-                    <li className="flex-wins"><a className="race-2" href="#"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
-                    <li className="flex-wins"><a className="race-3" href="#"><p><span className="icon fontawesome-comment-alt scnd-font-color"></span>5</p></a></li>
-                    <li className="flex-wins"><a className="race-4" href="#"><p><span className="icon fontawesome-eye-open scnd-font-color"></span>1</p></a></li>
-                    <li className="flex-wins"><a className="race-5" href="#"><p><span className="icon fontawesome-heart-empty scnd-font-color"></span>23</p></a></li>
+                    <this.renderSummary/>
                 </ul>
             </div>
         )
@@ -109,9 +142,20 @@ class CyclistHead extends React.Component {
 class Cyclist extends React.Component {
     constructor(props) {
         super(props);
+        this.handlerKeyClick = this.handlerKeyClick.bind(this);
         this.state = {
-            cyclist: null
+            cyclist: null,
+            clickedOn: null
         };
+    }
+
+    handlerKeyClick(raceName) {
+        if (this.state.clickedOn === raceName) {
+            this.setState({ clickedOn: null});
+        }
+        else {
+            this.setState({ clickedOn: raceName});
+        }
     }
 
     componentDidMount() {
@@ -130,8 +174,8 @@ class Cyclist extends React.Component {
             <div className="main-grid cyclist-grid">
                 <CyclistHead name={this.props.focusOn}/>
                 <CyclistProfile  {...this.props} cyclist={this.state.cyclist}/>
-                <CyclistSummary/>
-                <CyclistHistory {...this.props} cyclist={this.state.cyclist}/>
+                <CyclistSummary {...this.props} cyclist={this.state.cyclist} handlerKeyClick={this.handlerKeyClick}/>
+                <CyclistHistory {...this.props} cyclist={this.state.cyclist} clickedOn={this.state.clickedOn}/>
             </div>
         )
     }
