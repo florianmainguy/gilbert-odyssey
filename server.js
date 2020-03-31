@@ -17,7 +17,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-//TODO make heroku creates its own build
+//Use build folder in production
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, 'client/build')));
 

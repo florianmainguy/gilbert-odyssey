@@ -1,7 +1,7 @@
 {
   "name": "gilbert-odyssey",
   "version": "1.0.0",
-  "description": "Work In Progress",
+  "description": "Gilbert Odyssey",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,5 +26,9 @@
     "mongoose": "^5.8.9",
     "mongoose-geojson-schema": "^2.1.5",
     "nodemon": "^2.0.2"
+  },
+  "engines": {
+    "node": "13.5.0",
+    "npm": "6.13.4"
   }
 }
