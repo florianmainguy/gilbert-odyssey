@@ -55,6 +55,7 @@ class Application extends React.Component {
         this.toggleFullScreen = this.toggleFullScreen.bind(this);
         this.renderFullScreen = this.renderFullScreen.bind(this);
         this.renderAbout = this.renderAbout.bind(this);
+        this.renderPopup = this.renderPopup.bind(this);
         this.state = {
             loading: true,
             classiques: [],
@@ -105,28 +106,38 @@ class Application extends React.Component {
         )
     }
 
+    renderPopup() {
+        if (!this.state.about) {
+            return null;
+        }
+
+        return (
+            <div className="about-popup-container">
+                <Grow in={this.state.about} mountOnEnter unmountOnExit>
+                    <div className="about-popup-content border border-dark rounded">
+                        <button type="button" class="close" aria-label="Close" onClick={() => this.setState(prevState => ({about: !prevState.about}))}>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <p>Gilbert Odyssey is an interactive summary of the 5 cycling Monuments wins/winners.<br/><br/>
+                            Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
+                            One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
+                            Eddy Merckx and Roger de Vlaeminck.<br/><br/>
+                        See more on <a href="https://github.com/florianmainguy/gilbert-odyssey">github</a>.<br/><br/>
+                        Made by Florian Mainguy.
+                        </p>
+                    </div>
+                </Grow>
+            </div>
+        )
+    }
+
     renderAbout() {
         return (
             <div>
                 <div className="about-container">
                     <a href="#" onClick={() => this.setState(prevState => ({about: !prevState.about}))}><span className="icon fontawesome-question-sign"></span> about</a>
                 </div>
-                <div className="about-popup-container">
-                    <Grow in={this.state.about} mountOnEnter unmountOnExit>
-                        <div className="about-popup-content border border-dark rounded">
-                            <button type="button" class="close" aria-label="Close" onClick={() => this.setState(prevState => ({about: !prevState.about}))}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <p>Gilbert Odyssey is an interactive summary of the 5 cycling Monuments wins/winners.<br/><br/>
-                                Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
-                                One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
-                                Eddy Merckx and Roger de Vlaeminck.<br/><br/>
-                            See more on <a href="https://github.com/florianmainguy/gilbert-odyssey">github</a>.<br/><br/>
-                            Made by Florian Mainguy.
-                            </p>
-                        </div>
-                    </Grow>
-                </div>
+                <this.renderPopup/>
             </div>
         )
     }
