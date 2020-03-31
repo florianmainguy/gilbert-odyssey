@@ -17,23 +17,16 @@ class Map extends React.Component {
         };
     }
 
-  //TODO default coord for mobile
-  /*{
-    "lng": "1.4177",
-    "lat": "45.7013",
-    "zoom": "3.34"
-  }*/
-
     zoomOnRace(race) {
         //TODO keep coord in features[2] ??
-        var coordinates = race.geojsonData.features[2].geometry.coordinates;
+        let coordinates = race.geojsonData.features[2].geometry.coordinates;
 
         // Pass the first coordinates in the LineString to `lngLatBounds` &
         // wrap each coordinate pair in `extend` to include them in the bounds
         // result. A variation of this technique could be applied to zooming
         // to the bounds of multiple Points or Polygon geomteries - it just
         // requires wrapping all the coordinates with the extend method.
-        var bounds = coordinates.reduce(function(bounds, coord) {
+        let bounds = coordinates.reduce(function(bounds, coord) {
             return bounds.extend(coord);
             }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
         
@@ -181,7 +174,7 @@ class Map extends React.Component {
                 // Add permanent Popups for start and finish
                 classique.geojsonData.features.forEach((feature) => {
                     if (feature.properties.icon === 'start') {
-                        new mapboxgl.Popup({ className: 'start-finish'})
+                        new mapboxgl.Popup({ className: 'start-finish', closeOnClick: false})
                             .setLngLat(feature.geometry.coordinates)
                             .setHTML(feature.properties.name)
                             .addTo(this.map) 
@@ -190,7 +183,7 @@ class Map extends React.Component {
 
                 classique.geojsonData.features.forEach((feature) => {
                     if (feature.properties.icon === 'finish') {
-                        new mapboxgl.Popup({ className: 'start-finish'})
+                        new mapboxgl.Popup({ className: 'start-finish', closeOnClick: false})
                             .setLngLat(feature.geometry.coordinates)
                             .setHTML(feature.properties.name)
                             .addTo(this.map) 
@@ -228,11 +221,13 @@ class Map extends React.Component {
         });
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         // Zoom on race when clicked on right UI
-        if (this.props.rightUI === 'race') {
-            let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
-            this.zoomOnRace(classique);
+        if (this.props.focusOn !== prevProps.focusOn) {
+            if (this.props.rightUI === 'race') {
+                let classique = this.props.classiques.find(x => x.raceName === this.props.focusOn);
+                this.zoomOnRace(classique);
+            }
         }
     }
 
