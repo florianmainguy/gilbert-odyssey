@@ -118,7 +118,7 @@ class Application extends React.Component {
                         <button type="button" class="close" aria-label="Close" onClick={() => this.setState(prevState => ({about: !prevState.about}))}>
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <p>Gilbert Odyssey is an interactive summary of the 5 cycling Monuments wins/winners.<br/><br/>
+                        <p>Gilbert Odyssey is an interactive visualisation of the 5 Monuments of cycling<br/><br/>
                             Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
                             One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
                             Eddy Merckx and Roger de Vlaeminck.<br/><br/>
