@@ -101,8 +101,8 @@ color: red !important;
   left: 1rem;
   top: 5.3rem;
   background-color: rgb(62, 68, 74);
-  width: 3rem;
-  height: 3rem;
+  width: 2.2rem;
+  height: 2.2rem;
   display: flex;
   flex: 1;
   justify-content: center;
@@ -183,7 +183,7 @@ color: red !important;
 .about-popup-content {
   z-index: 2;
   position: relative;
-
+  padding: 1rem;
   background-color: rgb(62, 68, 74);
 }
 @media screen and (min-width: 768px){
