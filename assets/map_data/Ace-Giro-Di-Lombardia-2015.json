@@ -817,7 +817,7 @@
         },
         "properties": {
           "icon": "start",
-          "name": "start - Bergamo\n",
+          "name": "Bergamo",
           "styleUrl": "#styleStart",
           "styleHash": "-44997cdd"
         }
@@ -828,10 +828,10 @@
           "type": "Point",
           "coordinates": [
             {
-              "$numberDouble": "9.6619821"
+              "$numberDouble": "9.08067"
             },
             {
-              "$numberDouble": "45.681614"
+              "$numberDouble": "45.81333"
             },
             {
               "$numberInt": "0"
@@ -839,9 +839,11 @@
           ]
         },
         "properties": {
-          "name": "km 0\n",
-          "styleUrl": "#styleDepartReel",
-          "styleHash": "-16106de3"
+          "icon": "finish",
+          "name": "Como",
+          "styleUrl": "#styleFinish",
+          "styleHash": "-560e840d",
+          "description": "Lungo Lario Trento"
         }
       },
       {
@@ -58611,7 +58613,7 @@
         },
         "properties": {
           "icon": "climb",
-          "name": "Colle Gallo\n",
+          "name": "Colle Gallo",
           "styleUrl": "#styleClimb",
           "styleHash": "-1467d27d",
           "description": "^ 763 m - 7,43 km @ 6% (max 10%)"
@@ -58657,7 +58659,7 @@
         },
         "properties": {
           "icon": "climb",
-          "name": "Colle Brianza\n",
+          "name": "Colle Brianza",
           "styleUrl": "#styleClimb",
           "styleHash": "-1467d27d",
           "description": "^ 533 m"
@@ -58727,7 +58729,7 @@
         },
         "properties": {
           "icon": "climb",
-          "name": "Muro di Sormano\n",
+          "name": "Muro di Sormano",
           "styleUrl": "#styleClimb",
           "styleHash": "-1467d27d",
           "description": "^ 1124 m - 1.92 km @ 15.8% (max 25/27%)"
@@ -58775,34 +58777,10 @@
         },
         "properties": {
           "icon": "climb",
-          "name": "San Fermo della Battaglia\n",
+          "name": "San Fermo della Battaglia",
           "styleUrl": "#styleClimb",
           "styleHash": "-1467d27d",
           "description": "^ 397 m - 2.7 km @ 7.2% (max 10%)"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [
-            {
-              "$numberDouble": "9.08067"
-            },
-            {
-              "$numberDouble": "45.81333"
-            },
-            {
-              "$numberInt": "0"
-            }
-          ]
-        },
-        "properties": {
-          "icon": "finish",
-          "name": "finish - Como\n",
-          "styleUrl": "#styleFinish",
-          "styleHash": "-560e840d",
-          "description": "Lungo Lario Trento"
         }
       }
     ]
