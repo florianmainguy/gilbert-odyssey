@@ -125,16 +125,25 @@ class Map extends React.Component {
                     'minzoom': 5
                 });
 
-                // Layer for race climbs
+                // Layer for race cobblestone
                 this.map.addLayer({
                     'id': 'cobblestone ' + classique.raceName,
-                    'type': 'symbol',
+                    'type': 'line',
                     'source': classique.raceName,
                     'layout': {
-                        'icon-image': 'climb',
-                        'icon-size': 0.4
+                        'line-join': 'round',
+                        'line-cap': 'round'
                     },
-                    'filter': ['==', ["get", "icon"], 'climb'],
+                    'paint': {
+                        'line-color': "hsl(241, 80%, 50%)",
+                        'line-width': [
+                            'case',
+                            ['boolean', ['feature-state', 'hover'], false],
+                            4,
+                            3
+                        ]
+                    },
+                    'filter': ['==', ["get", "icon"], 'cobblestone'],
                     'minzoom': 5
                 });
 
@@ -203,7 +212,6 @@ class Map extends React.Component {
                     }
                 });
 
-                //TODO add cobblestone
                 // Add hover Popup to climbs and cobblestone
                 let popup = new mapboxgl.Popup({
                     closeOnClick: false
@@ -219,6 +227,21 @@ class Map extends React.Component {
                 });
 
                 this.map.on('mouseleave', 'climb ' + classique.raceName, () => {
+                    this.map.getCanvas().style.cursor = '';
+                    popup.remove();
+                });
+
+                this.map.on('mouseenter', 'cobblestone ' + classique.raceName, (e) => {
+                    this.map.getCanvas().style.cursor = 'pointer';
+
+                    popup
+                        .setLngLat(e.lngLat)
+                        .setHTML('<p style="font-weight: bold;">' + e.features[0].properties.name + '</p>' +
+                                 '<p>' + e.features[0].properties.description + '</p>')
+                        .addTo(this.map) 
+                });
+
+                this.map.on('mouseleave', 'cobblestone ' + classique.raceName, () => {
                     this.map.getCanvas().style.cursor = '';
                     popup.remove();
                 });
