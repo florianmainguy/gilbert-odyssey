@@ -18,7 +18,6 @@ class Map extends React.Component {
     }
 
     zoomOnRace(race) {
-        //TODO keep coord in features[2] ??
         let coordinates = race.geojsonData.features[2].geometry.coordinates;
 
         // Pass the first coordinates in the LineString to `lngLatBounds` &
@@ -29,12 +28,15 @@ class Map extends React.Component {
         let bounds = coordinates.reduce(function(bounds, coord) {
             return bounds.extend(coord);
             }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
-        
+
         // Responsive layout 
         let x = window.matchMedia("(max-width: 768px)");
         if (x.matches) {
+            bounds.setSouthWest({lng: bounds.getSouthWest().lng,
+                                 lat: bounds.getSouthWest().lat - (bounds.getNorthEast().lat - bounds.getSouthWest().lat)});
+
             this.map.fitBounds(bounds, {
-                padding: {top: 120, bottom:375, left: 15, right: 15}
+                padding: {top: 120, bottom:200, left: 15, right: 15}
             });
         }
         else {

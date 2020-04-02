@@ -54,14 +54,14 @@ class RaceProfile extends React.Component {
             xAxes: [{
                 display: true,
                 ticks: {
-                    //sampleSize: 100   Nto wirking :(
+                    fontSize: 10
                 }
             }],
             yAxes: [{
                 display: true,
                 ticks: {
                     beginAtZero: true,
-                    suggestedMax: 1200
+                    suggestedMax: 1100
                 }
             }]
             },
