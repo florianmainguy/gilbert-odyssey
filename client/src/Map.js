@@ -125,6 +125,19 @@ class Map extends React.Component {
                     'minzoom': 5
                 });
 
+                // Layer for race climbs
+                this.map.addLayer({
+                    'id': 'cobblestone ' + classique.raceName,
+                    'type': 'symbol',
+                    'source': classique.raceName,
+                    'layout': {
+                        'icon-image': 'climb',
+                        'icon-size': 0.4
+                    },
+                    'filter': ['==', ["get", "icon"], 'climb'],
+                    'minzoom': 5
+                });
+
                 let hoveredClassiqueId = null;
                 // When the user moves their mouse over the classique line
                 this.map.on('mousemove', classique.raceName, (e) => {

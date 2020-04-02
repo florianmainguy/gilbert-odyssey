@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactCountryFlag from "react-country-flag"
-import profilePic from './cyclists/default.png';
 import SearchCyclist from './search'
+import defaultPic from './cyclists/default.jpg'
 
 class CyclistHistory extends React.Component {
     constructor(props) {
@@ -103,18 +103,29 @@ class CyclistSummary extends React.Component {
 class CyclistProfile extends React.Component {
     constructor(props) {
         super(props);
+        this.renderProfilePic = this.renderProfilePic.bind(this); 
     }
 
-    //TODO add profilepic in DB and implement logic
+    renderProfilePic() {
+        //TODO Change cyclist in database
+        try {
+            return (require('./cyclists/' + this.props.cyclist.cyclist.toLowerCase().replace(/\s+/g, '-') + '.jpg'));
+        }
+        catch (e) {
+            console.log(e);
+            return defaultPic;
+        }
+    }
+
     render() {
         if (!this.props.cyclist) {
             return null;
         }
-
+        
         return (
             <div className="cyclist-profile border border-dark">
                 <div className="cyclist-picture">
-                    <img alt="Default picture" src={profilePic} />
+                    <img alt="Default picture" src={this.renderProfilePic()} />
                 </div>
                 <ReactCountryFlag countryCode={this.props.cyclist.flag}/>
                 <div className="cyclist-search">

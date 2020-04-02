@@ -1,3 +1,5 @@
+## Gilbert Odyssey
+
 Gilbert Odyssey is an interactive visualisation of the 5 Monuments of cycling<br/><br/>
 
 Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
@@ -11,7 +13,7 @@ Try it here: https://dry-beach-86777.herokuapp.com/
 ## Development Stack
 
 **React** app using **Mapbox** for the map style and API
-- App created with the popular node module **Create-React-App**
+- App created with **Create-React-App**
 - Added back end with **node.js** and **Express** framework
 - Database created with **MongoDB** and populated manually
 - **Mapbox-Gl-JS** for the javascript library that uses WebGL for rendering
