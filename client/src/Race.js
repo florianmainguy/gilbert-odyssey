@@ -95,6 +95,7 @@ class RaceHistory extends React.Component {
 
     handleCyclist(cyclistName) {
         this.props.handlerRightUI('cyclist', cyclistName);
+        console.log(cyclistName);
     }
 
     renderTable() {
@@ -106,7 +107,7 @@ class RaceHistory extends React.Component {
                 <tr key={index}>
                     <td>{listValue.year}</td>
                     <td><ReactCountryFlag countryCode={listValue.flag}/></td>
-                    <td><a href="#" onClick={() => this.handleCyclist(listValue.winner)} className="stretched-link">{listValue.winner}</a></td>
+                    <td><a href="#" onClick={() => this.handleCyclist(listValue.winner)}>{listValue.winner}</a></td>
                 </tr>
             );
         }));
@@ -172,7 +173,7 @@ class RaceWinners extends React.Component {
                 <tr key={index}>
                     <td className="winsColumn">{listValue.count}</td>
                     <td><ReactCountryFlag countryCode={listValue.flag}/></td>
-                    <td><a href="#" onClick={() => this.handleCyclist(listValue.name)} className="stretched-link">{listValue.name}</a></td>
+                    <td><a href="#" onClick={() => this.handleCyclist(listValue.name)}>{listValue.name}</a></td>
                 </tr>
             );
         }));

@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.a2129f34.chunk.css",
-    "main.js": "/static/js/main.822c6750.chunk.js",
-    "main.js.map": "/static/js/main.822c6750.chunk.js.map",
+    "main.js": "/static/js/main.75800598.chunk.js",
+    "main.js.map": "/static/js/main.75800598.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.387d5f8e.js",
     "runtime-main.js.map": "/static/js/runtime-main.387d5f8e.js.map",
     "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
-    "static/js/2.513c4bbc.chunk.js": "/static/js/2.513c4bbc.chunk.js",
-    "static/js/2.513c4bbc.chunk.js.map": "/static/js/2.513c4bbc.chunk.js.map",
+    "static/js/2.aff23289.chunk.js": "/static/js/2.aff23289.chunk.js",
+    "static/js/2.aff23289.chunk.js.map": "/static/js/2.aff23289.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.b754495082ebfda7bb250d751c628b0f.js": "/precache-manifest.b754495082ebfda7bb250d751c628b0f.js",
+    "precache-manifest.71a5be7fdc499cd7217e3c0b0456d252.js": "/precache-manifest.71a5be7fdc499cd7217e3c0b0456d252.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
     "static/css/main.a2129f34.chunk.css.map": "/static/css/main.a2129f34.chunk.css.map",
-    "static/js/2.513c4bbc.chunk.js.LICENSE": "/static/js/2.513c4bbc.chunk.js.LICENSE",
+    "static/js/2.aff23289.chunk.js.LICENSE": "/static/js/2.aff23289.chunk.js.LICENSE",
     "static/media/achiel-buysse.jpg": "/static/media/achiel-buysse.39b51daa.jpg",
     "static/media/albert-beckaert.jpg": "/static/media/albert-beckaert.835df7e7.jpg",
     "static/media/alfredo-binda.jpg": "/static/media/alfredo-binda.f8ea4163.jpg",
@@ -40,6 +40,7 @@
     "static/media/mauro-gianetti.jpg": "/static/media/mauro-gianetti.d632f6d9.jpg",
     "static/media/nino-defilippis.jpg": "/static/media/nino-defilippis.00d454e0.jpg",
     "static/media/omer-verschoore.jpg": "/static/media/omer-verschoore.a9ab1d79.jpg",
+    "static/media/pascal-richard.jpg": "/static/media/pascal-richard.34b61cef.jpg",
     "static/media/peter-van-petegem.jpg": "/static/media/peter-van-petegem.a021f867.jpg",
     "static/media/rené-martens.jpg": "/static/media/rené-martens.750b74ba.jpg",
     "static/media/seán-kelly.jpg": "/static/media/seán-kelly.4ae68e96.jpg",
@@ -50,8 +51,8 @@
   "entrypoints": [
     "static/js/runtime-main.387d5f8e.js",
     "static/css/2.17e5ed98.chunk.css",
-    "static/js/2.513c4bbc.chunk.js",
+    "static/js/2.aff23289.chunk.js",
     "static/css/main.a2129f34.chunk.css",
-    "static/js/main.822c6750.chunk.js"
+    "static/js/main.75800598.chunk.js"
   ]
 }

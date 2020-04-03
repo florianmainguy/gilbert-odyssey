@@ -25,7 +25,7 @@ class CyclistHistory extends React.Component {
                 <tr key={index}>
                     <td>{listValue.year}</td>
                     <td><a href="#" onClick={() => 
-                        this.handleRace(listValue.race)} className={"stretched-link " + raceClicked}>{listValue.race}
+                        this.handleRace(listValue.race)} className={raceClicked}>{listValue.race}
                     </a></td>
                 </tr>
             );

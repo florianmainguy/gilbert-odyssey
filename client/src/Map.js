@@ -201,8 +201,19 @@ class Map extends React.Component {
                         new mapboxgl.Popup({ className: 'start-finish', closeOnClick: false})
                             .setLngLat(feature.geometry.coordinates)
                             .setHTML(feature.properties.name)
-                            .addTo(this.map) 
-                    }
+                            //Following code is to avoid blurry popup if odd pixels
+                            //Waiting for a merge from mapbox gl js repo, so commented
+                            /*.on('open', function (pop) {
+                                let _container = pop.target._container;
+                                console.log(feature.properties.name + _container);
+                                console.log(_container.offsetWidth);
+                                console.log(_container.outerWidth);
+                                if(_container.offsetWidth % 2 !== 0){
+                                    _container.style.width = (_container.offsetWidth + 1) + "px";
+                                }
+                            })*/
+                            .addTo(this.map);
+                    }                    
                 });
 
                 classique.geojsonData.features.forEach((feature) => {
