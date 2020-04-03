@@ -11,6 +11,7 @@ import { css } from "@emotion/core";
 import BeatLoader from "react-spinners/BeatLoader";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import { Divider } from 'semantic-ui-react';
 
 
 class RightUI extends React.Component {
@@ -112,21 +113,24 @@ class Application extends React.Component {
         }
 
         return (
-            <div className="about-popup-container">
-                <Grow in={this.state.about} mountOnEnter unmountOnExit>
-                    <div className="about-popup-content border border-dark rounded">
-                        <button type="button" class="close" aria-label="Close" onClick={() => this.setState(prevState => ({about: !prevState.about}))}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <p>Gilbert Odyssey is an interactive visualisation of the 5 Monuments of cycling<br/><br/>
-                            Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
-                            One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
-                            Eddy Merckx and Roger de Vlaeminck.<br/><br/>
-                        See more on <a href="https://github.com/florianmainguy/gilbert-odyssey">github</a>.<br/><br/>
-                        Made by Florian Mainguy.
-                        </p>
-                    </div>
-                </Grow>
+            <div>
+                <div className="about-background"></div>
+                <div className="about-popup-container">
+                    <Grow in={this.state.about} mountOnEnter unmountOnExit>
+                        <div className="about-popup-content border border-dark rounded">
+                            <button type="button" class="close" aria-label="Close" onClick={() => this.setState(prevState => ({about: !prevState.about}))}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <p>Gilbert Odyssey is an interactive visualisation of the 5 Monuments of cycling<br/><br/>
+                                Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
+                                One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
+                                Eddy Merckx and Roger de Vlaeminck.<br/><br/>
+                            See more on <a href="https://github.com/florianmainguy/gilbert-odyssey">github</a>.<br/><br/>
+                            Made by Florian Mainguy.
+                            </p>
+                        </div>
+                    </Grow>
+                </div>
             </div>
         )
     }
@@ -135,7 +139,7 @@ class Application extends React.Component {
         return (
             <div>
                 <div className="about-container">
-                    <a href="#" onClick={() => this.setState(prevState => ({about: !prevState.about}))}><span className="icon fontawesome-question-sign"></span> about</a>
+                    <a href="#" onClick={() => this.setState(prevState => ({about: !prevState.about}))}><span className="icon fontawesome-question-sign"></span> About</a>
                 </div>
                 <this.renderPopup/>
             </div>
