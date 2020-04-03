@@ -36,7 +36,7 @@ class Map extends React.Component {
                                  lat: bounds.getSouthWest().lat - (bounds.getNorthEast().lat - bounds.getSouthWest().lat)});
 
             this.map.fitBounds(bounds, {
-                padding: {top: 120, bottom:200, left: 15, right: 15}
+                padding: {top: 120, bottom:220, left: 15, right: 15}
             });
         }
         else {
