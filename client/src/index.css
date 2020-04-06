@@ -60,15 +60,14 @@ input.prompt {
 input::-webkit-input-placeholder {
   color: rgb(121, 121, 121) !important;
 }
-/*TODO Change below*/
 input:-moz-placeholder { /* Firefox 18- */
-color: red !important;  
+color: rgb(121, 121, 121) !important;  
 }
 input::-moz-placeholder {  /* Firefox 19+ */
-color: red !important;  
+color: rgb(121, 121, 121) !important;  
 } 
 input:-ms-input-placeholder {  
-color: red !important;  
+color: rgb(121, 121, 121) !important;  
 }
 .ui.label {
   background-color: #ffffff;
