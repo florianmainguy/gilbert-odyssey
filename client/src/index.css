@@ -8,9 +8,7 @@ html {
   font-size: 100%;
 }}
 
-/*TODO investigate webkit etc*/
 body {
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,7 +23,6 @@ h6 {
   font-size: 95%;
 }}
 
-/*TODO keep import in css?*/
 @import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
@@ -320,7 +317,6 @@ color: rgb(121, 121, 121) !important;
         display:flex;
         flex:1;
       }
-      /*TODO keep line?*/
       .race-list .race-link + .race-link {
         border-top: 1px solid #1f253d; 
       }
@@ -635,7 +631,6 @@ color: rgb(121, 121, 121) !important;
         display: flex;
         flex: 1;   
       }
-      /*TODO No ITF?*/
       .flex-races + .flex-races {
         border-left: 1px solid #1f253d; 
       }

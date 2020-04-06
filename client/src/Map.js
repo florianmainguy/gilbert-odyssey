@@ -4,7 +4,7 @@ import startPic from './map/start.png';
 import finishPic from './map/finish.png';
 import climbPic from './map/climb1.png';
 
-//TODO Hide access token
+// Mapbox Access Token has only public scope
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZW5jaGllbjE2NjQiLCJhIjoiY2s0aDc0OHd2MTNpOTN0bzJyNjRzOWxpaiJ9.OAzfshgQGxK4VRYepd-ysw';
 
 class Map extends React.Component {
