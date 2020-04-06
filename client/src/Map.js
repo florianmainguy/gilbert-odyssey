@@ -31,6 +31,7 @@ class Map extends React.Component {
 
         // Responsive layout 
         let x = window.matchMedia("(max-width: 768px)");
+        let y = window.matchMedia("(orientation: portrait)");
         if (x.matches) {
             bounds.setSouthWest({lng: bounds.getSouthWest().lng,
                                  lat: bounds.getSouthWest().lat - (bounds.getNorthEast().lat - bounds.getSouthWest().lat)});
@@ -38,6 +39,11 @@ class Map extends React.Component {
             this.map.fitBounds(bounds, {
                 padding: {top: 120, bottom:220, left: 15, right: 15}
             });
+        }
+        else if (y.matches) {
+            this.map.fitBounds(bounds, {
+                padding: {top: 120, bottom:400, left: 15, right: 15}
+            });             
         }
         else {
             this.map.fitBounds(bounds, {

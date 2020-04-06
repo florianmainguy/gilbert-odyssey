@@ -716,3 +716,24 @@ color: rgb(121, 121, 121) !important;
     flex-grow: 1;
     min-height: 0;
     }
+
+
+/** iPad **/
+@media screen and (min-width: 768px) and (orientation: portrait) {
+.home-grid h1 {
+  font-size: 6rem;
+}
+.home-race {
+  margin-left: 12rem;
+  margin-top: 2rem;
+}
+.home-cyclist {
+  margin-left: 12rem;
+  margin-top: 3rem;
+}
+.home-grid h6 {
+  font-size: 120%;
+}
+.home-grid h5 {
+  font-size: 140%;
+}}
