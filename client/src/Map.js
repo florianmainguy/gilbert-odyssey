@@ -42,7 +42,7 @@ class Map extends React.Component {
         }
         else if (y.matches) {
             this.map.fitBounds(bounds, {
-                padding: {top: 120, bottom:400, left: 15, right: 15}
+                padding: {top: 120, bottom:450, left: 15, right: 15}
             });             
         }
         else {
