@@ -31,7 +31,7 @@ class HomeClassique extends React.Component {
     render() {
         return (
             <div className="home-race">
-                <h6>Pick a classic:</h6>
+                <h6>Pick a Classic:</h6>
                 <ul className="race-list">
                     <a href="#" className="race-link" onClick={() => this.handleRace('Milano-Sanremo')}>
                         <li className="flex-races"><h5>Milano-Sanremo</h5></li></a>
@@ -53,7 +53,7 @@ class HomeHeader extends React.Component {
     render() {
         return (
             <div className="home-head">
-                <h1>THE MONUMENTS</h1>
+                <h1>THE<br/>MONUMENTS</h1>
             </div>
         )
     }
@@ -65,7 +65,6 @@ class Home extends React.Component {
     }
 
     render() {
-        //TODO Add About link
         return (
             <div className="main-grid home-grid">
                 <HomeHeader/>
