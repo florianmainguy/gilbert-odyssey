@@ -1,14 +1,19 @@
 /** General Styles **/
 html {
+  height: 100%;
   font-size: 75%;
-
 }
 @media screen and (min-width: 768px) and (orientation: landscape) {
 html {
   font-size: 100%;
 }}
+@media screen and (min-width: 2000px) and (orientation: landscape) {
+html {
+  font-size: 130%;
+}}
 
 body {
+  height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -21,6 +26,10 @@ h6 {
 @media screen and (min-width: 768px) and (orientation: landscape) {
 h6 {
   font-size: 95%;
+}}
+@media screen and (min-width: 2000px) and (orientation: landscape) {
+h6 {
+  font-size: 120%;
 }}
 
 @import url(https://weloveiconfonts.com/api/?family=entypo|fontawesome|zocial);
@@ -121,6 +130,16 @@ color: rgb(121, 121, 121) !important;
 .mapboxgl-popup-content p {
   margin: 0;
 }
+@media screen and (min-width: 2000px) and (orientation: landscape) {
+.mapboxgl-map {
+  font-size: 110%;
+}
+.mapboxgl-popup-content {
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}}
 
 
 /** Full Screen Container **/
@@ -151,6 +170,9 @@ color: rgb(121, 121, 121) !important;
 
 
 /** About Container **/
+.about-full-screen {
+
+}
 .about-container {
   z-index: 2;
   position: absolute;
@@ -190,10 +212,11 @@ color: rgb(121, 121, 121) !important;
 }
 
 .about-popup-container {
-  min-height: 100vh;
-  position: relative;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin-left: 20%;
+  margin-right: 20%;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -203,8 +226,8 @@ color: rgb(121, 121, 121) !important;
 }
 @media screen and (min-width: 768px) and (orientation: landscape) {
 .about-popup-container {
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 0;
+  margin-right: 0;
 }}
 .about-popup-content {
   z-index: 2;
@@ -239,7 +262,7 @@ color: rgb(121, 121, 121) !important;
 /** Home components **/
 .home-grid {
   grid-template-columns: minmax(0,1fr);
-  grid-template-rows: minmax(0,3fr) minmax(0,2fr) minmax(0,2fr) minmax(0,1fr);
+  grid-template-rows: minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);
   grid-template-areas: 
     "home-head"
     "home-race"
@@ -247,38 +270,33 @@ color: rgb(121, 121, 121) !important;
 }
 @media screen and (min-width: 768px) and (orientation: landscape) {
 .home-grid {
-  top: 3rem;
-  bottom: 2rem;
   left: 2rem;
   grid-template-columns: minmax(0,1fr) minmax(0,1fr) 1.5fr;
   grid-template-rows: minmax(0,4fr) minmax(0,5fr);
   grid-template-areas: 
-    "home-head home-head ."
+    "home-head home-head home-head"
     "home-race home-cyclist .";
 }}
 
   .home-head {
     grid-area: home-head;
     display: flex;
-    text-align: left;
+    align-items: center;
     justify-content: center;
     }
   @media screen and (min-width: 768px) and (orientation: landscape) {
   .home-head {
-    display: block;
     margin-left: 2rem;
+    justify-content: left;
   }}
     .home-head h1{
       font-family: 'Josefin Sans';
-      margin: auto;
-      margin-bottom: 2.5rem;
       color: rgb(236, 233, 233);
       font-size: 4rem;
     }
     @media screen and (min-width: 768px) and (orientation: landscape) {
     .home-head h1{
       font-size: 6rem;
-      margin-bottom: auto;
     }}
 
   .home-race {  
@@ -286,7 +304,7 @@ color: rgb(121, 121, 121) !important;
     display: flex;
     flex: 1;
     flex-direction: column;
-    margin-left: 2rem;
+    margin-left: 3rem;
     width: auto;
   }
   @media screen and (min-width: 768px) and (orientation: landscape) {
@@ -335,13 +353,17 @@ color: rgb(121, 121, 121) !important;
       .race-list h5 {
         font-size: 1.25rem;
       }}
+      @media screen and (min-width: 2000px) and (orientation: landscape) {
+      .race-list h5 {
+        font-size: 1.5rem;
+      }}
 
   .home-cyclist {
     grid-area: home-cyclist;
     display: flex;
     flex: 1;
     flex-direction: column;
-    margin-left: 2rem;
+    margin-left: 3rem;
   }
     .home-cyclist h6 {
       padding-left: 1rem;
@@ -405,7 +427,11 @@ color: rgb(121, 121, 121) !important;
     margin-left: auto;
     margin-right: auto;
   }}
-
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .cyclist-head {
+    width: 28rem;
+    max-width: 35rem;
+  }}
   .cyclist-profile {
     grid-area: cyclist-profile;
     display: flex;
@@ -421,6 +447,11 @@ color: rgb(121, 121, 121) !important;
     max-width: 24rem;
     margin-left: auto;
     margin-right: auto;
+  }}
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .cyclist-profile {
+    width: 28rem;
+    max-width: 35rem;
   }}
     .cyclist-picture {
       border-radius: 100%;
@@ -470,6 +501,11 @@ color: rgb(121, 121, 121) !important;
     max-width: 24rem;
     margin-left: auto;
     margin-right: auto;
+  }}
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .cyclist-summary {
+    width: 28rem;
+    max-width: 35rem;
   }}
     .key-wins {
       display: flex;
@@ -552,6 +588,11 @@ color: rgb(121, 121, 121) !important;
     margin-left: auto;
     margin-right: auto;
   }}
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .cyclist-wins {
+    width: 28rem;
+    max-width: 35rem;
+  }}
     .cyclist-wins a {
       color: #fff; 
     }
@@ -616,6 +657,11 @@ color: rgb(121, 121, 121) !important;
     margin-left: auto;
     margin-right: auto;
   }}
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .race-head {
+    width: 28rem;
+    max-width: 35rem;
+  }}
     .race-selector {
       display: flex;
       flex: 1;
@@ -667,6 +713,11 @@ color: rgb(121, 121, 121) !important;
     margin-left: auto;
     margin-right: auto;
   }}
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .race-winners {
+    width: 28rem;
+    max-width: 35rem;
+  }}
     .race-winners a {
       color: #fff; 
     }
@@ -693,6 +744,11 @@ color: rgb(121, 121, 121) !important;
     max-width: 24rem;
     margin-left: auto;
     margin-right: auto;
+  }}
+  @media screen and (min-width: 2000px) and (orientation: landscape) {
+  .race-history {
+    width: 28rem;
+    max-width: 35rem;
   }}
     .race-history a {
       color: #fff; 
@@ -721,19 +777,80 @@ color: rgb(121, 121, 121) !important;
 /** iPad **/
 @media screen and (min-width: 768px) and (orientation: portrait) {
 .home-grid h1 {
-  font-size: 6.5rem;
+  font-size: 7rem;
+}
+.home-race {
+  margin-left: 8rem;
+}
+.home-cyclist {
+  margin-left: 8rem;
+}
+.home-grid h6 {
+  font-size: 140%;
+}
+.home-grid h5 {
+  font-size: 180%;
+}
+.full-screen-container {
+  top: 8rem;
+  width: 3rem;
+  height: 3rem;
+}
+.ui.search {
+  font-size: 120%;
+}}
+@media screen and (min-width: 1024px) and (orientation: portrait) {
+h6 {
+  font-size: 120%;
+}
+.home-grid h1 {
+  font-size: 10rem;
 }
 .home-race {
   margin-left: 12rem;
-  margin-top: 2rem;
 }
 .home-cyclist {
   margin-left: 12rem;
-  margin-top: 3rem;
 }
 .home-grid h6 {
-  font-size: 120%;
+  font-size: 190%;
 }
 .home-grid h5 {
+  font-size: 210%;
+  margin-top: 1rem;
+}
+.ui.search {
   font-size: 140%;
+}
+.full-screen-container {
+  top: 13rem;
+  width: 4rem;
+  height: 4rem;
+}
+.race-selector a,h3 {
+  font-size: 250%;
+}
+.table-sm {
+  font-size: 1.2rem;
+}}
+/** iPhone SE **/
+@media screen and (max-width: 320px) and (orientation: portrait) {
+.home-grid h1 {
+  font-size: 3.3rem;
+}}
+/** iPhone 8/8 Plus **/
+@media screen and (min-width: 320) and (max-width: 414) and (orientation: portrait) {
+.home-grid h1 {
+  font-size: 3.6rem;
+}}
+/** Full HD screen **/
+@media screen and (min-width: 1900px) {
+.home-grid {
+  left: 7rem;
+}
+.home-grid h1 {
+  font-size: 8rem;
+}
+.home-grid {
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr) 3fr;
 }}

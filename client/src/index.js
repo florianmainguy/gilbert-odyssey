@@ -137,7 +137,7 @@ class Application extends React.Component {
 
     renderAbout() {
         return (
-            <div>
+            <div className="about-full-screen">
                 <div className="about-container">
                     <a href="#" onClick={() => this.setState(prevState => ({about: !prevState.about}))}><span className="icon fontawesome-question-sign"></span> About</a>
                 </div>

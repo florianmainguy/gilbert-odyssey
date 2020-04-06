@@ -30,25 +30,43 @@ class Map extends React.Component {
             }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 
         // Responsive layout 
-        let x = window.matchMedia("(max-width: 768px)");
         let y = window.matchMedia("(orientation: portrait)");
-        if (x.matches) {
+        if (y.matches) {
             bounds.setSouthWest({lng: bounds.getSouthWest().lng,
-                                 lat: bounds.getSouthWest().lat - (bounds.getNorthEast().lat - bounds.getSouthWest().lat)});
+                lat: bounds.getSouthWest().lat - (bounds.getNorthEast().lat - bounds.getSouthWest().lat)});
 
-            this.map.fitBounds(bounds, {
-                padding: {top: 120, bottom:220, left: 15, right: 15}
-            });
-        }
-        else if (y.matches) {
-            this.map.fitBounds(bounds, {
-                padding: {top: 120, bottom:450, left: 15, right: 15}
-            });             
+            if (window.matchMedia("(max-width: 700px)").matches) {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 130, bottom:230, left: 15, right: 15}
+                });
+            }
+            else if (window.matchMedia("(max-width: 1000px)").matches) {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 140, bottom:260, left: 15, right: 15}
+                }); 
+            }
+            else {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 170, bottom:320, left: 15, right: 15}
+                });      
+            }
         }
         else {
-            this.map.fitBounds(bounds, {
-                padding: {top: 70, bottom:250, left: 15, right: 400}
-            }); 
+            if (window.matchMedia("(max-width: 1400px)").matches) {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 70, bottom:250, left: 15, right: 400}
+                });
+            }
+            else  if (window.matchMedia("(max-width: 2000px)").matches){
+                this.map.fitBounds(bounds, {
+                    padding: {top: 70, bottom:300, left: 15, right: 400}
+                });
+            }
+            else {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 70, bottom:550, left: 15, right: 400}
+                });
+            }
         }  
     }
 
