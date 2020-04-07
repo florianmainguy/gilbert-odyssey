@@ -20,6 +20,6 @@ Try it [here](https://www.gilbertodyssey.com)
 - Database created with **MongoDB** and populated manually
 - **Mapbox-Gl-JS** for the javascript library that uses WebGL for rendering
 
-**See More**
+## See More
 On my [website](http://florianmainguy.github.io/jekyll/update/2020/04/07/gilbert-odyssey.html)
 
