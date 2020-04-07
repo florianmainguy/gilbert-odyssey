@@ -23,9 +23,9 @@ Try it [here](https://www.gilbertodyssey.com)
 ## Screenshots
 
 **Home**
-![register](assets/Screenshots/Home-laptop.png)
+![register](assets/screenshots/Home-laptop.png)
 
 
-**See More
-On my [website](https://www.gilbertodyssey.com)
+**See More**
+On my [website](http://florianmainguy.github.io/jekyll/update/2020/04/07/gilbert-odyssey.html)
 
