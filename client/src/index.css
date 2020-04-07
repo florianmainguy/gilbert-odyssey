@@ -156,7 +156,7 @@ color: rgb(121, 121, 121) !important;
   justify-content: center;
   text-align: center;
 }
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (orientation: landscape) {
 .full-screen-container {
   top: 1rem;
 }}
@@ -167,12 +167,12 @@ color: rgb(121, 121, 121) !important;
   margin-top: auto;
   margin-bottom: auto;
 }
+.full-screen-container a:hover{
+  text-decoration: none;
+}
 
 
 /** About Container **/
-.about-full-screen {
-
-}
 .about-container {
   z-index: 2;
   position: absolute;
@@ -213,7 +213,7 @@ color: rgb(121, 121, 121) !important;
 
 .about-popup-container {
   height: 100%;
-  width: 100%;
+  width: 60%;
   position: absolute;
   margin-left: 20%;
   margin-right: 20%;
@@ -224,8 +224,9 @@ color: rgb(121, 121, 121) !important;
   justify-content: center;
   color: #f0f0f0;
 }
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (min-width: 1050px) and (orientation: landscape) {
 .about-popup-container {
+  width: 100%;
   margin-left: 0;
   margin-right: 0;
 }}
@@ -262,18 +263,29 @@ color: rgb(121, 121, 121) !important;
 /** Home components **/
 .home-grid {
   grid-template-columns: minmax(0,1fr);
-  grid-template-rows: minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);
-  grid-template-areas: 
+  grid-template-rows: 1fr minmax(0,2fr) minmax(0,2fr) minmax(0,2fr) 1fr;
+  grid-template-areas:
+    "."
     "home-head"
     "home-race"
-    "home-cyclist";
+    "home-cyclist"
+    ".";
 }
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (orientation: landscape) {
 .home-grid {
   left: 2rem;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr) 1fr;
+  grid-template-rows: minmax(0,5fr) minmax(0,5fr);
+  grid-template-areas:
+    "home-head home-head home-head"
+    "home-race home-cyclist .";
+}}
+@media screen and (min-width: 768px) and (orientation: landscape) {
+.home-grid {
   grid-template-columns: minmax(0,1fr) minmax(0,1fr) 1.5fr;
-  grid-template-rows: minmax(0,4fr) minmax(0,5fr);
-  grid-template-areas: 
+  grid-template-rows: 1fr minmax(0,5fr) minmax(0,5fr);
+  grid-template-areas:
+    ". . ."
     "home-head home-head home-head"
     "home-race home-cyclist .";
 }}
@@ -284,17 +296,29 @@ color: rgb(121, 121, 121) !important;
     align-items: center;
     justify-content: center;
     }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .home-head {
     margin-left: 2rem;
     justify-content: left;
+  }}
+  @media screen and (min-width: 1000px) and (orientation: landscape) {
+  .home-head {
+    margin-left: 4rem;
   }}
     .home-head h1{
       font-family: 'Josefin Sans';
       color: rgb(236, 233, 233);
       font-size: 4rem;
     }
+    @media screen and (orientation: landscape) {
+    .home-head h1{
+      font-size: 4rem;
+    }}
     @media screen and (min-width: 768px) and (orientation: landscape) {
+    .home-head h1{
+      font-size: 5rem;
+    }}
+    @media screen and (min-width: 1000px) and (orientation: landscape) {
     .home-head h1{
       font-size: 6rem;
     }}
@@ -307,7 +331,11 @@ color: rgb(121, 121, 121) !important;
     margin-left: 3rem;
     width: auto;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
+  .home-race {
+    margin-left: 2rem;
+  }}
+  @media screen and (min-width: 1000px) and (orientation: landscape) {
   .home-race {
     margin-left: 4rem;
   }}
@@ -322,7 +350,7 @@ color: rgb(121, 121, 121) !important;
       flex-direction: column;
       margin-right: 6rem;
     }
-    @media screen and (min-width: 768px) and (orientation: landscape) {
+    @media screen and (orientation: landscape) {
     .race-list {
       margin-right: 0;
       padding-left: 1rem;
@@ -349,7 +377,15 @@ color: rgb(121, 121, 121) !important;
       .race-list a:hover h5 {
         color: #a4b6f3;
       }
+      @media screen and (orientation: landscape) {
+      .race-list h5 {
+        font-size: 0.9rem;
+      }}
       @media screen and (min-width: 768px) and (orientation: landscape) {
+      .race-list h5 {
+        font-size: 1.25rem;
+      }}
+      @media screen and (min-width: 1000px) and (orientation: landscape) {
       .race-list h5 {
         font-size: 1.25rem;
       }}
@@ -374,7 +410,7 @@ color: rgb(121, 121, 121) !important;
       margin-left: 0.5rem;;
       text-align: left;
     }
-    @media screen and (min-width: 768px) and (orientation: landscape) {
+    @media screen and (orientation: landscape) {
     .home-search {
       padding-left: 0.5rem;
     }}
@@ -399,7 +435,7 @@ color: rgb(121, 121, 121) !important;
     "cyclist-profile cyclist-wins"
     "cyclist-summary cyclist-summary";
 }
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (orientation: landscape) {
 .cyclist-grid {
   grid-template-columns: 7fr 1fr;
   grid-template-rows: 1fr 4fr 1fr 4fr;
@@ -420,7 +456,7 @@ color: rgb(121, 121, 121) !important;
     min-width: 10rem;
     min-height: 4rem;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .cyclist-head {
     min-width: 18rem;
     max-width: 24rem;
@@ -429,7 +465,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .cyclist-head {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
   .cyclist-profile {
@@ -440,7 +476,7 @@ color: rgb(121, 121, 121) !important;
     background-color: rgb(62, 68, 74);
     text-align: center;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .cyclist-profile {
     min-height: 0;
     min-width: 18rem;
@@ -450,7 +486,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .cyclist-profile {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
     .cyclist-picture {
@@ -465,11 +501,20 @@ color: rgb(121, 121, 121) !important;
       .cyclist-picture img {
         width: 100%;
       }
+    @media screen and (max-width: 750px) and (orientation: landscape) {
+    .cyclist-picture {
+      width: 4.5rem;
+      height: 4.5rem;
+    }}
     .cyclist-search {
       display: flex;
       margin-top: auto;
       margin-bottom: auto;
     }
+    @media screen and (max-width: 750px) and (orientation: landscape) {
+    .cyclist-search {
+      font-size: 50%;
+    }}
     .cyclist-search .ui.search{
       min-width: 0;
       margin-left: auto;
@@ -494,7 +539,7 @@ color: rgb(121, 121, 121) !important;
     background-color: rgb(62, 68, 74);
     text-align: center;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .cyclist-summary {
     min-height: 0;
     min-width: 18rem;
@@ -504,7 +549,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .cyclist-summary {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
     .key-wins {
@@ -580,7 +625,7 @@ color: rgb(121, 121, 121) !important;
     width: auto;
     overflow: auto;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .cyclist-wins {
     min-height: 0;
     min-width: 18rem;
@@ -590,7 +635,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .cyclist-wins {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
     .cyclist-wins a {
@@ -627,7 +672,7 @@ color: rgb(121, 121, 121) !important;
     "race-winners race-history"
     "race-chart race-chart";
 }
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (orientation: landscape) {
 .race-grid {
   grid-template-columns: 7fr 1fr;
   grid-template-rows: 1fr 3fr 2fr 2fr;
@@ -649,7 +694,7 @@ color: rgb(121, 121, 121) !important;
     min-width: 10rem;
     min-height: 4rem;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .race-head {
     width: 18rem;
     max-width: 24rem;
@@ -659,7 +704,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .race-head {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
     .race-selector {
@@ -705,7 +750,7 @@ color: rgb(121, 121, 121) !important;
     min-height: 0;
     overflow: auto;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .race-winners {
     min-height: 0;
     min-width: 18rem;
@@ -715,7 +760,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .race-winners {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
     .race-winners a {
@@ -737,7 +782,7 @@ color: rgb(121, 121, 121) !important;
     min-height: 0;
     overflow: auto;
   }
-  @media screen and (min-width: 768px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) {
   .race-history {
     min-height: 0;
     min-width: 18rem;
@@ -747,7 +792,7 @@ color: rgb(121, 121, 121) !important;
   }}
   @media screen and (min-width: 2000px) and (orientation: landscape) {
   .race-history {
-    width: 28rem;
+    width: 22rem;
     max-width: 35rem;
   }}
     .race-history a {

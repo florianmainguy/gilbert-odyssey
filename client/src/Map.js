@@ -52,9 +52,19 @@ class Map extends React.Component {
             }
         }
         else {
-            if (window.matchMedia("(max-width: 1400px)").matches) {
+            if (window.matchMedia("(max-width: 750px)").matches) {
                 this.map.fitBounds(bounds, {
-                    padding: {top: 70, bottom:250, left: 15, right: 400}
+                    padding: {top: 70, bottom:150, left: 30, right: 200}
+                });
+            }
+            else if (window.matchMedia("(max-width: 800px)").matches) {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 70, bottom:250, left: 30, right: 350}
+                });
+            }
+            else if (window.matchMedia("(max-width: 1400px)").matches) {
+                this.map.fitBounds(bounds, {
+                    padding: {top: 70, bottom:275, left: 35, right: 400}
                 });
             }
             else  if (window.matchMedia("(max-width: 2000px)").matches){
@@ -64,7 +74,7 @@ class Map extends React.Component {
             }
             else {
                 this.map.fitBounds(bounds, {
-                    padding: {top: 70, bottom:550, left: 15, right: 400}
+                    padding: {top: 70, bottom:550, left: 15, right: 480}
                 });
             }
         }  

@@ -107,7 +107,6 @@ class CyclistProfile extends React.Component {
     }
 
     renderProfilePic() {
-        //TODO Change cyclist in database
         try {
             return (require('./cyclists/' + this.props.cyclist.cyclist.toLowerCase().replace(/\s+/g, '-') + '.jpg'));
         }
