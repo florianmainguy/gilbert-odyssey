@@ -6,17 +6,9 @@ Named after Philippe Gilbert, whose dedication for winning all Monuments is outs
 One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
 Eddy Merckx and Roger de Vlaeminck.<br/><br/>
 
-Try it here: https://dry-beach-86777.herokuapp.com/
+Try it here: [Gilbert Odyssey](https://www.gilbertodyssey.com)
 
-![quick view around]()
-
-## Development Stack
-
-**React** app using **Mapbox** for the map style and API
-- App created with **Create-React-App**
-- Added back end with **node.js** and **Express** framework
-- Database created with **MongoDB** and populated manually
-- **Mapbox-Gl-JS** for the javascript library that uses WebGL for rendering
+![quick view around](assets/screenshots/All.gif)
 
 ## Features
 
@@ -31,4 +23,40 @@ The **Cyclist** view shows a picture of the cyclist, its Monument wins and a sum
 There is a **About** icon at the bottom that brings a pop-up for information about the app, and a link the /*github*/ repo.
 There is also a **FullScreen** icon, that allows to see the map in full screen and interract with it.
 
+## Development Stack
+
+**React** app using **Mapbox** for the map style and API
+- App created with **Create-React-App**
+- Added back end with **node.js** and **Express** framework
+- Database created with **MongoDB** and populated manually
+- **Mapbox-Gl-JS** for the javascript library that uses WebGL for rendering
+
+## Screenshots
+
+**Home**
+![register](assets/Screenshots/Home-laptop.png)
+
+
+**Race View**
+![timeline](https://github.com/florianmainguy/fakebook/blob/master/docs/timeline.png?raw=true)
+
+
+**Cyclist View**
+![post](https://github.com/florianmainguy/fakebook/blob/master/docs/post.png?raw=true)
+
+
+**Home page on smartphone**
+<div class="wraptocenter">
+    <img src="https://github.com/florianmainguy/fakebook/blob/master/docs/about.png?raw=true" style="min-width:0;max-width:100%;box-shadow:0">
+</div>
+
+**Race View on smartphone**
+<div class="wraptocenter">
+    <img src="https://github.com/florianmainguy/fakebook/blob/master/docs/about.png?raw=true" style="min-width:0;max-width:100%;box-shadow:0">
+</div>
+
+**Cyclist View on smartphone**
+<div class="wraptocenter">
+    <img src="https://github.com/florianmainguy/fakebook/blob/master/docs/about.png?raw=true" style="min-width:0;max-width:100%;box-shadow:0">
+</div>
 
