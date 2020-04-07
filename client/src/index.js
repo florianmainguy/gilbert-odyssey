@@ -125,8 +125,7 @@ class Application extends React.Component {
                                 Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
                                 One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
                                 Eddy Merckx and Roger de Vlaeminck.<br/><br/>
-                            See more on <a href="https://github.com/florianmainguy/gilbert-odyssey">github</a><br/><br/>
-                            Made by Florian Mainguy
+                                Made by <a href="http://florianmainguy.github.io">Florian Mainguy</a>
                             </p>
                         </div>
                     </Grow>

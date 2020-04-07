@@ -180,7 +180,6 @@ class Cyclist extends React.Component {
         }
     }
 
-    //TODO implement cyclistSummary
     render() {
         return (
             <div className="main-grid cyclist-grid">

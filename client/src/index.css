@@ -820,7 +820,7 @@ color: rgb(121, 121, 121) !important;
 
 
 /** iPad **/
-@media screen and (min-width: 768px) and (orientation: portrait) {
+@media screen and (min-width: 750px) and (orientation: portrait) {
 .home-grid h1 {
   font-size: 7rem;
 }
@@ -843,8 +843,48 @@ color: rgb(121, 121, 121) !important;
 }
 .ui.search {
   font-size: 120%;
+}
+.race-selector a,h3 {
+  font-size: 2.5rem;
+}
+.cyclist-head h3 {
+  font-size: 2.5rem;
+}
+.cyclist-profile {
+  font-size: 150%;
+}
+.cyclist-picture {
+  width: 13rem;
+  height: 13rem;
+}
+.cyclist-wins h6 {
+  font-size: 150%;
+}
+.race-winners h6 {
+  font-size: 150%;
+}
+.race-history h6 {
+  font-size: 150%;
+}
+.race-chart h6 {
+  font-size: 150%;
+}
+.table-sm {
+  font-size: 1.4rem;
+}
+.cyclist-summary p {
+  font-size: 200%;
+}
+.key-wins .icon {
+  font-size: 90%;
+}
+.about-container {
+  font-size: 150%;
+}
+.about-popup-content {
+  font-size: 150%;
 }}
-@media screen and (min-width: 1024px) and (orientation: portrait) {
+@media screen and (min-width: 1000px) and (orientation: portrait) {
 h6 {
   font-size: 120%;
 }
@@ -873,10 +913,44 @@ h6 {
   height: 4rem;
 }
 .race-selector a,h3 {
-  font-size: 250%;
+  font-size: 3.5rem;
+}
+.cyclist-head h3 {
+  font-size: 3.5rem;
+}
+.cyclist-profile {
+  font-size: 170%;
+}
+.cyclist-picture {
+  width: 17rem;
+  height: 17rem;
+}
+.cyclist-wins h6 {
+  font-size: 200%;
+}
+.race-winners h6 {
+  font-size: 200%;
+}
+.race-history h6 {
+  font-size: 200%;
+}
+.race-chart h6 {
+  font-size: 200%;
 }
 .table-sm {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+}
+.cyclist-summary p {
+  font-size: 250%;
+}
+.key-wins .icon {
+  font-size: 90%;
+}
+.about-container {
+  font-size: 200%;
+}
+.about-popup-content {
+  font-size: 200%;
 }}
 /** iPhone SE **/
 @media screen and (max-width: 320px) and (orientation: portrait) {

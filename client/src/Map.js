@@ -226,9 +226,6 @@ class Map extends React.Component {
                     );
                 });
 
-                //TODO Add zoom and rotation controls to the map.
-                //this.map.addControl(new mapboxgl.NavigationControl());
-
                 // Add permanent Popups for start and finish
                 classique.geojsonData.features.forEach((feature) => {
                     if (feature.properties.icon === 'start') {
