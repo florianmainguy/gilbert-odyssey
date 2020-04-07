@@ -1,14 +1,14 @@
 ## Gilbert Odyssey
 
-Gilbert Odyssey is an interactive visualisation of the 5 Monuments of cycling<br/><br/>
+Gilbert Odyssey is an interactive visualisation of the 5 Monuments of cycling<br/>
 
 Named after Philippe Gilbert, whose dedication for winning all Monuments is outstanding.<br/>
 One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
-Eddy Merckx and Roger de Vlaeminck.<br/><br/>
+Eddy Merckx and Roger de Vlaeminck.<br/>
 
 Try it here: [Gilbert Odyssey](https://www.gilbertodyssey.com)
 
-![quick view around](assets/screenshots/All.gif)
+![quick view around](assets/screenshots/All2.gif)
 
 ## Features
 
