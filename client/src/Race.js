@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactCountryFlag from "react-country-flag"
 import {Line} from 'react-chartjs-2';
 import * as turf from '@turf/turf';
+import flag from './flag.js';
 
 class RaceProfile extends React.Component {
     constructor(props) {
@@ -95,7 +95,6 @@ class RaceHistory extends React.Component {
 
     handleCyclist(cyclistName) {
         this.props.handlerRightUI('cyclist', cyclistName);
-        console.log(cyclistName);
     }
 
     renderTable() {
@@ -106,7 +105,7 @@ class RaceHistory extends React.Component {
             return (
                 <tr key={index}>
                     <td>{listValue.year}</td>
-                    <td><ReactCountryFlag countryCode={listValue.flag}/></td>
+                    <td>{flag(listValue.flag)}</td>
                     <td><a href="#" onClick={() => this.handleCyclist(listValue.winner)}>{listValue.winner}</a></td>
                 </tr>
             );
@@ -172,7 +171,7 @@ class RaceWinners extends React.Component {
             return (
                 <tr key={index}>
                     <td className="winsColumn">{listValue.count}</td>
-                    <td><ReactCountryFlag countryCode={listValue.flag}/></td>
+                    <td>{flag(listValue.flag)}</td>
                     <td><a href="#" onClick={() => this.handleCyclist(listValue.name)}>{listValue.name}</a></td>
                 </tr>
             );
