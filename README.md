@@ -6,7 +6,7 @@ Named after Philippe Gilbert, whose dedication for winning all Monuments is outs
 One last Monument win with Milan-Sanremo would make him join the elite club of Rik Van Looy, 
 Eddy Merckx and Roger de Vlaeminck.<br/>
 
-Try it [here](https://www.gilbertodyssey.com)
+Try it [here](http://www.gilbertodyssey.com)
 
 <p align="center">
     <img src="assets/screenshots/All.gif">
