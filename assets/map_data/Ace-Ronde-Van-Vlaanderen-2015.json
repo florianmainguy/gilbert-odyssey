@@ -724,6 +724,13 @@
       },
       "flag": "IT",
       "winner": "Alberto Bettiol"
+    },
+    {
+      "year": {
+        "$numberInt": "2020"
+      },
+      "flag": "NL",
+      "winner": "Mathieu van der Poel"
     }
   ],
   "geojsonData": {

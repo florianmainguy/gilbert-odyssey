@@ -745,6 +745,13 @@
             },
             "flag": "DK",
             "winner": "Jakob Fuglsang"
+        },
+        {
+            "year": {
+                "$numberInt": "2020"
+            },
+            "flag": "SK",
+            "winner": "Primož Roglič"
         }
     ],
     "geojsonData": {

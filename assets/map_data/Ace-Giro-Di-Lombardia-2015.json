@@ -794,6 +794,13 @@
       },
       "flag": "NL",
       "winner": "Bauke Mollema"
+    },
+    {
+      "year": {
+        "$numberInt": "2020"
+      },
+      "flag": "DK",
+      "winner": "Jakob Fuglsang"
     }
   ],
   "geojsonData": {
