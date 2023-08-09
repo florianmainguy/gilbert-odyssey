@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchCyclist from './search';
+import SearchCyclist from './Search';
 
 class HomeCyclist extends React.Component {
     constructor(props) {

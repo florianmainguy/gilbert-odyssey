@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchCyclist from './search'
+import SearchCyclist from './Search'
 import defaultPic from './cyclists/default.jpg'
 import flag from './flag.js';
 

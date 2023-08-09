@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import api from './api';
-import Map from './map';
-import Home from './home';
-import Cyclist from './cyclist';
-import Race from './race';
+import Map from './Map';
+import Home from './Home';
+import Cyclist from './Cyclist';
+import Race from './Race';
 import Slide from '@material-ui/core/Slide';
 import Grow from '@material-ui/core/Grow';
 import { css } from "@emotion/core";
